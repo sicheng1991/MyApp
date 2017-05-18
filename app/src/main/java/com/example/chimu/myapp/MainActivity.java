@@ -1,5 +1,6 @@
 package com.example.chimu.myapp;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -9,7 +10,6 @@ import android.content.res.Resources;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.SystemClock;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -17,13 +17,14 @@ import com.example.chimu.myapp.download.DownLoadUtils;
 import com.example.chimu.myapp.download.DownloadApk;
 import com.facebook.network.connectionclass.ConnectionClassManager;
 import com.facebook.network.connectionclass.ConnectionQuality;
+import com.kernal.plateid.MemoryCameraActivity;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     private AlarmManager am;
     private Intent intent;
     private TimerTask timerTask = new TimerTask() {
@@ -51,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
 //        ConnectionQuality quality = manager.getCurrentBandwidthQuality();
 //        Double bits = manager.getDownloadKBitsPerSecond();
 //        Log.i("msgggg","当前网速："+ bits);
-
+        Intent intent = new Intent(this,MemoryCameraActivity.class);
+        startActivity(intent);
     }
 
     private void OnClick(){
