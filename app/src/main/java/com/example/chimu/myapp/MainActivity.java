@@ -41,16 +41,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //1.注册下载广播接收器
-        DownloadApk.registerBroadcast(this);
-        //2.删除已存在的Apk
-        DownloadApk.removeFile(this);
+//        //1.注册下载广播接收器
+//        DownloadApk.registerBroadcast(this);
+//        //2.删除已存在的Apk
+//        DownloadApk.removeFile(this);
+//
+//        //网络情况;
+//        ConnectionClassManager manager = ConnectionClassManager.getInstance();
+//        ConnectionQuality quality = manager.getCurrentBandwidthQuality();
+//        Double bits = manager.getDownloadKBitsPerSecond();
+//        Log.i("msgggg","当前网速："+ bits);
 
-        //网络情况;
-        ConnectionClassManager manager = ConnectionClassManager.getInstance();
-        ConnectionQuality quality = manager.getCurrentBandwidthQuality();
-        Double bits = manager.getDownloadKBitsPerSecond();
-        Log.i("msgggg","当前网速："+ bits);
     }
 
     private void OnClick(){
