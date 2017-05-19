@@ -26,6 +26,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.os.Parcelable;
 import android.os.Vibrator;
 import android.text.format.Time;
 import android.view.Display;
@@ -48,6 +49,7 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import bean.PlateRecogBean;
 import utills.FrameCapture;
 import utills.Utils;
 import view.ViewfinderView;
@@ -97,6 +99,8 @@ public class MemoryCameraActivity extends Activity implements SurfaceHolder.Call
     private byte[] tempData;
     private byte[] picData;
     private Timer time = new Timer();
+    public static  int RecogReasultCode = 101;
+    public static  String RecogReasult = "RecogReasult";
 
     public RecogService.MyBinder recogBinder;
     private boolean isAutoFocus = true; //是否开启自动对焦   true:开启，定时对焦      false:不开起 ，只在图片模糊时对焦
@@ -165,8 +169,6 @@ public class MemoryCameraActivity extends Activity implements SurfaceHolder.Call
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_carmera);
 
-//        isCamera = getIntent().getBooleanExtra("camera", false);
-//        recogType = getIntent().getBooleanExtra("camera", false);
         RecogService.initializeType = recogType;
 
         from = getIntent().getIntExtra("from", 0);
@@ -219,11 +221,19 @@ public class MemoryCameraActivity extends Activity implements SurfaceHolder.Call
             public void onClick(View v) {
                 //跳转到checkpalate
                 Intent intent = new Intent();
-                intent.putExtra("number", "川E");
-                intent.putExtra("color", "蓝色");
-                intent.putExtra("from", from);
-                intent.putExtra("manual_input", true);//手动输入
-                startActivity(intent);
+//                intent.putExtra("number", "川E");
+//                intent.putExtra("color", "蓝色");
+//                intent.putExtra("from", from);
+//                intent.putExtra("manual_input", true);//手动输入
+//                startActivity(intent);
+
+                PlateRecogBean bean = new PlateRecogBean();
+                bean.setNumber("川E");
+                bean.setColor("蓝色");
+                bean.setManualInput(true);
+                bean.setRecogType(recogType);
+                intent.putExtra(RecogReasult,bean);
+                setResult(RecogReasultCode,intent);
                 MemoryCameraActivity.this.finish();
             }
         });
@@ -804,8 +814,6 @@ public class MemoryCameraActivity extends Activity implements SurfaceHolder.Call
                                     mVibrator.vibrate(100);
                                     closeCamera();
                                     Intent intent = new Intent();
-//                                    Intent intent = new Intent(MemoryCameraActivity.this,
-//                                            CarInActivity.class);
                                     number = fieldvalue[0];
                                     color = fieldvalue[1];
                                     int left = Integer.valueOf(fieldvalue[7]);
@@ -814,18 +822,29 @@ public class MemoryCameraActivity extends Activity implements SurfaceHolder.Call
                                             - Integer.valueOf(fieldvalue[7]);
                                     int h = Integer.valueOf(fieldvalue[10])
                                             - Integer.valueOf(fieldvalue[8]);
-                                    intent.putExtra("number", number);
-
-                                    intent.putExtra("color", color);
-                                    intent.putExtra("path", path);
-                                    intent.putExtra("left", left);
-                                    intent.putExtra("top", top);
-                                    intent.putExtra("width", w);
-                                    intent.putExtra("height", h);
-                                    intent.putExtra("time", fieldvalue[11]);
-                                    intent.putExtra("recogType", recogType);
-                                    intent.putExtra("from", from);
-                                    startActivity(intent);
+//                                    intent.putExtra("number", number);
+//                                    intent.putExtra("color", color);
+//                                    intent.putExtra("path", path);
+//                                    intent.putExtra("left", left);
+//                                    intent.putExtra("top", top);
+//                                    intent.putExtra("width", w);
+//                                    intent.putExtra("height", h);
+//                                    intent.putExtra("time", fieldvalue[11]);
+//                                    intent.putExtra("recogType", recogType);
+//                                    intent.putExtra("from", from);
+//                                    startActivity(intent);
+                                    PlateRecogBean bean = new PlateRecogBean();
+                                    bean.setNumber(number);
+                                    bean.setColor(color);
+                                    bean.setPath(path);
+                                    bean.setLeft(left);
+                                    bean.setTop(top);
+                                    bean.setWidth(width);
+                                    bean.setHeight(height);
+                                    bean.setTime(fieldvalue[11]);
+                                    bean.setRecogType(recogType);
+                                    intent.putExtra(RecogReasult,bean);
+                                    setResult(RecogReasultCode,intent);
 
                                     new FrameCapture(intentNV21data, preWidth, preHeight, "10");
                                     MemoryCameraActivity.this.finish();
@@ -856,13 +875,18 @@ public class MemoryCameraActivity extends Activity implements SurfaceHolder.Call
                                     //
 
                                 }
+//                                intent.putExtra("number", number);
+//                                intent.putExtra("color", color);
+//                                intent.putExtra("time", resultString);
+//                                intent.putExtra("recogType", recogType);
+//                                intent.putExtra("from", from);
 
-                                intent.putExtra("number", number);
-                                intent.putExtra("color", color);
-                                intent.putExtra("time", resultString);
-                                intent.putExtra("recogType", recogType);
-                                intent.putExtra("from", from);
-                                startActivity(intent);
+                                PlateRecogBean bean = new PlateRecogBean();
+                                bean.setNumber(number);
+                                bean.setTime(fieldvalue[11]);
+                                bean.setRecogType(recogType);
+                                intent.putExtra(RecogReasult,bean);
+                                setResult(RecogReasultCode,intent);
 
                                 MemoryCameraActivity.this.finish();
                             }
@@ -929,17 +953,32 @@ public class MemoryCameraActivity extends Activity implements SurfaceHolder.Call
                             int w = prp.plateIDCfg.right - prp.plateIDCfg.left;
                             int h = prp.plateIDCfg.bottom - prp.plateIDCfg.top;
 
-                            intent.putExtra("number", number);
-                            intent.putExtra("color", color);
-                            intent.putExtra("path", path);
-                            intent.putExtra("left", left);
-                            intent.putExtra("top", top);
-                            intent.putExtra("width", w);
-                            intent.putExtra("height", h);
-                            intent.putExtra("time", fieldvalue[11]);
-                            intent.putExtra("recogType", recogType);
-                            intent.putExtra("from", from);
-                            startActivity(intent);
+//                            intent.putExtra("number", number);
+//                            intent.putExtra("color", color);
+//                            intent.putExtra("path", path);
+//                            intent.putExtra("left", left);
+//                            intent.putExtra("top", top);
+//                            intent.putExtra("width", w);
+//                            intent.putExtra("height", h);
+//                            intent.putExtra("time", fieldvalue[11]);
+//                            intent.putExtra("recogType", recogType);
+//                            intent.putExtra("from", from);
+//                            startActivity(intent);
+
+                            PlateRecogBean bean = new PlateRecogBean();
+                            bean.setNumber(number);
+                            bean.setColor(color);
+                            bean.setPath(path);
+                            bean.setLeft(left);
+                            bean.setTop(top);
+                            bean.setWidth(width);
+                            bean.setHeight(height);
+                            bean.setTime(fieldvalue[11]);
+                            bean.setRecogType(recogType);
+                            intent.putExtra(RecogReasult,bean);
+                            setResult(RecogReasultCode,intent);
+
+
 
                             MemoryCameraActivity.this.finish();
                         }

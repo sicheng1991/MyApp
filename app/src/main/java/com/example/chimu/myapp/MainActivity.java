@@ -24,6 +24,8 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import bean.PlateRecogBean;
+
 public class MainActivity extends Activity {
     private AlarmManager am;
     private Intent intent;
@@ -52,8 +54,21 @@ public class MainActivity extends Activity {
 //        ConnectionQuality quality = manager.getCurrentBandwidthQuality();
 //        Double bits = manager.getDownloadKBitsPerSecond();
 //        Log.i("msgggg","当前网速："+ bits);
+
+
+
+
         Intent intent = new Intent(this,MemoryCameraActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,100);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == MemoryCameraActivity.RecogReasultCode){
+            PlateRecogBean bean = data.getParcelableExtra(MemoryCameraActivity.RecogReasult);
+            Log.i("msggggg","扫描到车牌：" +bean.toString());
+
+        }
     }
 
     private void OnClick(){
@@ -71,10 +86,6 @@ public class MainActivity extends Activity {
         super.onDestroy();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-    }
 }
 
 
