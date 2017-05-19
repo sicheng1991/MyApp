@@ -1,9 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/memory"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/memory"
-    tools:context="com.kernal.plateid.MemoryCameraActivity" >
+    tools:context="com.kernal.plateid.MemoryCameraActivity">
 
     <SurfaceView
         android:id="@+id/surfaceViwe_video"
@@ -21,14 +21,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/flash_camera_btn" />
-<ImageButton
+
+    <ImageButton
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/back_btn" />
-<ImageButton
+
+    <ImageButton
         android:id="@+id/take_pic_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/tack_pic_btn" />
+
+    <Button
+        android:id="@+id/manual_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/button"
+        android:padding="5dp"
+        android:text="手动输入车牌"
+        android:textSize="26sp" />
 </RelativeLayout>

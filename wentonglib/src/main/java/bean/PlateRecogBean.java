@@ -14,5 +14,5 @@ public class PlateRecogBean {
     private String height;
     private String time;
     private String recogType;
-
+    private boolean isManualInput;
 }
