@@ -1,1 +1,1 @@
-include ':app', ':myeventbus', ':mygreendao', ':mydownlandmanager', ':myrxjava', ':myormlite', ':wentonglib'
+include ':app',':mygreendao', ':mydownlandmanager', ':myrxjava', ':myormlite', ':wentonglib'
