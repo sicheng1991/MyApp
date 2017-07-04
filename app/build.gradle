@@ -1,7 +1,9 @@
 apply plugin: 'com.android.application'
+
 def static releaseTime() {
     return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
 }
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -16,7 +18,7 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ moduleName : project.getName() ]
+                arguments = [moduleName: project.getName()]
             }
         }
     }
@@ -25,7 +27,6 @@ android {
             buildConfigField "Boolean", "isDebug", "false"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
 
             //打包报名
             applicationVariants.all { variant ->
@@ -46,7 +47,7 @@ android {
     }
 
     productFlavors {
-        beta{}
+        beta {}
         sogou {}
         baidu {}
         c360 {}
@@ -59,12 +60,10 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    //    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0'
-    //    testCompile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.12'
     compile 'com.facebook.network.connectionclass:connectionclass:1.0.1'
-    compile project(':wentonglib')
-
     /*https://github.com/alibaba/ARouter*/
     compile 'com.alibaba:arouter-api:1.1.0'
     compile 'com.alibaba:arouter-compiler:1.1.1'

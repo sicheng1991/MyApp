@@ -9,15 +9,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.kernal.plateid.MemoryCameraActivity;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.TimerTask;
-import bean.PlateRecogBean;
 
 
 public class MainActivity extends Activity {
@@ -34,11 +30,6 @@ public class MainActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == MemoryCameraActivity.RecogReasultCode){
-            PlateRecogBean bean = data.getParcelableExtra(MemoryCameraActivity.RecogReasult);
-            Log.i("msggggg","扫描到车牌：" +bean.toString());
-
-        }
     }
 
     @Override

@@ -1,1 +1,1 @@
-include ':app', ':mygreendao', ':mydownlandmanager', ':myrxjava', ':myormlite', ':wentonglib', ':mylib', ':kotlin'
+include ':app', ':mygreendao', ':mydownlandmanager', ':myrxjava', ':myormlite', ':mylib', ':kotlin', ':pda'
