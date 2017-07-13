@@ -1,4 +1,4 @@
-package com.example.chimu.myapp;
+package com.chimu.myapp;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.os.Environment;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.annotation.Person;
+import com.example.chimu.myapp.R;
 
 import java.io.FileOutputStream;
 
@@ -21,6 +22,7 @@ public class MainActivity extends Activity {
 //        Intent intent = new Intent(this,MemoryCameraActivity.class);
 //        startActivityForResult(intent,100);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -30,8 +32,9 @@ public class MainActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
     }
+
     //Arouter页面跳转
-    private void OnClick(){
+    private void OnClick() {
         // 1. 应用内简单的跳转(通过URL跳转在'进阶用法'中)
 //        ARouter.getInstance().build("/test/ActivityB").navigation();
 
@@ -39,7 +42,7 @@ public class MainActivity extends Activity {
         ARouter.getInstance().build("/test/ActivityB")
                 .withLong("key1", 666L)
                 .withString("key3", "888")
-                .withSerializable("key3",new Integer(101))
+                .withSerializable("key3", new Integer(101))
                 .navigation();
     }
 
@@ -50,5 +53,4 @@ public class MainActivity extends Activity {
         output.close();
     }
 }
-
 
