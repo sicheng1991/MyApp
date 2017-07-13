@@ -1,1 +1,1 @@
-include ':app', ':myrxjava', ':myormlite', ':mylib', ':kotlin', ':pda', ':processor'
+include ':app', ':mylib', ':kotlin', ':pda', ':processor'

@@ -1,4 +1,4 @@
-package com.example.chimu.myrxjava;
+package com.chimu.mylib.bean;
 
 import java.util.List;
 

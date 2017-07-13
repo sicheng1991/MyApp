@@ -1,17 +1,17 @@
-package com.example.chimu.myrxjava;
+package com.chimu.mylib.util;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.chimu.mylib.LibApplication;
+import com.chimu.mylib.bean.InfoBean;
+import com.chimu.mylib.net.HttpUtil;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -27,7 +27,6 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
@@ -35,58 +34,24 @@ import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Rxjava学习
- * 参考文章（简书关注：Season_zlc的rxjava系列）：http://www.jianshu.com/p/464fa025229e
- * longwenjiang    2017.2.28
+ * Created by Longwj on 2017/7/13.
  */
-public class MainActivity extends AppCompatActivity {
-    private final String TAG = "MTAG";
+
+public class Rxjava {
+    private String TAG = "Tag";
     private Subscription mSubscription;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        /****************************   1.Rxjava基础    ****************/
-//        Rxjava1();      //rxjava基本写法
-//        Rxjava2();          //Rxjava链式操作
-//        Rxjava3();  //dispose()方法的使用
-//        Rxjava4();      //subscribe()的重载
 
-
-        /****************************  2. Rxjava线程控制   Schedulers ****************/
-        //Rx内置线程
-        /*Schedulers.io() 代表io操作的线程, 通常用于网络,读写文件等io密集型的操作
-        Schedulers.computation() 代表CPU计算密集型的操作, 例如需要大量计算的操作
-        Schedulers.newThread() 代表一个常规的新线程
-        AndroidSchedulers.mainThread() 代表Android的主线程*/
-//        Rxjava5();
-
-        /****************************  3 Rxjava结合Retrofit ****************/
-//        Rxjava6();
-        /****************************  4 Rxjava操作符 ****************/
-//        RxjavaMap();
-
-//        RxjavaFlatMap();        //FlatMap和concatMap相似， 但是后者是按发送的顺序来发送数据到下游
-        /****************************  5. Rxjava背压 ****************/
-    //    RxjavaBackPressure1();      //事例展示1，用了zip操作符
-     //   RxjavaBackPressure2();      //事例展示2
-
-        practice1();    //响应式拉取Demo
-
-
-    }
     public  void practice1() {
         Flowable
                 .create(new FlowableOnSubscribe<String>() {
                     @Override
                     public void subscribe(FlowableEmitter<String> emitter) throws Exception {
                         try {
-                            InputStream in = getResources().getAssets().open("test.txt");
+                            InputStream in = LibApplication.application.getResources().getAssets().open("test.txt");
                             InputStreamReader isr = new InputStreamReader(in);
                             BufferedReader br = new BufferedReader(isr);
                             String str;
@@ -291,13 +256,13 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(InfoBean infoBean) {
-                        Toast.makeText(MainActivity.this, "拿到数据", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LibApplication.application, "拿到数据", Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "databean：" + infoBean.toString());
                     }
 
                     @Override
                     public void onError(Throwable throwable) {
-                        Toast.makeText(MainActivity.this, "没拿到数据", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LibApplication.application, "没拿到数据", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

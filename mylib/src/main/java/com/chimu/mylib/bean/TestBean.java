@@ -1,4 +1,4 @@
-package com.example.chimu.myormlite;
+package com.chimu.mylib.bean;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
@@ -7,7 +7,7 @@ import com.j256.ormlite.table.DatabaseTable;
  * Created by longwj on 2017/3/6.
  */
 @DatabaseTable(tableName = "Test.db")
-class TestBean {
+public class TestBean {
     @DatabaseField(columnName = "age")
     private int age;
     @DatabaseField(columnName = "name")
@@ -22,7 +22,7 @@ class TestBean {
         this.name = name;
         this.sex = sex;
     }
-    public TestBean(int age, String name, boolean sex,String high) {
+    public TestBean(int age, String name, boolean sex, String high) {
         this.age = age;
         this.name = name;
         this.sex = sex;

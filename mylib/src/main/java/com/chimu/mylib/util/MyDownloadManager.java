@@ -11,7 +11,7 @@ import com.chimu.mylib.LibApplication;
  * Created by Longwj on 2017/7/13.
  */
 
-public class downloadManager {
+public class MyDownloadManager {
 
     public static void download(String url) {
         DownloadManager downloadManager = (DownloadManager) LibApplication.application.getSystemService(LibApplication.application.DOWNLOAD_SERVICE);
@@ -29,4 +29,3 @@ public class downloadManager {
         Toast.makeText(LibApplication.application, "开始下载", Toast.LENGTH_SHORT).show();
     }
 }
-

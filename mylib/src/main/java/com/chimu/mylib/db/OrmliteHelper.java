@@ -1,53 +1,16 @@
-package com.example.chimu.myormlite;
+package com.chimu.mylib.db;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 
+import com.chimu.mylib.bean.TestBean;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        OrmliteHelper ormliteHelper = new OrmliteHelper(this);
-        Dao testDao = ormliteHelper.getTestDao();
-        AlertDialog.Builder builder  = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("确认" ) ;
-        builder.setMessage("这是一个简单消息框" ) ;
-        builder.setPositiveButton("是" ,  null );
-        builder.show();
-
-        try {
-            testDao.create(new TestBean(18,"张三",true,"170")); //添加
-
-            List<TestBean> list= testDao.queryForAll();
-            Log.i("msggg",list.size()+"");
-            for(TestBean test:list){
-                Log.i("msggg",test.toString());
-            }
-        } catch (java.sql.SQLException e) {
-            e.printStackTrace();
-            Log.e("msggg",Log.getStackTraceString(e));
-        }
-
-
-
-    }
-
-}
 class OrmliteHelper extends OrmLiteSqliteOpenHelper{
     private Dao<TestBean, Integer> testDao;
 
