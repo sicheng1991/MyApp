@@ -76,6 +76,7 @@ dependencies {
     //AbstractProcessor
     compile 'com.google.auto:auto-common:0.6'
     compile 'com.squareup:javapoet:1.7.0'
-//    compile files('libs/processor.jar')
-//    compile project(':processor')
+    //    compile files('libs/processor.jar')
+    //    compile project(':processor')
+    compile project(':mylib')
 }
