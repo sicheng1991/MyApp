@@ -1,8 +1,7 @@
-package com.example.chimu.myapp;
+package com.chimu.myapp;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
