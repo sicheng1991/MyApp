@@ -39,7 +39,9 @@ public class MainActivity extends Activity {
 //                .withString("key3", "888")
 //                .withSerializable("key3", new Integer(101))
 //                .navigation();
-        Toast.makeText(this,"成功了成功了成功了",Toast.LENGTH_SHORT).show();
+        int x = 2;
+        int y = 3;
+        Toast.makeText(this,x +" X " + y +" = " + (x * y),Toast.LENGTH_SHORT).show();
     }
 
 }
