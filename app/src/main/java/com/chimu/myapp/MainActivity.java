@@ -1,32 +1,26 @@
 package com.chimu.myapp;
 
 import android.app.Activity;
-import android.content.res.AssetManager;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
+import com.chimu.mylib.activity.MyCameraActivity;
 import com.example.annotation.Person;
 
 @Person(name = "龙文江", age = 35)
 public class MainActivity extends Activity {
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        AssetManager assetManager = getAssets();
-
-
-
-
-
-
-
+        Log.e("MainActivity",
+            "onCreate(MainActivity.java:20)"+"");
 
     }
-
 
     //Arouter页面跳转
     public void OnClick(View v) {
@@ -39,9 +33,12 @@ public class MainActivity extends Activity {
 //                .withString("key3", "888")
 //                .withSerializable("key3", new Integer(101))
 //                .navigation();
-        int x = 2;
-        int y = 3;
-        Toast.makeText(this,x +" X " + y +" = " + (x * y),Toast.LENGTH_SHORT).show();
+
+//        int x = 2;
+//        int y = 3;
+//        Toast.makeText(this,x +" X " + y +" = " + (x * y),Toast.LENGTH_SHORT).show();
+        Intent intent =  new Intent(this, MyCameraActivity.class);
+        startActivity(intent);
     }
 
 }
