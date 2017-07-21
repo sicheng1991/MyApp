@@ -67,7 +67,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
     testCompile 'junit:junit:4.12'
     compile 'com.facebook.network.connectionclass:connectionclass:1.0.1'
     /*https://github.com/alibaba/ARouter*/
@@ -82,4 +82,6 @@ dependencies {
 
     //阿里热修复
     compile 'com.aliyun.ams:alicloud-android-hotfix:3.0.6'
+
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha2'
 }
