@@ -4,6 +4,7 @@ package com.example.annotation;
 //import javax.annotation.processing.AbstractProcessor;
 
 import com.google.auto.service.AutoService;
+import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
@@ -80,7 +81,7 @@ public class PersonProcessor extends AbstractProcessor {
         }
         return true;
     }
-
+    final ClassName  InterfaceName = ClassName.get("com.example.annotation","IPerson");
     /**
      *javapoet 自动生成代码
      * @param element
@@ -90,14 +91,15 @@ public class PersonProcessor extends AbstractProcessor {
         String name = person.name();
         int age = person.age();
         MethodSpec methodSpec = MethodSpec.methodBuilder("getPersonInfo")//
-                .addModifiers(Modifier.PUBLIC,Modifier.STATIC)//Modifier
+                .addModifiers(Modifier.PUBLIC)//Modifier
 //                .addParameter() //
-                .addStatement("return $S", "Person.name = " + name + "\nPerson.age = " + age)//
+                .addStatement("return $S", "Person.name = " + name + " Person.age = " + age)//
                 .returns(String.class)
                 .build();
 
         TypeSpec typeSpec = TypeSpec.classBuilder(element.getSimpleName() + FIXEND)//
                 .addModifiers(Modifier.PUBLIC)
+                .addSuperinterface(InterfaceName)
                 .addMethod(methodSpec)  //
                 .build();
 
