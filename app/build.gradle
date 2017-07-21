@@ -77,11 +77,10 @@ dependencies {
     compile 'com.google.auto:auto-common:0.6'
     compile 'com.squareup:javapoet:1.7.0'
     //    compile files('libs/processor.jar')
-    //    compile project(':processor')
+//        compile project(':processor')
     compile project(':mylib')
 
     //阿里热修复
     compile 'com.aliyun.ams:alicloud-android-hotfix:3.0.6'
 
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha2'
 }

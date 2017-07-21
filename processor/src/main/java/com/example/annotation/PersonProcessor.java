@@ -4,7 +4,11 @@ package com.example.annotation;
 //import javax.annotation.processing.AbstractProcessor;
 
 import com.google.auto.service.AutoService;
+import com.squareup.javapoet.JavaFile;
+import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.TypeSpec;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.LinkedHashSet;
@@ -21,6 +25,7 @@ import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
@@ -33,7 +38,7 @@ import javax.tools.JavaFileObject;
 @AutoService(Processor.class)
 @SupportedAnnotationTypes("com.example.annotation.Person")
 @SupportedSourceVersion(SourceVersion.RELEASE_7)
-public class AutoProcessor extends AbstractProcessor {
+public class PersonProcessor extends AbstractProcessor {
     private Types mTypeUtils;
     private Elements mElementUtils;
     private Filer mFiler;
@@ -59,9 +64,9 @@ public class AutoProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-//        if (set.isEmpty()) {
-//            return false;
-//        }
+        if (set.isEmpty()) {
+            return false;
+        }
         for (Element element : roundEnvironment.getElementsAnnotatedWith(Person.class)) {
 
             if (element.getKind() != ElementKind.CLASS) {
@@ -70,26 +75,58 @@ public class AutoProcessor extends AbstractProcessor {
                 return true;
             }
 
-            analysisAnnotated(element);
+//            buildClass(element);
+            buildClass1(element);
         }
         return true;
     }
+
+    /**
+     *javapoet 自动生成代码
+     * @param element
+     */
+    private void buildClass1(Element element) {
+        Person person = element.getAnnotation(Person.class);
+        String name = person.name();
+        int age = person.age();
+        MethodSpec methodSpec = MethodSpec.methodBuilder("getPersonInfo")//
+                .addModifiers(Modifier.PUBLIC,Modifier.STATIC)//Modifier
+//                .addParameter() //
+                .addStatement("return $S", "Person.name = " + name + "\nPerson.age = " + age)//
+                .returns(String.class)
+                .build();
+
+        TypeSpec typeSpec = TypeSpec.classBuilder(element.getSimpleName() + FIXEND)//
+                .addModifiers(Modifier.PUBLIC)
+                .addMethod(methodSpec)  //
+                .build();
+
+        JavaFile javaFile = JavaFile.builder("com.chimu.myprocessor", typeSpec)
+                .build();
+        try {
+            javaFile.writeTo(this.mFiler);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     private void error(Element e, String msg, Object... args) {
         mMessager.printMessage(
                 Diagnostic.Kind.ERROR,
                 String.format(msg, args),
                 e);
     }
-    private static final String SUFFIX = "IPerson";
+    private static final String FIXEND = "Person";
 
-    private void analysisAnnotated(Element classElement)
+    private void buildClass(Element classElement)
     {
         Person annotation = classElement.getAnnotation(Person.class);
         String name = annotation.name();
         int age = annotation.age();
 
 //        TypeElement superClassName = mElementUtils.getTypeElement(name);
-        String newClassName = SUFFIX;
+        String newClassName = FIXEND;
 
         StringBuilder builder = new StringBuilder()
                 .append("package com.sicheng.processor.myperson;\n\n")
