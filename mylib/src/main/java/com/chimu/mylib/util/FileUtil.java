@@ -45,14 +45,24 @@ public class FileUtil {
      * @param oldPath
      * @param newPath
      */
-    public static void copyPath(File oldPath,File newPath){
+    public static void copyPath(final File oldPath, final File newPath){
         if(!oldPath.isDirectory() || !newPath.isDirectory()){
             new IllegalArgumentException("File mast is Directory");
         }
         if(newPath.exists()){
             new IllegalArgumentException("newFile not is exists");
         }
-        copyFiles(oldPath,oldPath.getPath(),newPath.getPath());
+        try{
+            //io耗时操作，放在子线程
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    copyFiles(oldPath,oldPath.getPath(),newPath.getPath());
+                }
+            }).start();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public static void copyFiles(File oldFile,String oldPath,String newPath){
@@ -75,7 +85,6 @@ public class FileUtil {
         String path = file.getPath();
         String nPath = path.replace(oldPath, newPath);
         File nfile = new File(nPath);
-//         file.renameTo(nfile);
         InputStream in = null;
         OutputStream out = null;
         try {
