@@ -5,11 +5,11 @@ package com.example.bean;
  */
 
 public class HostBean {
-    private String groups;
-    private String dials;
-    private String settings;
+    private Object groups;
+    private Object dials;
+    private Object settings;
 
-    public String getGroups() {
+    public Object getGroups() {
         return groups;
     }
 
@@ -17,7 +17,7 @@ public class HostBean {
         this.groups = groups;
     }
 
-    public String getDials() {
+    public Object getDials() {
         return dials;
     }
 
@@ -25,7 +25,7 @@ public class HostBean {
         this.dials = dials;
     }
 
-    public String getSettings() {
+    public Object getSettings() {
         return settings;
     }
 

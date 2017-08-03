@@ -13,8 +13,20 @@ import java.io.InputStream;
 public class MyClass {
     public static void main(String[] args) {
         System.out.println("main is run");
-
-        Utils.SpeedDial2MD();
-
+//        File file = new File("chimu.txt");
+//        if (!file.exists()) {
+//            try {
+//                file.createNewFile();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+        try {
+            Utils.SpeedDial2MD();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
+
+
