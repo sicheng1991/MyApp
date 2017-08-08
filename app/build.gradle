@@ -72,14 +72,12 @@ dependencies {
     compile 'com.facebook.network.connectionclass:connectionclass:1.0.1'
     /*https://github.com/alibaba/ARouter*/
     compile 'com.alibaba:arouter-api:1.1.0'
-    compile 'com.alibaba:arouter-compiler:1.1.1'
-    //AbstractProcessor
+//    compile 'com.alibaba:arouter-compiler:1.1.1
     compile 'com.google.auto:auto-common:0.6'
     compile 'com.squareup:javapoet:1.7.0'
     //    compile files('libs/processor.jar')
     compile project(':mylib')
-
     //阿里热修复
     compile 'com.aliyun.ams:alicloud-android-hotfix:3.0.6'
-
+    compile project(':java')
 }

@@ -24,7 +24,9 @@ public class Utils {
      */
     public static void SpeedDial2MD() throws Exception{
         //获取数据
-        File file = new File("D:\\host.txt");
+        String name = "D:\\host";
+
+        File file = new File(name);
         String s = FileUtil.readTxtFile(file);
 
         //动态解析
@@ -34,7 +36,7 @@ public class Utils {
         List<GroupBean> groups = new ArrayList<>();
         for (Map.Entry<String, Object> entry : jsonObj.entrySet()) {
             GroupBean bean =  JSON.parseObject(String.valueOf(entry.getValue()),GroupBean.class);
-            System.out.println(bean.toString());
+//            System.out.println(bean.toString());
             groups.add(bean);
         }
         //网址
@@ -42,7 +44,7 @@ public class Utils {
         List<Dialbean> dials = new ArrayList<>();
         for (Map.Entry<String, Object> entry : jsonObj1.entrySet()) {
             Dialbean bean =  JSON.parseObject(String.valueOf(entry.getValue()),Dialbean.class);
-            System.out.println(bean.toString());
+//            System.out.println(bean.toString());
             dials.add(bean);
         }
 
@@ -57,7 +59,7 @@ public class Utils {
         }
         String end = "  \n";
         StringBuilder sb = new StringBuilder();
-        sb.append("## Speed Dial 网址  \n");
+        sb.append("## Speed Dial Website  \n");
         OutputStream os = new FileOutputStream(mdFile);
         for(GroupBean bean : groups){
             sb.append("## " + bean.getTitle()).append(end);
@@ -67,7 +69,9 @@ public class Utils {
                 }
             }
         }
-        byte[] bytes =  sb.toString().getBytes();
+        String newStr = new String(sb.toString().getBytes(), "UTF-8");
+        System.out.println(newStr);
+        byte[] bytes =  newStr.getBytes();
         os.write(bytes);
         os.flush();
         os.close();
