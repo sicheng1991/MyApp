@@ -8,7 +8,7 @@ public class Dialbean {
 
     /**
      * id : 2
-     * title : 百度一下，你就知道
+     * title :
      * url : https://www.baidu.com/
      * thumbnail :
      * ts_created : 1481089755

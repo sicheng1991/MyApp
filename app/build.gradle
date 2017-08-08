@@ -80,4 +80,5 @@ dependencies {
     //阿里热修复
     compile 'com.aliyun.ams:alicloud-android-hotfix:3.0.6'
     compile project(':java')
+    compile 'com.jakewharton:butterknife-annotations:8.0.0'
 }
