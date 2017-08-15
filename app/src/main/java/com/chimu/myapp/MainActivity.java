@@ -10,7 +10,9 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.chimu.myapp.common.BaseActivity;
+import com.chimu.myapp.view.CounterView;
 import com.chimu.myapp.view.ScollView;
+import com.chimu.myapp.view.TimeView;
 import com.chimu.mylib.activity.MyCameraActivity;
 import com.chimu.mylib.util.AnnotationUtil;
 import com.chimu.mylib.util.FileUtil;
@@ -23,7 +25,6 @@ import java.io.File;
 public class MainActivity extends BaseActivity {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +32,10 @@ public class MainActivity extends BaseActivity {
         Log.i("MainActivity", "onCreate:" + activityState);
 
         LinearLayout ll = (LinearLayout) findViewById(R.id.ll);
-        ll.addView(new ScollView(this));
-
+//        ll.addView(new ScollView(this));
+//        ll.addView(new CounterView(this));
+        TimeView timeView = new TimeView(this);
+        ll.addView(timeView);
     }
 
     //Arouter页面跳转

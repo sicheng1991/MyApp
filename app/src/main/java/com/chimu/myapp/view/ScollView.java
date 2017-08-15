@@ -23,6 +23,7 @@ import android.widget.Scroller;
 
 public class ScollView extends View{
     private Paint paint;
+
     private int lastX;
     private int lastY;
     private Context context;
@@ -34,7 +35,9 @@ public class ScollView extends View{
         init();
     }
 
-
+    public ScollView(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+    }
 
     private void init() {
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -79,11 +82,13 @@ public class ScollView extends View{
 //                2.通过offsetLeftAndRight()与offsetTopAndBottom()
 //                offsetLeftAndRight(offsetX);
 //                offsetTopAndBottom(offsetY);
+
 //                3.改变布局参数
 //                ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) getLayoutParams();
 //                layoutParams.leftMargin = getLeft() + offsetX;
 //                layoutParams.topMargin = getTop() + offsetY;
 //                setLayoutParams(layoutParams);
+
 //                4.使用动画
 //                ObjectAnimator.ofFloat(this,"translationX",0,300).setDuration(1000).start();
 //                5.scollTo(移动到)与scollBy（移动多少）
