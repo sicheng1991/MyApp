@@ -6,7 +6,16 @@ import java.util.List;
  * Created by longwj on 2017/3/1.
  */
 
-public class InfoBean {
+public class InfoBean implements Cloneable{
+    public Object clone() {
+        Object clone = null;
+        try {
+            clone = super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return clone;
+    }
 
     @Override
     public String toString() {

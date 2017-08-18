@@ -22,8 +22,11 @@ import android.widget.Toast;
 import com.chimu.mylib.R;
 import com.chimu.mylib.util.ToastUtil;
 import com.chimu.mylib.widget.CameraPreview;
+import com.chimu.mylib.widget.WaterWaveView;
 
 import java.io.IOException;
+
+import butterknife.BindView;
 
 import static android.content.ContentValues.TAG;
 
@@ -32,6 +35,10 @@ import static android.content.ContentValues.TAG;
  */
 
 public class MyCameraActivity extends AppCompatActivity implements SurfaceHolder.Callback {
+    WaterWaveView waterWaveView;
+    FrameLayout flPreview;
+    Button btCapture;
+
     private CameraPreview mPreview;
     private Camera mCamera;
     private SurfaceView surfaceView;
@@ -42,8 +49,9 @@ public class MyCameraActivity extends AppCompatActivity implements SurfaceHolder
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE); //设置无标题
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN , WindowManager.LayoutParams.FLAG_FULLSCREEN );  //设置全屏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);  //设置全屏
         setContentView(R.layout.activity_camera);
+
         initCamera();
     }
 
@@ -131,7 +139,7 @@ public class MyCameraActivity extends AppCompatActivity implements SurfaceHolder
             final Matrix matrix = new Matrix();
             matrix.setRotate(90);
             final Bitmap bitmap = Bitmap.createBitmap(resource, 0, 0, resource.getWidth(), resource.getHeight(), matrix, true);
-            Log.i("msg","bitmap.size:" + bitmap.getByteCount());
+            Log.i("msg", "bitmap.size:" + bitmap.getByteCount());
         }
     };
 
@@ -160,5 +168,11 @@ public class MyCameraActivity extends AppCompatActivity implements SurfaceHolder
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
 
+    }
+
+    private void onInitView() {
+        waterWaveView = (WaterWaveView) findViewById(R.id.waterWaveView);
+        flPreview = (FrameLayout) findViewById(R.id.fl_preview);
+        btCapture = (Button) findViewById(R.id.bt_capture);
     }
 }
