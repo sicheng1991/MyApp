@@ -20,18 +20,17 @@ import java.util.Map;
 
 public class Utils {
     /**
-     * speedDiqlè½¬MarkDown
+     * speedDiql×ªMarkDown
      */
     public static void SpeedDial2MD() throws Exception{
-        //è·å–æ•°æ®
+        //»ñÈ¡Êı¾İ
         String name = "D:\\host";
 
         File file = new File(name);
         String s = FileUtil.readTxtFile(file);
-
-        //åŠ¨æ€è§£æ
+       //¶¯Ì¬½âÎö
         HostBean hostBean1 =  JSON.parseObject(s,HostBean.class);
-        //ç»„
+       //×é
         JSONObject jsonObj = JSON.parseObject(hostBean1.getGroups().toString());
         List<GroupBean> groups = new ArrayList<>();
         for (Map.Entry<String, Object> entry : jsonObj.entrySet()) {
@@ -39,7 +38,7 @@ public class Utils {
 //            System.out.println(bean.toString());
             groups.add(bean);
         }
-        //ç½‘å€
+     //ÍøÖ·
         JSONObject jsonObj1 = JSON.parseObject(hostBean1.getDials().toString());
         List<Dialbean> dials = new ArrayList<>();
         for (Map.Entry<String, Object> entry : jsonObj1.entrySet()) {
@@ -48,7 +47,6 @@ public class Utils {
             dials.add(bean);
         }
 
-        //å¼€å§‹ç”Ÿäº§markdownæ–‡ä»¶
         createMD(groups, dials);
     }
 
