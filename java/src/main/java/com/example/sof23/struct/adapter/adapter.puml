@@ -1,26 +1,19 @@
 @startuml
-
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+interface IMp3 {
+    void payMp3();
 }
-
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+class Mp3 implements IMp3 {
+    public void payMp3();
 }
+interface IMp4
+class Mp4
+IMp4 <|.. Mp4
+class PayerAdapter
+IMp3 <|.. PayerAdapter
+
+IMp4 <.. PayerAdapter
+
+class Client
+PayerAdapter <.. Client
 
 @enduml
