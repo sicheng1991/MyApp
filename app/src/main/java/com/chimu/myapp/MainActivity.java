@@ -20,6 +20,8 @@ import com.chimu.mylib.util.SPUtils;
 import com.example.annotation.Person;
 
 import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
 
 @Person(name = "龙文江", age = 35)
 public class MainActivity extends BaseActivity {
@@ -34,8 +36,21 @@ public class MainActivity extends BaseActivity {
         LinearLayout ll = (LinearLayout) findViewById(R.id.ll);
 //        ll.addView(new ScollView(this));
 //        ll.addView(new CounterView(this));
-        TimeView timeView = new TimeView(this);
-        ll.addView(timeView);
+
+//        TimeView timeView = new TimeView(this);
+//        ll.addView(timeView);
+
+        Timer timer = new Timer();
+        TimerTask tt = new TimerTask() {
+            @Override
+            public void run() {
+                Intent intent = getPackageManager().getLaunchIntentForPackage(getPackageName());
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                startActivity(new Intent(MainActivity.this,TestLockActivity.class));
+            }
+        };
+        timer.schedule(tt,1000 * 10);
     }
 
     //Arouter页面跳转
