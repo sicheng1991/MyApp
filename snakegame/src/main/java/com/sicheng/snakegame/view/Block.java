@@ -57,7 +57,7 @@ public class Block extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        RectF rectF = new RectF(X,Y, X + MetricUtil.dip2px(context,10),Y + MetricUtil.dip2px(context,10));
+        RectF rectF = new RectF(X,Y, X + 15,Y + 15);
         canvas.drawRect(rectF,paint);
     }
 }
