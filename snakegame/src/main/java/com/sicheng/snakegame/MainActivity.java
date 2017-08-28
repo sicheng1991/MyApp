@@ -5,8 +5,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -18,10 +20,14 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FrameLayout fl_main;
     private List<Block> body;
     private List<Block> border;//边界
+    private Button btn_up;
+    private Button btn_down;
+    private Button btn_right;
+    private Button btn_left;
     private int blockSize;
     private int blockNum;
 
@@ -34,10 +40,21 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-        fl_main = (FrameLayout) findViewById(R.id.fl_main);
-
+        initView();
         init();
 
+    }
+
+    private void initView() {
+        fl_main = (FrameLayout) findViewById(R.id.fl_main);
+        btn_up = (Button) findViewById(R.id.btn_up);
+        btn_down = (Button) findViewById(R.id.btn_down);
+        btn_right = (Button) findViewById(R.id.btn_right);
+        btn_left = (Button) findViewById(R.id.btn_left);
+        btn_up.setOnClickListener(this);
+        btn_down.setOnClickListener(this);
+        btn_right.setOnClickListener(this);
+        btn_left.setOnClickListener(this);
     }
 
     private void init() {
@@ -45,11 +62,15 @@ public class MainActivity extends AppCompatActivity {
         blockSize = MetricUtil.getWindowWith(this) / blockNum;
         setBorder();
         body = new ArrayList<>();
-        for (int i = 4; i >= 0; i--) {
+        for (int i = 6; i >= 0; i--) {
             Block b = new Block(this, i * blockSize, blockSize);
             body.add(b);
             fl_main.addView(b);
         }
+        Block eatBlock = creatEatThing();
+        fl_main.addView(eatBlock);
+        Block eatBlock1 = creatEatThing();
+        fl_main.addView(eatBlock1);
         timeContral();
     }
 
@@ -74,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 handler.sendEmptyMessage(FLASH_VIEW);
             }
         };
-        timer.schedule(tt,600,600);
+        timer.schedule(tt,500,500);
     }
 
 
@@ -93,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                     body.remove(oldBlock);
                     fl_main.removeView(oldBlock);
                 }else{
-                    Toast.makeText(MainActivity.this, "你失败了啊", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "你失败了", Toast.LENGTH_SHORT).show();
                     timer.cancel();
                 }
 
@@ -106,8 +127,14 @@ public class MainActivity extends AppCompatActivity {
     private static final int LEFT = 3;
     private int direction = 1;
 
-    private void directionContral(int direction){
-        this.direction = direction;
+    private void directionContral(int direction1){
+        if((direction1 == UP || direction1 == DOWN) && (direction == UP || direction == DOWN)){
+            return;
+        }
+        if((direction1 == RIGHT || direction1 == LEFT) && (direction == RIGHT || direction == LEFT)){
+            return;
+        }
+        this.direction = direction1;
     }
     private Block createNewBlock(float oldX,float oldY){
 
@@ -139,4 +166,35 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_up:
+                directionContral(UP);
+                break;
+            case R.id.btn_down:
+                directionContral(DOWN);
+                break;
+            case R.id.btn_left:
+                directionContral(LEFT);
+                break;
+            case R.id.btn_right:
+                directionContral(RIGHT);
+                break;
+        }
+    }
+
+    /**
+     * 产生果子
+     * @return
+     */
+    private  Block creatEatThing(){
+        Block eatBlock = null;
+        do{
+            int x = (int) ((Math.random() * 47294723) % blockNum);
+            int y = (int) ((Math.random() * 28774869) % blockNum);
+            eatBlock = new Block(this,x * blockSize,y + blockSize,Color.GREEN);
+        }while (check(eatBlock));
+        return eatBlock;
+    }
 }
