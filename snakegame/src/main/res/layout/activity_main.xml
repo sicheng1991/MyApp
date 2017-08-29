@@ -27,6 +27,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="上"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            />
+
+        <Button
+            android:id="@+id/btn_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="重玩"/>
     </LinearLayout>
 
     <LinearLayout
@@ -47,6 +58,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="右"/>
+        <Button
+            android:id="@+id/btn_begin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开始"/>
     </LinearLayout>
 
 

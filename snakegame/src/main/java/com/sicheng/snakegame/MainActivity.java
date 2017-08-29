@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_down;
     private Button btn_right;
     private Button btn_left;
+    private Button btn_begin;
+    private Button btn_reset;
     private int blockSize;
     private int blockNum;
 
@@ -51,10 +53,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_down = (Button) findViewById(R.id.btn_down);
         btn_right = (Button) findViewById(R.id.btn_right);
         btn_left = (Button) findViewById(R.id.btn_left);
+        btn_reset = (Button) findViewById(R.id.btn_reset);
+        btn_begin = (Button) findViewById(R.id.btn_begin);
         btn_up.setOnClickListener(this);
         btn_down.setOnClickListener(this);
         btn_right.setOnClickListener(this);
         btn_left.setOnClickListener(this);
+        btn_reset.setOnClickListener(this);
+        btn_begin.setOnClickListener(this);
     }
 
     private void init() {
@@ -181,6 +187,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_right:
                 directionContral(RIGHT);
                 break;
+            case R.id.btn_begin:
+
+                break;
+            case R.id.btn_reset:
+
+                break;
+
         }
     }
 
