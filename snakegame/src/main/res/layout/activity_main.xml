@@ -23,6 +23,11 @@
             android:layout_height="wrap_content"
             android:text="长度：7"
             android:textSize="18sp"/>
+        <Button
+            android:id="@+id/btn_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="加速"/>
     </LinearLayout>
 
     <LinearLayout

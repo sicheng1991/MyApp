@@ -34,10 +34,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_left;
     private Button btn_begin;
     private Button btn_reset;
+    private Button btn_speed;
     private TextView tv_len;
     private int blockSize;
     private int blockNum;
     private boolean isRunning;
+    private int speed = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_left = (Button) findViewById(R.id.btn_left);
         btn_reset = (Button) findViewById(R.id.btn_reset);
         btn_begin = (Button) findViewById(R.id.btn_begin);
+        btn_speed = (Button) findViewById(R.id.btn_speed);
         tv_len = (TextView) findViewById(R.id.tv_len);
 
         btn_up.setOnClickListener(this);
@@ -69,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_left.setOnClickListener(this);
         btn_reset.setOnClickListener(this);
         btn_begin.setOnClickListener(this);
+        btn_speed.setOnClickListener(this);
     }
 
     private void init() {
@@ -115,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 handler.sendEmptyMessage(FLASH_VIEW);
             }
         };
-        timer.schedule(tt,400);
+        timer.schedule(tt,speed);
     }
 
 
@@ -222,7 +226,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_reset:
                     reset();
                 break;
-
+            case R.id.btn_speed:
+                speed = (int) (speed * 0.9);
+                break;
         }
     }
 
