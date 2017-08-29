@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     reset();
                 break;
             case R.id.btn_speed:
-                speed = (int) (speed * 0.9);
+                speed = (int) (speed * 0.8);
                 break;
         }
     }
