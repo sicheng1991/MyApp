@@ -1,4 +1,4 @@
-package com.chimu.myapp;
+package com.chimu.myapp.activity;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -17,6 +17,8 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.chimu.myapp.R;
 
 import java.util.List;
 
