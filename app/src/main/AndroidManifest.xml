@@ -40,6 +40,16 @@
             android:process=":service">
         </service>
 
+        <service
+            android:name=".aidl.LocalService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".aidl.RomoteService"
+            android:process=":romoteservice"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <receiver android:name=".service.BootReceiver"
             android:enabled="true"
             android:exported="true">

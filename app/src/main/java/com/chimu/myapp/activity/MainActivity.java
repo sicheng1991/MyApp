@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.chimu.myapp.R;
+import com.chimu.myapp.aidl.LocalService;
+import com.chimu.myapp.aidl.RomoteService;
 import com.chimu.myapp.common.BaseActivity;
 import com.chimu.myapp.service.MinReceiver;
 import com.chimu.myapp.service.TimerService;
@@ -55,6 +57,11 @@ public class MainActivity extends BaseActivity {
 //        IntentFilter filter = new IntentFilter();
 //        filter.addAction(Intent.ACTION_TIME_TICK);
 //        registerReceiver(new MinReceiver(), filter);
+
+        Intent i1 = new Intent(this, LocalService.class);
+        startService(i1);
+        Intent i2 = new Intent(this, RomoteService.class);
+        startService(i2);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 //        Intent intent = new Intent(this, TimerReceiver.class);
