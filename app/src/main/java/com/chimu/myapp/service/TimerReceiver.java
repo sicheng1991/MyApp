@@ -1,4 +1,4 @@
-package com.chimu.myapp.activity;
+package com.chimu.myapp.service;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.chimu.myapp.R;
+import com.chimu.myapp.activity.TestLockActivity;
 
 /**
  * Created by Longwj on 2017/8/31.
@@ -19,7 +20,7 @@ public class TimerReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.i("TimerReceiver","onReceive:"+"接受广播");
+        Log.i("loggggg","onReceive:"+"接受广播");
         this.context = context;
         noti();
     }

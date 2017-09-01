@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
+
 
     <uses-permission android:name="android.permission.DEVICE_POWER"
         tools:ignore="ProtectedPermissions" />
@@ -31,7 +33,32 @@
 
         </activity>
 
-        <receiver android:name=".activity.TimerReceiver"/>
+        <receiver android:name=".service.TimerReceiver"/>
+        <service android:name=".service.TimerService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":service">
+        </service>
+
+        <receiver android:name=".service.BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+        </receiver>
+
+        <!--<receiver android:name=".service.BootReceiver">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.BOOT_COMPLETED" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+
+        <receiver android:name=".service.MinReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.TIME_TICK" />
+            </intent-filter>
+        </receiver>
         <meta-data
             android:name="com.taobao.android.hotfix.IDSECRET"
             android:value="24547735-1" />
