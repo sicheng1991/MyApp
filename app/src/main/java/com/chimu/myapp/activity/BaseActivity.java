@@ -1,4 +1,4 @@
-package com.chimu.myapp.common;
+package com.chimu.myapp.activity;
 
 import android.app.Activity;
 import android.app.Application;

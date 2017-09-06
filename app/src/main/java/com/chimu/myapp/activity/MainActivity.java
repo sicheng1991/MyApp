@@ -1,39 +1,27 @@
 package com.chimu.myapp.activity;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.Build;
+import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.Environment;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.chimu.myapp.R;
-import com.chimu.myapp.aidl.LocalService;
-import com.chimu.myapp.aidl.RomoteService;
-import com.chimu.myapp.common.BaseActivity;
-import com.chimu.myapp.service.MinReceiver;
-import com.chimu.myapp.service.TimerService;
-import com.chimu.mylib.util.AnnotationUtil;
-import com.chimu.mylib.util.FileUtil;
-import com.chimu.mylib.util.SPUtils;
+import com.chimu.myapp.common.MessagerService;
+import com.chimu.myapp.common.aidl.LocalService;
+import com.chimu.myapp.common.aidl.RomoteService;
 import com.example.annotation.Person;
-
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 @Person(name = "龙文江", age = 35)
 public class MainActivity extends BaseActivity {
@@ -50,45 +38,78 @@ public class MainActivity extends BaseActivity {
        iv = (ImageView) findViewById(R.id.img);
         button = (Button) findViewById(R.id.btn_commit);
 
-        //双进程拉起
-//        Intent i1 = new Intent(this, LocalService.class);
-//        startService(i1);
-//        Intent i2 = new Intent(this, RomoteService.class);
-//        startService(i2);
+//        双进程拉起
+        Intent i1 = new Intent(this, LocalService.class);
+        startService(i1);
+        Intent i2 = new Intent(this, RomoteService.class);
+        startService(i2);
 
 
-        animation = new TranslateAnimation(0,300,0,300);
-        animation.setDuration(3000);               //设置动画持续时间
-        animation.setRepeatMode(Animation.REVERSE);
-        animation.setRepeatCount(1000);
-//        animation.setAnimationListener(new Animation.AnimationListener() {
-//            @Override
-//            public void onAnimationStart(Animation animation) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(Animation animation) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationRepeat(Animation animation) {
-//
-//            }
-//        });
-//        button.startAnimation(animation);
-        iv.startAnimation(animation);
+
 //
     }
 
     public void OnClick(View v) {
-//        animation.cancel();
-        iv.clearAnimation();
-        button.clearAnimation();
-
-
+        startAndBindService();
+    }
+    Intent service;
+    private void startAndBindService() {
+        service = new Intent(MainActivity.this, MessagerService.class);
+        startService(service);
+        bindService(service, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
+
+    public final static String TAG = "MainActivity";
+    public final static int ACTIVITYID = 0X0002;
+    //客户端的Messnger
+    private Messenger aMessenger = new Messenger(new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.arg1 == ACTIVITYID) {
+                //客户端接受服务端传来的消息
+                Log.d(TAG, "服务端传来了消息=====>>>>>>>");
+                String str = (String) msg.getData().get("content");
+                Log.d(TAG, str);
+            }
+        }
+    });
+
+    //服务端传来的Messenger
+    Messenger sMessenger;
+    ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            sMessenger = new Messenger(service);
+
+            Message message = Message.obtain();
+            message.arg1 = 0x0001;
+            //注意这里，把`Activity`的`Messenger`赋值给了`message`中，当然可能你已经发现这个就是`Service`中我们调用的`msg.replyTo`了。
+            message.replyTo = aMessenger;
+
+            Bundle bundle = new Bundle();
+            bundle.putString("content", "我就是Activity传过来的字符串");
+            message.setData(bundle);
+
+            try {
+                //消息从客户端发出
+                sMessenger.send(message);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Log.e(TAG, "连接Service失败");
+        }
+    };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService(serviceConnection);
+    }
 }
 

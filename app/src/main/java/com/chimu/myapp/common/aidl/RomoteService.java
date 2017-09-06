@@ -1,4 +1,4 @@
-package com.chimu.myapp.aidl;
+package com.chimu.myapp.common.aidl;
 
 import android.app.Service;
 import android.content.ComponentName;

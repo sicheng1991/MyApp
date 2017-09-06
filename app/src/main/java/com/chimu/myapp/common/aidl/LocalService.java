@@ -1,4 +1,4 @@
-package com.chimu.myapp.aidl;
+package com.chimu.myapp.common.aidl;
 
 import android.app.Service;
 import android.content.ComponentName;
@@ -8,9 +8,12 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.chimu.myapp.IMyAidlInterface;
+
+import java.lang.ref.WeakReference;
 
 /**
  * Created by Longwj on 2017/9/1.
@@ -31,6 +34,10 @@ public class LocalService extends Service {
         super.onCreate();
         binder = new MyBinder();
         conn = new MyConn();
+        String s = "ABC";
+        WeakReference b = new WeakReference(s);
+        s = null;
+        Log.i("LocalService","onCreate:"+(String) b.get());
     }
 
     class MyBinder extends IMyAidlInterface.Stub {

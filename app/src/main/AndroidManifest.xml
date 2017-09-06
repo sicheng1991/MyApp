@@ -41,14 +41,15 @@
         </service>
 
         <service
-            android:name=".aidl.LocalService"
+            android:name=".common.aidl.LocalService"
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name=".aidl.RomoteService"
+            android:name=".common.aidl.RomoteService"
             android:process=":romoteservice"
             android:enabled="true"
             android:exported="true"></service>
+        <service android:name=".common.MessagerService"></service>
 
         <receiver android:name=".service.BootReceiver"
             android:enabled="true"
