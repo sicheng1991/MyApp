@@ -34,10 +34,6 @@ public class LocalService extends Service {
         super.onCreate();
         binder = new MyBinder();
         conn = new MyConn();
-        String s = "ABC";
-        WeakReference b = new WeakReference(s);
-        s = null;
-        Log.i("LocalService","onCreate:"+(String) b.get());
     }
 
     class MyBinder extends IMyAidlInterface.Stub {
@@ -57,6 +53,13 @@ public class LocalService extends Service {
     class MyConn implements ServiceConnection {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
+            try {
+                 IMyAidlInterface iMyAidlInterface = IMyAidlInterface.Stub.asInterface(service);
+                Log.i("msggggg", "onServiceConnected: "+iMyAidlInterface.getServiceName());
+            } catch (RemoteException e) {
+                e.printStackTrace();
+
+            }
         }
 
         @Override
