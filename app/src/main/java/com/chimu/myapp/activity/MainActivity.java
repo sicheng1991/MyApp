@@ -8,7 +8,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,10 +31,15 @@ import com.example.annotation.Person;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 @Person(name = "龙文江", age = 35)
 public class MainActivity extends BaseActivity {
-
+    private Animation animation;
+    private ImageView   iv;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,56 +47,47 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         Log.i("MainActivity", "onCreate:" + activityState);
         LinearLayout ll = (LinearLayout) findViewById(R.id.ll);
-        ImageView iv = (ImageView) findViewById(R.id.img);
-        Button button = (Button) findViewById(R.id.btn_commit);
+       iv = (ImageView) findViewById(R.id.img);
+        button = (Button) findViewById(R.id.btn_commit);
 
-//        new Thread(new Runnable() {
+        //双进程拉起
+//        Intent i1 = new Intent(this, LocalService.class);
+//        startService(i1);
+//        Intent i2 = new Intent(this, RomoteService.class);
+//        startService(i2);
+
+
+        animation = new TranslateAnimation(0,300,0,300);
+        animation.setDuration(3000);               //设置动画持续时间
+        animation.setRepeatMode(Animation.REVERSE);
+        animation.setRepeatCount(1000);
+//        animation.setAnimationListener(new Animation.AnimationListener() {
 //            @Override
-//            public void run() {
-//                try {
-//                    Thread.sleep(10 * 1000);
-//                    noti();
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
+//            public void onAnimationStart(Animation animation) {
 //
 //            }
-//        }).start();
-//        IntentFilter filter = new IntentFilter();
-//        filter.addAction(Intent.ACTION_TIME_TICK);
-//        registerReceiver(new MinReceiver(), filter);
-
-        Intent i1 = new Intent(this, LocalService.class);
-        startService(i1);
-        Intent i2 = new Intent(this, RomoteService.class);
-        startService(i2);
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-//        Intent intent = new Intent(this, TimerReceiver.class);
-//        PendingIntent pi = PendingIntent.getBroadcast(this, 101, intent, 0);
-        Intent intent = new Intent(this, TimerService.class);
-        PendingIntent pi = PendingIntent.getService(this, 101, intent, 0);
-        long nextTime = System.currentTimeMillis() + 10 * 1000;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, nextTime, pi);
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            Log.i("tagggg", "api大于19，开启闹钟" + format.format(new Date(nextTime)));
-        } else
-            alarmManager.set(AlarmManager.RTC_WAKEUP, nextTime, pi);
+//
+//            @Override
+//            public void onAnimationEnd(Animation animation) {
+//
+//            }
+//
+//            @Override
+//            public void onAnimationRepeat(Animation animation) {
+//
+//            }
+//        });
+//        button.startAnimation(animation);
+        iv.startAnimation(animation);
+//
     }
 
-    //Arouter页面跳转
     public void OnClick(View v) {
-//        aRouter();
+//        animation.cancel();
+        iv.clearAnimation();
+        button.clearAnimation();
 
-        String s1 = AnnotationUtil.getPerson(this);
-        SPUtils spUtils = new SPUtils(this, "tessssst");
-        spUtils.put("text", "测试呢");
-        String s = "";
-        File f = new File(Environment.getDataDirectory().getPath() + "/data/" + this.getPackageName() + "/");
-        FileUtil.copyPath(f, Environment.getExternalStorageDirectory());
-        Toast.makeText(this, s1, Toast.LENGTH_SHORT).show();
+
     }
 
 }

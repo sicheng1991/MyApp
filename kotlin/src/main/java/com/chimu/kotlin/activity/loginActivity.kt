@@ -1,12 +1,12 @@
-package com.example.chimu.kotlin
+package com.chimu.kotlin.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.chimu.kotlin.R
 
 /**
  *
@@ -28,7 +28,7 @@ class loginActivity : AppCompatActivity() {
         login!!.setOnClickListener {
             if (userName!!.text.toString() == "123456" && userPwd!!.text.toString() == "abc") {
                 Toast.makeText(this, "login succeed1", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this,MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
         }

@@ -1,4 +1,4 @@
-package com.example.chimu.kotlin;
+package com.chimu.kotlin.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
