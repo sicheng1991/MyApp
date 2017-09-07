@@ -41,7 +41,7 @@ public class MainActivity extends BaseActivity {
        iv = (ImageView) findViewById(R.id.img);
         button = (Button) findViewById(R.id.btn_commit);
         Bitmap bitmap =  BitmapFactory.decodeResource(this.getResources(),R.mipmap.c1);
-        iv.setImageBitmap(BitmapUtil.fillet(bitmap,10,3));
+        iv.setImageBitmap(BitmapUtil.getRoundBitmap(bitmap,10,true,false,false,true));
 
 
 

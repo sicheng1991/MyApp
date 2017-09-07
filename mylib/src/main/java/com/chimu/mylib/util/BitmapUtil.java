@@ -43,28 +43,19 @@ public class BitmapUtil {
 
 
 
-    public static final int CORNER_TOP_LEFT = 1;
-    public static final int CORNER_TOP_RIGHT = 1 << 1;
-    public static final int CORNER_BOTTOM_LEFT = 1 << 2;
-    public static final int CORNER_BOTTOM_RIGHT = 1 << 3;
-    public static final int CORNER_ALL = CORNER_TOP_LEFT | CORNER_TOP_RIGHT | CORNER_BOTTOM_LEFT | CORNER_BOTTOM_RIGHT;
-
     /**
      * 图片任意圆角
      * @param bitmap
      * @param roundPx  圆角大小
-     * @param corners   左上开始顺顺时针,1+2+4+8
      * @return
      */
-    public static Bitmap fillet(Bitmap bitmap, int roundPx,int corners) {
+    public static Bitmap getRoundBitmap(Bitmap bitmap, int roundPx,boolean isTLRound,boolean isTRRound,boolean isBLRound,boolean isBRRound) {
         try {
-            // 其原理就是：先建立一个与图片大小相同的透明的Bitmap画板
-            // 然后在画板上画出一个想要的形状的区域。
             final int width = bitmap.getWidth();
             final int height = bitmap.getHeight();
 
-            Bitmap paintingBoard = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(paintingBoard);
+            Bitmap bitmap1 = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap1);//画布传入空bitmap，这个bitmap就是canvas画的图
             canvas.drawARGB(Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT);
 
             final Paint paint = new Paint();
@@ -75,48 +66,35 @@ public class BitmapUtil {
             final RectF rectF = new RectF(0, 0, width, height);
             canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
 
-            //把不需要的圆角去掉
-            int notRoundedCorners = corners ^ CORNER_ALL;
-            if ((notRoundedCorners & CORNER_TOP_LEFT) != 0) {
-                clipTopLeft(canvas,paint,roundPx,width,height);
-            }
-            if ((notRoundedCorners & CORNER_TOP_RIGHT) != 0) {
-                clipTopRight(canvas, paint, roundPx, width, height);
-            }
-            if ((notRoundedCorners & CORNER_BOTTOM_LEFT) != 0) {
-                clipBottomLeft(canvas,paint,roundPx,width,height);
-            }
-            if ((notRoundedCorners & CORNER_BOTTOM_RIGHT) != 0) {
-                clipBottomRight(canvas, paint, roundPx, width, height);
-            }
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-
+            //把不需要圆角的补上
+            patchRound(canvas,paint,roundPx,height,width,isTLRound,isTRRound,isBLRound,isBRRound);
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));//多图层只绘制重叠部分
             final Rect src = new Rect(0, 0, width, height);
             final Rect dst = src;
             canvas.drawBitmap(bitmap, src, dst, paint);
-            return paintingBoard;
+
+            return bitmap1;
         } catch (Exception exp) {
             return bitmap;
         }
     }
 
-    private static void clipTopLeft(final Canvas canvas, final Paint paint, int offset, int width, int height) {
-        final Rect block = new Rect(0, 0, offset, offset);
-        canvas.drawRect(block, paint);
+    private static void patchRound(Canvas canvas,Paint paint,int roundPx,int height,int width,boolean isTLRound,boolean isTRRound,boolean isBLRound,boolean isBRRound){
+        if(!isTLRound){
+            drawRect(canvas,paint,roundPx,0,0);
+        }
+        if (!isTRRound){
+            drawRect(canvas,paint,roundPx,width - roundPx,0);
+        }
+        if(!isBLRound){
+            drawRect(canvas,paint,roundPx,0,height - roundPx);
+        }
+        if (!isBRRound){
+            drawRect(canvas,paint,roundPx,width - roundPx,height - roundPx);
+        }
     }
-
-    private static void clipTopRight(final Canvas canvas, final Paint paint, int offset, int width, int height) {
-        final Rect block = new Rect(width - offset, 0, width, offset);
-        canvas.drawRect(block, paint);
-    }
-
-    private static void clipBottomLeft(final Canvas canvas, final Paint paint, int offset, int width, int height) {
-        final Rect block = new Rect(0, height - offset, offset, height);
-        canvas.drawRect(block, paint);
-    }
-
-    private static void clipBottomRight(final Canvas canvas, final Paint paint, int offset, int width, int height) {
-        final Rect block = new Rect(width - offset, height - offset, width, height);
-        canvas.drawRect(block, paint);
+    private static void drawRect(Canvas canvas,Paint paint,int roundPx,int x,int y){
+        final Rect rect = new Rect(x, y, x + roundPx, y + roundPx);
+        canvas.drawRect(rect, paint);
     }
 }
