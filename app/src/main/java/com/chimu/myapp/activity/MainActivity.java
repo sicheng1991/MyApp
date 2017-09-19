@@ -25,6 +25,7 @@ import com.chimu.myapp.common.EvilInstrumentation;
 import com.chimu.myapp.common.MessagerService;
 import com.chimu.myapp.common.aidl.LocalService;
 import com.chimu.myapp.common.aidl.RomoteService;
+import com.chimu.myapp.hook.AMSHook.AMSHookUtil;
 import com.chimu.mylib.util.BitmapUtil;
 import com.example.annotation.Person;
 
@@ -51,7 +52,7 @@ public class MainActivity extends BaseActivity {
 
 
 
-        hook();
+//        hook();
 
 //        双进程拉起
 //        Intent i1 = new Intent(this, LocalService.class);
@@ -71,7 +72,7 @@ public class MainActivity extends BaseActivity {
 
 
             // 拿到原始的 mInstrumentation字段
-            Field mInstrumentationField = activityThreadClass.getField("mInstrumentation");
+            Field mInstrumentationField = activityThreadClass.getDeclaredField("mInstrumentation");
             mInstrumentationField.setAccessible(true);
             Instrumentation mInstrumentation = (Instrumentation) mInstrumentationField.get(currentActivityThread);
 
@@ -97,8 +98,12 @@ public class MainActivity extends BaseActivity {
     }
 
     public void OnClick(View v) {
-        startActivity(new Intent(this,TestLockActivity.class));
-//        startAndBindService();
+        AMSHookUtil.hookStartActivity(this);
+        Intent intent = new Intent(MainActivity.this, TestLockActivity.class);
+        startActivity(intent);
+
+//        startActivity(new Intent(this,TestLockActivity.class));
+////        startAndBindService();
     }
     Intent service;
     private void startAndBindService() {

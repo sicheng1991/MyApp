@@ -29,9 +29,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.TestLockActivity">
+        <!--<activity android:name=".activity.TestLockActivity">-->
 
-        </activity>
+        <!--</activity>-->
 
         <receiver android:name=".service.TimerReceiver"/>
         <service android:name=".service.TimerService"
