@@ -49,7 +49,7 @@ public class MainActivity extends BaseActivity {
 
 
     public void OnClick(View v) {
-        AMSHookUtil.hookStartActivity(this);
+//        AMSHookUtil.hookStartActivity(this);
         Intent intent = new Intent(MainActivity.this, TestLockActivity.class);
         startActivity(intent);
 

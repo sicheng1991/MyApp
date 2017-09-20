@@ -18,6 +18,8 @@ import com.chimu.myapp.MyApplication;
 import com.chimu.myapp.activity.MainActivity;
 
 /**
+ * messager进行多进程的通信，注意配置文件的service配置
+ *
  * Created by Longwj on 2017/9/20.
  */
 

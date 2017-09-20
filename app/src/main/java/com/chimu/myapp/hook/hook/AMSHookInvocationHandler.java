@@ -7,13 +7,13 @@ import android.util.Log;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
-public class HookInvocationHandler implements InvocationHandler {
+public class AMSHookInvocationHandler implements InvocationHandler {
 
     private Object mAmsObj;
     private String mPackageName;
     private String cls;
 
-    public HookInvocationHandler(Object amsObj, String packageName, String cls) {
+    public AMSHookInvocationHandler(Object amsObj, String packageName, String cls) {
         this.mAmsObj = amsObj;
         this.mPackageName = packageName;
         this.cls = cls;

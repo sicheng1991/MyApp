@@ -17,6 +17,8 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
+ * 不在AndroidManifest注册实现页面的跳转，实现android 插件化
+ *
  * Created by Bolex on 2017/6/20.
  */
 
@@ -47,7 +49,7 @@ public class AMSHookUtil {
             if (activities == null || activities.length == 0) {
                 return;
             }
-            ActivityInfo activityInfo = activities[0];
+            ActivityInfo activityInfo = activities[0];//随便拿一个注册的Activity
             sHostClazzName = activityInfo.name;
             Log.e(TAG,"pkgName:" + sPackageName + "\tHostClazzName:" + sHostClazzName);
 
@@ -62,7 +64,7 @@ public class AMSHookUtil {
 
             amsObj = Proxy.newProxyInstance(context.getClass().getClassLoader(),
                     amsObj.getClass().getInterfaces(),
-                    new HookInvocationHandler(amsObj, sPackageName, sHostClazzName));
+                    new AMSHookInvocationHandler(amsObj, sPackageName, sHostClazzName));
             amsField.set(gDefaultObj, amsObj);
             hookLaunchActivity();
         } catch (Exception e) {
