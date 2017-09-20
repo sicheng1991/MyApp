@@ -1,4 +1,4 @@
-package com.chimu.myapp.hook.AMSHook;
+package com.chimu.myapp.hook.hook;
 
 import android.annotation.SuppressLint;
 import android.content.ComponentName;

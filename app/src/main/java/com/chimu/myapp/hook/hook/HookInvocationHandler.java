@@ -1,4 +1,4 @@
-package com.chimu.myapp.hook.AMSHook;
+package com.chimu.myapp.hook.hook;
 
 import android.content.ComponentName;
 import android.content.Intent;

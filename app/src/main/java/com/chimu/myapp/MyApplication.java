@@ -15,6 +15,7 @@ import com.taobao.sophix.listener.PatchLoadStatusListener;
  */
 
 public class MyApplication extends Application {
+    static public Application myApplication;
     LibApplication libApplication;
     @Override
     public void onCreate() {
@@ -22,6 +23,7 @@ public class MyApplication extends Application {
         initARouter();
         initLib();
         initSophix();
+        myApplication = this;
 
     }
 
@@ -55,7 +57,7 @@ public class MyApplication extends Application {
     }
 
     private void initLib() {
-        libApplication  = LibApplication.getInstance();
+        LibApplication libApplication = LibApplication.getInstance();
         libApplication.onCreate(this);
     }
 
