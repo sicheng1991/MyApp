@@ -1,1 +1,1 @@
-include ':app', ':mylib', ':kotlin', ':pda', ':processor', ':java', ':snakegame'
+include ':app', ':mylib', ':kotlin', ':processor', ':java', ':MyGames'
