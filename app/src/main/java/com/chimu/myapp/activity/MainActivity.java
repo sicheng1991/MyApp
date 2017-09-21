@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import com.chimu.myapp.R;
 import com.chimu.myapp.hook.hook.AMSHookUtil;
 import com.chimu.myapp.hook.hook.HookInstrumentationUtil;
+import com.chimu.myapp.opengl.MyOpenGLActivity;
 import com.chimu.mylib.util.BitmapUtil;
 
 import com.example.annotation.Person;
@@ -50,7 +51,7 @@ public class MainActivity extends BaseActivity {
 
     public void OnClick(View v) {
 //        AMSHookUtil.hookStartActivity(this);
-        Intent intent = new Intent(MainActivity.this, TestLockActivity.class);
+        Intent intent = new Intent(MainActivity.this, MyOpenGLActivity.class);
         startActivity(intent);
 
 //        startActivity(new Intent(this,TestLockActivity.class));

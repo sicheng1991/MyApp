@@ -32,6 +32,7 @@
         <!--<activity android:name=".activity.TestLockActivity">-->
 
         <!--</activity>-->
+        <activity android:name=".opengl.MyOpenGLActivity"></activity>
 
         <receiver android:name=".service.TimerReceiver"/>
         <service android:name=".service.TimerService"
