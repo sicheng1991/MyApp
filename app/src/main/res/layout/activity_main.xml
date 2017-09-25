@@ -29,7 +29,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerInside"
-            android:src="@mipmap/a1"/>
+            android:src="@mipmap/a1"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

@@ -15,6 +15,7 @@ import com.chimu.myapp.R;
 import com.chimu.myapp.hook.hook.AMSHookUtil;
 import com.chimu.myapp.hook.hook.HookInstrumentationUtil;
 import com.chimu.myapp.opengl.MyOpenGLActivity;
+import com.chimu.myapp.view.HenCoderView;
 import com.chimu.mylib.util.BitmapUtil;
 
 import com.example.annotation.Person;
@@ -35,7 +36,7 @@ public class MainActivity extends BaseActivity {
         button = (Button) findViewById(R.id.btn_commit);
         Bitmap bitmap =  BitmapFactory.decodeResource(this.getResources(),R.mipmap.c1);
         iv.setImageBitmap(BitmapUtil.getRoundBitmap(bitmap,10,true,false,false,true));
-
+        ll.addView(new HenCoderView(this));
 
 
         HookInstrumentationUtil.hook();
