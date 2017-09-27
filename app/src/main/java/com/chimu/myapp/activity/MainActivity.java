@@ -3,7 +3,9 @@ package com.chimu.myapp.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -26,6 +28,7 @@ public class MainActivity extends BaseActivity {
     private ImageView   iv;
     private Button button;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +40,8 @@ public class MainActivity extends BaseActivity {
         Bitmap bitmap =  BitmapFactory.decodeResource(this.getResources(),R.mipmap.c1);
         iv.setImageBitmap(BitmapUtil.getRoundBitmap(bitmap,10,true,false,false,true));
         ll.addView(new HenCoderView(this));
+
+
 
 
         HookInstrumentationUtil.hook();
