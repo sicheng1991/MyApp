@@ -119,7 +119,5 @@ public class Evaluate {
             }
             System.out.println("½á¹û£º"+ Evaluate.eval(read));
         }
-
-
     }
 }
