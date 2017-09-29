@@ -1,108 +1,125 @@
 package com.example.arithmetic;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 双stack实现计算
- *
+ * <p>
  * Created by Longwj on 2017/9/27.
  */
 
 public class Evaluate {
 
-    public static  double eval(String s){
-
-
-        Stack<String> ops = new Stack<>();
+    public static double eval(String s) {
         Stack<Double> vals = new Stack<>();
-        s = getSuffixString(s);
-
-        if(s != null){
-            char [] chars = s.toCharArray();
-
-            for (char aChar : chars) {
-                String c = String.valueOf(aChar);
-                if(c.equals("(")){
-
-                }else if(c.equals("+")){
-                    ops.push(c);
-                } else if(c.equals("-")){
-                    ops.push(c);
-                } else if(c.equals("*")){
-                    ops.push(c);
-                } else if(c.equals("/")){
-                    ops.push(c);
-                } else if(c.equals("=")){
-                    int size  = ops.size();
-                    for(int i = 0;i < size;i++){
-                        String op = ops.pop();
-                        double v = vals.pop();
-                        if(op.equals("+")){
-                            v = vals.pop() + v;
-                        }else if(op.equals("-")){
-                            v = vals.pop() - v;
-                        }else if(op.equals("*")){
-                            v = vals.pop() * v;
-                        }else if(op.equals("/")){
-                            v = vals.pop() * v;
-                        }
-                        vals.push(v);
-                    }
-                }else {
-                    vals.push(Double.valueOf(c));
-                }
-
-            }
-
+        if (!checkString(s)) {
+            return 0;
         }
+        List<String> list = getSuffixString(s);
+
+        for (String c: list) {
+            if (c.matches("[0-9]+")) {
+                vals.push(Double.valueOf(c));
+            } else if (c.equals("+")) {
+                Double d1 = vals.pop();
+                Double d2 = vals.pop();
+                vals.push(d2 + d1);
+            } else if (c.equals("-")) {
+                Double d1 = vals.pop();
+                Double d2 = vals.pop();
+                vals.push(d2 - d1);
+            } else if (c.equals("*")) {
+                Double d1 = vals.pop();
+                Double d2 = vals.pop();
+                vals.push(d2 * d1);
+            } else if (c.equals("/")) {
+                Double d1 = vals.pop();
+                Double d2 = vals.pop();
+                vals.push(d2 / d1);
+            }
+        }
+
         return vals.pop();
+    }
+
+    private static boolean checkString(String s) {
+//        String str = "[0-9+-*/]+";
+//        Pattern pattern = Pattern.compile(str, Pattern.CASE_INSENSITIVE);
+//        Matcher matcher = pattern.matcher(s);
+//        return matcher.matches();
+        return true;
     }
 
     /**
      * 得到后缀表达式
+     *
      * @param s
      * @return
      */
-    private static String getSuffixString(String s){
-        StringBuffer sb = new StringBuffer();
+    private static List<String> getSuffixString(String s) {
+//        StringBuffer sb = new StringBuffer();
 
-        s = s.replace(" ","");
+        s = s.replace(" ", "");
+        List<String> list = new ArrayList<>();
         Stack<String> stack = new Stack<>();
 
         int num = s.length();
-        for(int i = 0;i < num;i++){
+        for (int i = 0; i < num; i++) {
             char c = s.charAt(i);
-            if('0' <= c && c <= '9'){
-                sb.append(c);
-            }else if(c == '+' || c == '-'){
-                while (!stack.isEmpty() || !stack.peek().equals("(")){
-                    sb.append(stack.pop());
+            if ('0' <= c && c <= '9') {
+                char c1 = '0';
+                String ss = String.valueOf(c);
+                while (i < num - 1 && (c1 = s.charAt(i + 1)) <= '9' && c1 >= '0') {
+                    i++;
+                    ss = ss + c1;
                 }
-
-            }else if(c == '*'|| c == '/' ){
-                while (!stack.isEmpty() || !stack.peek().equals("(") || !stack.peek().equals("+") || !stack.peek().equals("-")){
-                    sb.append(stack.pop());
+                list.add(String.valueOf(ss));
+            } else if (c == '+' || c == '-') {
+                while (!stack.isEmpty() && !stack.peek().equals("(")) {
+                    list.add(String.valueOf(stack.pop()));
                 }
-            }else if(c == '(' ){
+                stack.push(String.valueOf(c));
+            } else if (c == '*' || c == '/') {
+                while (!stack.isEmpty() & !stack.peek().equals("(") && !stack.peek().equals("+") && !stack.peek().equals("-")) {
+                    list.add(String.valueOf(stack.pop()));
+                }
+                stack.push(String.valueOf(c));
+            } else if (c == '(') {
                 stack.push("(");
-            } else if(c == ')' ){
-                while (!stack.isEmpty() ){
-                    if (!stack.peek().equals("(")){
+            } else if (c == ')') {
+                while (!stack.isEmpty()) {
+                    if (stack.peek().equals("(")) {
                         stack.pop();
                         break;
                     }
-                    sb.append(stack.pop());
+                    list.add(String.valueOf(stack.pop()));
                 }
             }
         }
-        return sb.toString();
+        while (!stack.isEmpty()) {
+            list.add(String.valueOf(stack.pop()));
+        }
+        return list;
     }
 
-    public static void main(String[] args){
-        System.out.println("输入表达式:");
+    public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        String read = scan.nextLine();
-        System.out.println( Evaluate.eval(read));
+        String read = "";
+        while(true){
+            System.out.println("输入表达式:end结束");
+            read = scan.nextLine();
+            if("end".equals(read)){
+                System.out.println("谢谢");
+                break;
+            }
+            System.out.println("结果："+ Evaluate.eval(read));
+        }
+
+
     }
 }

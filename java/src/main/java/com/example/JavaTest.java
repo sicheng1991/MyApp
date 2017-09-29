@@ -25,8 +25,6 @@ public class JavaTest {
         Scanner scan = new Scanner(System.in);
         String read = scan.nextLine();
 
-        System.out.println( Evaluate.eval("2 * 3 + 1 = "));
-
         try {
 //            Utils.SpeedDial2MD();
         } catch (Exception e) {
