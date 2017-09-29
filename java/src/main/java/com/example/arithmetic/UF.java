@@ -1,5 +1,7 @@
 package com.example.arithmetic;
 
+import java.util.Scanner;
+
 /**
  * Created by Longwj on 2017/9/27.
  */
@@ -108,16 +110,23 @@ public class UF {
      *
      * @param args the command-line arguments
      */
-//    public static void main(String[] args) {
-//        int n = StdIn.readInt();
-//        UF uf = new UF(n);
-//        while (!StdIn.isEmpty()) {
-//            int p = StdIn.readInt();
-//            int q = StdIn.readInt();
-//            if (uf.connected(p, q)) continue;
-//            uf.union(p, q);
-//            StdOut.println(p + " " + q);
-//        }
-//        StdOut.println(uf.count() + " components");
-//    }
+    public static void main(String[] args) {
+
+        System.out.println(" ‰»Î:");
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        UF uf = new UF(n);
+        while (true) {
+            int p = scan.nextInt();
+            if(p == -1){
+                break;
+            }
+            int q = scan.nextInt();
+            if (uf.connected(p, q)) continue;
+            uf.union(p, q);
+            System.out.println(p + " " + q);
+
+        }
+        System.out.println(uf.count() + "components");
+    }
 }
