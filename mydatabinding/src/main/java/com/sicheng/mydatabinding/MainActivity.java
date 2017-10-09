@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityMainBinding binding =  DataBindingUtil.setContentView(this,R.layout.activity_main);
         Student student = new Student();
-        student.setAge(18);
+        student.setAge(40);
         student.setName("迟暮陌路");
         binding.setStudent(student);
     }
