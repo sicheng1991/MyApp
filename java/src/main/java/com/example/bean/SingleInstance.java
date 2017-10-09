@@ -1,6 +1,5 @@
 package com.example.bean;
 
-import sun.rmi.runtime.Log;
 
 /**
  * Created by Longwj on 2017/9/18.
@@ -16,7 +15,7 @@ public class SingleInstance {
     private SingleInstance() {
         counter1++;
         counter2++;
-        System.out.println("Ö´ÐÐ");
+        System.out.println("?Ö´");
     }
 
     public static SingleInstance getSingleton() {

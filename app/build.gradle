@@ -23,6 +23,11 @@ android {
             }
         }
     }
+    dataBinding{
+        enabled  = true
+    }
+
+
     buildTypes {
         release {
             buildConfigField "Boolean", "isDebug", "false"
@@ -40,6 +45,7 @@ android {
                     }
                 }
             }
+
         }
         debug {
             buildConfigField "Boolean", "isDebug", "true"
