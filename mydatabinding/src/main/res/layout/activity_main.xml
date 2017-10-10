@@ -31,10 +31,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{student.onItemClick}"
             app:face="@{student.face}" />
+        <Button
+            android:id="@+id/btn_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="更新名字"/>
     </LinearLayout>
 </layout>
 
