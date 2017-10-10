@@ -18,9 +18,18 @@ import com.chimu.myapp.hook.hook.AMSHookUtil;
 import com.chimu.myapp.hook.hook.HookInstrumentationUtil;
 import com.chimu.myapp.opengl.MyOpenGLActivity;
 import com.chimu.myapp.view.HenCoderView;
+import com.chimu.mylib.util.Bencode;
 import com.chimu.mylib.util.BitmapUtil;
 
+import com.chimu.mylib.util.bt.Torrent;
 import com.example.annotation.Person;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 
 @Person(name = "龙文江", age = 35)
 public class MainActivity extends BaseActivity {
@@ -37,20 +46,12 @@ public class MainActivity extends BaseActivity {
         LinearLayout ll = (LinearLayout) findViewById(R.id.ll);
        iv = (ImageView) findViewById(R.id.img);
         button = (Button) findViewById(R.id.btn_commit);
-        Bitmap bitmap =  BitmapFactory.decodeResource(this.getResources(),R.mipmap.c1);
-        iv.setImageBitmap(BitmapUtil.getRoundBitmap(bitmap,10,true,false,false,true));
-        ll.addView(new HenCoderView(this));
 
 
 
 
         HookInstrumentationUtil.hook();
 
-//        双进程拉起
-//        Intent i1 = new Intent(this, LocalService.class);
-//        startService(i1);
-//        Intent i2 = new Intent(this, RomoteService.class);
-//        startService(i2);
     }
 
 
@@ -60,8 +61,58 @@ public class MainActivity extends BaseActivity {
         Intent intent = new Intent(MainActivity.this, MyOpenGLActivity.class);
         startActivity(intent);
 
-//        startActivity(new Intent(this,TestLockActivity.class));
-////        startAndBindService();
+        try {
+            InputStream is = getResources().getAssets().open("123.torrent");
+            byte [] bs = new byte[is.available()];
+            is.read(bs);
+            try {
+                Torrent.load(bs);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+//           Object obj = Bencode.decode(bs);
+//            if(obj != null){
+//                getInfo((LinkedHashMap)obj);
+//            }
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        
+        
+    }
+
+    private  void getInfo(LinkedHashMap map){
+        Iterator iterator = map.keySet().iterator();
+        while (iterator.hasNext()){
+            String key = (String) iterator.next();
+            Log.i("MainActivity",key+":"+ map.get(key));
+            if(key.equalsIgnoreCase("info")){
+                LinkedHashMap map1 = (LinkedHashMap) map.get(key);
+
+                Iterator iterator1 = map1.keySet().iterator();
+                while (iterator1.hasNext()){
+                    String key1 = (String) iterator1.next();
+                    Log.i("MainActivity",key1+":"+ map1.get(key1));
+                    if(key1.equals("pieces")){
+                        try {
+                            String s = new String(((String) map1.get(key1)).getBytes(),"GBK");
+
+                            Log.i("MainActivity","解析:"+ s);
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+
+
+            }
+        }
+
+
     }
 
 
