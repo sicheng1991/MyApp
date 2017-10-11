@@ -99,6 +99,9 @@ public class wecharService extends AccessibilityService {
     }
 
     private void recycleMessage(AccessibilityNodeInfo node) {
+        if(node == null){
+            return;
+        }
         if (node.getChildCount() == 0) {
             if (node.getText() != null) {
                 Log.i("Accccccc", "recycleMessage: "+ node.getText().toString());
@@ -154,6 +157,9 @@ public class wecharService extends AccessibilityService {
      * @param node
      */
     public void recycleClick(AccessibilityNodeInfo node) {
+        if(node == null){
+            return;
+        }
         if (node.getChildCount() == 0) {
             if (node.getText() != null) {
                 if ("领取红包".equals(node.getText().toString())) {
