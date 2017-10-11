@@ -31,8 +31,9 @@ public class wecharService extends AccessibilityService {
             case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED:
             case AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED:
                 String className = event.getClassName().toString();
-                Log.i("Acc", "onAccessibilityEvent: " + className);
-                if (className.equals("com.tencent.mm.ui.LauncherUI") || className.equals("android.widget.ListView")) {
+                Log.i("Accccccc", "onAccessibilityEvent: " + className);
+                if (className.equals("com.tencent.mm.ui.LauncherUI") || className.equals("android.widget.ListView") || className.equals("android.widget.TextView")) {
+                    openMessage();
                     getPacket();
                 } else if (className.equals("com.tencent.mm.plugin.luckymoney.ui.En_fba4b94f")) {
                     openPacket();
@@ -46,7 +47,7 @@ public class wecharService extends AccessibilityService {
 
     /**
      * 处理通知栏信息
-     *
+     * <p>
      * 如果是微信红包的提示信息,则模拟点击
      *
      * @param event
@@ -89,6 +90,38 @@ public class wecharService extends AccessibilityService {
     }
 
     /**
+     * 模拟点击,打开聊天界面
+     */
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+    private void openMessage() {
+        AccessibilityNodeInfo nodeInfo = getRootInActiveWindow();
+        recycleMessage(nodeInfo);
+    }
+
+    private void recycleMessage(AccessibilityNodeInfo node) {
+        if (node.getChildCount() == 0) {
+            if (node.getText() != null) {
+                Log.i("Accccccc", "recycleMessage: "+ node.getText().toString());
+                if (node.getText().toString().contains("微信红包")) {
+                    //找到能点击的父节点
+                    node = node.getParent();
+                    node = node.getParent();
+                    node = node.getParent();
+                    node = node.getParent();
+                    node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                }
+            }
+        } else {
+            for (int i = 0; i < node.getChildCount(); i++) {
+                if (node.getChild(i) != null) {
+                    recycleMessage(node.getChild(i));
+                }
+            }
+        }
+    }
+
+
+    /**
      * 模拟点击,拆开红包
      */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
@@ -115,7 +148,7 @@ public class wecharService extends AccessibilityService {
 
     /**
      * 递归查找当前聊天窗口中的红包信息
-     *
+     * <p>
      * 聊天窗口中的红包都存在"领取红包"一词,因此可根据该词查找红包
      *
      * @param node
@@ -125,11 +158,11 @@ public class wecharService extends AccessibilityService {
             if (node.getText() != null) {
                 if ("领取红包".equals(node.getText().toString())) {
                     //找到能点击的父节点
-                    if(node.isClickable()){
+                    if (node.isClickable()) {
                         node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-                    }else{
+                    } else {
                         AccessibilityNodeInfo node1 = node;
-                        while(!(node1 = node1.getParent()).isClickable()){
+                        while (!(node1 = node1.getParent()).isClickable()) {
                         }
                         node1.performAction(AccessibilityNodeInfo.ACTION_CLICK);
                     }
