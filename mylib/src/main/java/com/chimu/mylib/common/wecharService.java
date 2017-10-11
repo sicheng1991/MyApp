@@ -32,7 +32,7 @@ public class wecharService extends AccessibilityService {
             case AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED:
                 String className = event.getClassName().toString();
                 Log.i("Acc", "onAccessibilityEvent: " + className);
-                if (className.equals("com.tencent.mm.ui.LauncherUI")) {
+                if (className.equals("com.tencent.mm.ui.LauncherUI") || className.equals("android.widget.ListView")) {
                     getPacket();
                 } else if (className.equals("com.tencent.mm.plugin.luckymoney.ui.En_fba4b94f")) {
                     openPacket();
@@ -80,7 +80,7 @@ public class wecharService extends AccessibilityService {
         AccessibilityNodeInfo nodeInfo = getRootInActiveWindow();
         if (nodeInfo != null) {
             //为了演示,直接查看了关闭按钮的id
-            List<AccessibilityNodeInfo> infos = nodeInfo.findAccessibilityNodeInfosByViewId("@id/hg");
+            List<AccessibilityNodeInfo> infos = nodeInfo.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/hf");
             nodeInfo.recycle();
             for (AccessibilityNodeInfo item : infos) {
                 item.performAction(AccessibilityNodeInfo.ACTION_CLICK);
@@ -96,7 +96,7 @@ public class wecharService extends AccessibilityService {
         AccessibilityNodeInfo nodeInfo = getRootInActiveWindow();
         if (nodeInfo != null) {
             //为了演示,直接查看了红包控件的id
-            List<AccessibilityNodeInfo> list = nodeInfo.findAccessibilityNodeInfosByViewId("@id/brt");
+            List<AccessibilityNodeInfo> list = nodeInfo.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/brt");
             nodeInfo.recycle();
             for (AccessibilityNodeInfo item : list) {
                 item.performAction(AccessibilityNodeInfo.ACTION_CLICK);
@@ -110,18 +110,7 @@ public class wecharService extends AccessibilityService {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void getPacket() {
         AccessibilityNodeInfo rootNode = getRootInActiveWindow();
-        AccessibilityNodeInfo node = recycle(rootNode);
-
-        node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-        AccessibilityNodeInfo parent = node.getParent();
-        while (parent != null) {
-            if (parent.isClickable()) {
-                parent.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-                break;
-            }
-            parent = parent.getParent();
-        }
-
+        recycleClick(rootNode);
     }
 
     /**
@@ -131,21 +120,28 @@ public class wecharService extends AccessibilityService {
      *
      * @param node
      */
-    public AccessibilityNodeInfo recycle(AccessibilityNodeInfo node) {
+    public void recycleClick(AccessibilityNodeInfo node) {
         if (node.getChildCount() == 0) {
             if (node.getText() != null) {
                 if ("领取红包".equals(node.getText().toString())) {
-                    return node;
+                    //找到能点击的父节点
+                    if(node.isClickable()){
+                        node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                    }else{
+                        AccessibilityNodeInfo node1 = node;
+                        while(!(node1 = node1.getParent()).isClickable()){
+                        }
+                        node1.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                    }
                 }
             }
         } else {
             for (int i = 0; i < node.getChildCount(); i++) {
                 if (node.getChild(i) != null) {
-                    recycle(node.getChild(i));
+                    recycleClick(node.getChild(i));
                 }
             }
         }
-        return node;
     }
 
     @Override
