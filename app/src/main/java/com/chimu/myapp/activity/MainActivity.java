@@ -47,7 +47,11 @@ public class MainActivity extends BaseActivity {
        iv = (ImageView) findViewById(R.id.img);
         button = (Button) findViewById(R.id.btn_commit);
 
+        HenCoderView henCoderView = new HenCoderView(this);
 
+        henCoderView.animate().translationX(300).setDuration(2000).rotation(1080).scaleX(3);
+
+        ll.addView(henCoderView);
 
 
         HookInstrumentationUtil.hook();
@@ -61,27 +65,6 @@ public class MainActivity extends BaseActivity {
         Intent intent = new Intent(MainActivity.this, MyOpenGLActivity.class);
         startActivity(intent);
 
-        try {
-            InputStream is = getResources().getAssets().open("123.torrent");
-            byte [] bs = new byte[is.available()];
-            is.read(bs);
-            try {
-                Torrent.load(bs);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-//           Object obj = Bencode.decode(bs);
-//            if(obj != null){
-//                getInfo((LinkedHashMap)obj);
-//            }
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        
-        
     }
 
     private  void getInfo(LinkedHashMap map){
