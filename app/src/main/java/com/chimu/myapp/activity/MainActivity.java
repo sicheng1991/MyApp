@@ -19,8 +19,10 @@ import android.view.animation.Animation;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.chimu.myapp.R;
@@ -32,6 +34,7 @@ import com.chimu.mylib.util.Bencode;
 import com.chimu.mylib.util.BitmapUtil;
 
 import com.chimu.mylib.util.bt.Torrent;
+import com.chimu.mylib.widget.RuleView;
 import com.example.annotation.Person;
 
 import java.io.File;
@@ -49,6 +52,7 @@ public class MainActivity extends BaseActivity {
     private Animation animation;
     private ImageView iv;
     private Button button;
+    private HorizontalScrollView scrollView;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -56,15 +60,13 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.i("MainActivity", "onCreate:" + activityState);
-        LinearLayout ll = (LinearLayout) findViewById(R.id.ll);
-        iv = (ImageView) findViewById(R.id.img);
-        button = (Button) findViewById(R.id.btn_commit);
+        LinearLayout ll = (LinearLayout) findViewById(R.id.scollview1);
+//        LinearLayout ll = (LinearLayout) findViewById(R.id.ll);
+//        iv = (ImageView) findViewById(R.id.img);
+//        button = (Button) findViewById(R.id.btn_commit);
+        scrollView = (HorizontalScrollView) findViewById(R.id.scollview);
 
-        HenCoderView henCoderView = new HenCoderView(this);
-
-        henCoderView.animate().translationX(300).setDuration(2000).rotation(1080).scaleX(3);
-
-        ll.addView(henCoderView);
+        ll.addView(new RuleView(this));
 
         HookInstrumentationUtil.hook();
 
@@ -86,7 +88,7 @@ public class MainActivity extends BaseActivity {
 //        Intent intent = new Intent(MainActivity.this, MyOpenGLActivity.class);
 //        startActivity(intent);
 
-        check();
+//        check();
 
     }
 
