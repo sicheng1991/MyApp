@@ -25,6 +25,15 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibility"/>
         </service>
+        <receiver android:name=".activity.WidgetProvider">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/window_widget" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.seewo.homewidgets.action.CLICK" />
+            </intent-filter>
+        </receiver>
 
 
     </application>
