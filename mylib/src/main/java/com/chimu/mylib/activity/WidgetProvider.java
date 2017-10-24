@@ -22,7 +22,7 @@ import java.util.Set;
 
 public class WidgetProvider extends AppWidgetProvider {
     // 更新 widget 的广播对应的action
-    private final String ACTION_UPDATE_ALL = "com.lyl.widget.UPDATE_ALL";
+    private final String ACTION_UPDATE_ALL = "com.sicheng.service.UPDATE_ALL";
     // 保存 widget 的id的HashSet，每新建一个 widget 都会为该 widget 分配一个 id。
     private static Set idsSet = new HashSet();
 

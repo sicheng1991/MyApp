@@ -14,7 +14,7 @@ import java.util.TimerTask;
 
 public class WidgetService extends Service {
     // 更新 widget 的广播对应的 action
-    private final String ACTION_UPDATE_ALL = "com.lyl.widget.UPDATE_ALL";
+    private final String ACTION_UPDATE_ALL = "com.sicheng.service.UPDATE_ALL";
     // 周期性更新 widget 的周期
     private static final int UPDATE_TIME = 1000;
 
