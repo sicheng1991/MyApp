@@ -33,6 +33,7 @@ import com.chimu.myapp.view.HenCoderView;
 import com.chimu.mylib.util.Bencode;
 import com.chimu.mylib.util.BitmapUtil;
 
+import com.chimu.mylib.util.TryCatchUtil;
 import com.chimu.mylib.util.bt.Torrent;
 import com.chimu.mylib.widget.RuleView;
 import com.example.annotation.Person;
@@ -66,8 +67,26 @@ public class MainActivity extends BaseActivity {
 //        button = (Button) findViewById(R.id.btn_commit);
         scrollView = (HorizontalScrollView) findViewById(R.id.scollview);
 
-        String s = null;
-        s.contains("1");
+//        String s = null;
+//        s.contains("1");
+
+        TryCatchUtil.doCatch(new TryCatchUtil.iTryCatch() {
+            @Override
+            public void ETry() {
+                String s = null;
+                s.contains("1");
+            }
+
+            @Override
+            public void ECatch() {
+                Log.i("MainActivity","ECatch:"+"报错来了啊");
+            }
+
+            @Override
+            public void EFinally() {
+                Log.i("MainActivity","ECatch:"+"报错来了啊111");
+            }
+        });
         ll.addView(new RuleView(this));
 
         HookInstrumentationUtil.hook();
@@ -80,7 +99,7 @@ public class MainActivity extends BaseActivity {
 
 //        List<? extends TextView> list1 = new ArrayList<EditText>();
 //        List<? super TextView> list2 = new ArrayList<View>();
-        
+
 
     }
 
@@ -107,6 +126,7 @@ public class MainActivity extends BaseActivity {
             // 执行具体逻辑
         }
     }
+
     private boolean checkPermissionsrp() {
         int result2 = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_PHONE_STATE);
         if (result2 == PackageManager.PERMISSION_GRANTED) {
@@ -115,6 +135,7 @@ public class MainActivity extends BaseActivity {
             return false;
         }
     }
+
     private void requestPermissionsrp() {
         boolean permissionRationale = ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_PHONE_STATE);
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.READ_PHONE_STATE)) {
@@ -146,7 +167,6 @@ public class MainActivity extends BaseActivity {
                 break;
         }
     }
-
 
 
     private void getInfo(LinkedHashMap map) {
