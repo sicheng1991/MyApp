@@ -66,6 +66,8 @@ public class MainActivity extends BaseActivity {
 //        button = (Button) findViewById(R.id.btn_commit);
         scrollView = (HorizontalScrollView) findViewById(R.id.scollview);
 
+        String s = null;
+        s.contains("1");
         ll.addView(new RuleView(this));
 
         HookInstrumentationUtil.hook();

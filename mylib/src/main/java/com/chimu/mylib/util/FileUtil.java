@@ -1,6 +1,9 @@
 package com.chimu.mylib.util;
 
+import android.content.pm.PackageManager;
 import android.os.Environment;
+
+import com.chimu.mylib.LibApplication;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,7 +26,9 @@ public class FileUtil {
      * @throws Exception
      */
     public static void saveFile(String name, String content) throws Exception {
-        String url = Environment.getExternalStorageDirectory() + "/pdalogs/";
+        PackageManager pm = LibApplication.application.getPackageManager();
+        String appName = LibApplication.application.getApplicationInfo().loadLabel(pm).toString();
+        String url = Environment.getExternalStorageDirectory() + "/"+appName+"/";
         File file1 = new File(url);
         if(!file1.exists()){
             file1.mkdirs();
