@@ -6,28 +6,29 @@
     android:layout_height="match_parent"
     tools:context="com.chimu.myapp.activity.MainActivity">
 
-    <HorizontalScrollView
-        android:id="@+id/scollview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none"
-        >
+    <!--<HorizontalScrollView-->
+        <!--android:id="@+id/scollview"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:scrollbars="none"-->
+        <!--&gt;-->
         <LinearLayout
             android:id="@+id/scollview1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
+            <Button
                 android:id="@+id/tv_animation"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:textSize="20sp"
                 android:text="@string/tv_1"/>
 
         </LinearLayout>
-    </HorizontalScrollView>
+    <!--</HorizontalScrollView>-->
     <!--<LinearLayout-->
         <!--android:id="@+id/ll"-->
         <!--android:layout_width="376dp"-->

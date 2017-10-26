@@ -98,7 +98,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             }.start();
 
             saveInfoInSD(e);
-            saveInfo2DB(e);
+//            saveInfo2DB(e);
             return true;
         }
 

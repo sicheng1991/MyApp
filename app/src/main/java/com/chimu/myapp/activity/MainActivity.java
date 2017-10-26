@@ -15,6 +15,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,6 +31,7 @@ import com.chimu.myapp.hook.hook.AMSHookUtil;
 import com.chimu.myapp.hook.hook.HookInstrumentationUtil;
 import com.chimu.myapp.opengl.MyOpenGLActivity;
 import com.chimu.myapp.view.HenCoderView;
+import com.chimu.myapp.view.Line;
 import com.chimu.mylib.util.Bencode;
 import com.chimu.mylib.util.BitmapUtil;
 
@@ -65,28 +67,28 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 //        LinearLayout ll = (LinearLayout) findViewById(R.id.ll);
 //        iv = (ImageView) findViewById(R.id.img);
 //        button = (Button) findViewById(R.id.btn_commit);
-        scrollView = (HorizontalScrollView) findViewById(R.id.scollview);
+//        scrollView = (HorizontalScrollView) findViewById(R.id.scollview);
             findViewById(R.id.tv_animation).setOnClickListener(this);
 //        String s = null;
 //        s.contains("1");
 
-        TryCatchUtil.doCatch(new TryCatchUtil.iTryCatch() {
-            @Override
-            public void ETry() {
-                String s = null;
-                s.contains("1");
-            }
-
-            @Override
-            public void ECatch() {
-                Log.i("MainActivity","ECatch:"+"报错来了啊");
-            }
-
-            @Override
-            public void EFinally() {
-                Log.i("MainActivity","ECatch:"+"报错来了啊111");
-            }
-        });
+//        TryCatchUtil.doCatch(new TryCatchUtil.iTryCatch() {
+//            @Override
+//            public void ETry() {
+//                String s = null;
+//                s.contains("1");
+//            }
+//
+//            @Override
+//            public void ECatch() {
+//                Log.i("MainActivity","ECatch:"+"报错来了啊");
+//            }
+//
+//            @Override
+//            public void EFinally() {
+//                Log.i("MainActivity","ECatch:"+"报错来了啊111");
+//            }
+//        });
 //        ll.addView(new RuleView(this));
 
         HookInstrumentationUtil.hook();

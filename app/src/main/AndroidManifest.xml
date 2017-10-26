@@ -39,7 +39,9 @@
             android:name=".activity.AnimationActivity"
             android:launchMode="singleTask"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
-            android:screenOrientation="landscape"></activity>
+            android:keepScreenOn="true">
+            <!--android:screenOrientation="landscape">-->
+            </activity>
 
         <receiver android:name=".service.TimerReceiver" />
 
