@@ -9,9 +9,10 @@
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-    <uses-permission android:name="android.permission.DEVICE_POWER"
+    <uses-permission
+        android:name="android.permission.DEVICE_POWER"
         tools:ignore="ProtectedPermissions" />
 
     <application
@@ -34,13 +35,19 @@
         <!--</activity>-->
         <activity android:name=".opengl.MyOpenGLActivity"></activity>
         <activity android:name=".activity.MVVMModelActivity"></activity>
+        <activity
+            android:name=".activity.AnimationActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:screenOrientation="landscape"></activity>
 
-        <receiver android:name=".service.TimerReceiver"/>
-        <service android:name=".service.TimerService"
+        <receiver android:name=".service.TimerReceiver" />
+
+        <service
+            android:name=".service.TimerService"
             android:enabled="true"
             android:exported="true"
-            android:process=":service">
-        </service>
+            android:process=":service"></service>
 
         <service
             android:name=".common.aidl.LocalService"
@@ -48,12 +55,13 @@
             android:exported="true" />
         <service
             android:name=".common.aidl.RomoteService"
-            android:process=":romoteservice"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"
+            android:process=":romoteservice"></service>
         <service android:name=".common.MessagerService"></service>
 
-        <receiver android:name=".service.BootReceiver"
+        <receiver
+            android:name=".service.BootReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter android:priority="1000">
@@ -62,9 +70,9 @@
         </receiver>
 
         <!--<receiver android:name=".service.BootReceiver">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.BOOT_COMPLETED" />-->
-            <!--</intent-filter>-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.BOOT_COMPLETED" />-->
+        <!--</intent-filter>-->
         <!--</receiver>-->
 
         <receiver android:name=".service.MinReceiver">
@@ -72,6 +80,7 @@
                 <action android:name="android.intent.action.TIME_TICK" />
             </intent-filter>
         </receiver>
+
         <meta-data
             android:name="com.taobao.android.hotfix.IDSECRET"
             android:value="24547735-1" />
@@ -80,7 +89,7 @@
             android:value="8c18e3255b6f4f6c8b4c33ef9d276d08" />
         <meta-data
             android:name="com.taobao.android.hotfix.RSASECRET"
-            android:value="MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCj01BGbL8IsQqQD8pXHxMPRfcsuvhP1p6dR582veo6fk420ws6Dns6gq/qDjtTBGLsL8up8UY62yyWBGZbsW4jh4xHNclvJtA9Qh/V237JWkD/RuMgJ56IEEn2i0E2xq5eGDdMPNw5N8FpNz3zseXIS71Q2cs/pX/TW2Dsca0TwFWOLUARF0l0S9V8nswNeUdiWJTtcmTMpWh1qKKHDr8jYZKKFgO0XUNIY0n73yj8g5HxaNT1Ax6pQ5ZFuAuoM5f6HQZ8MflVhFEMKHWoNCB9RjAS+r9XOYfbS5bCWJjrstT+h5OUN+7ObVXbVxhUwV/+tc893+6A6Q0hJDd4DWanAgMBAAECggEAfH32QK4etXIj/rmhH3djunWGkZ07WSBUxFxK5wSG3BBjS1Iw89tRVXM+TvSlrD5nFeh0Mh5BKjSnuxB44DEC60j0FqEPA8JQ+FwpaRA1VrmZLuQlcKfq1qbaLdpAoml009g/HVYaW/i8p0HteCS14vF7WddHloQjkO+dxc/UoG6M6TlzE4O6IuwaVTk5fPJcP0G4ffuaZW1B4IgYkIODxVd6KFQRkVlcnA6CSK1oFLOIN8mDyaaeQgiGK85HYh2Vz8PjLn76qeV5xcovGspcymh857EkQERbPBl3v6GCcjUEsaMUiL72PRnO1nTkPznx43pz2COEWoP6ypi+aQzrUQKBgQDk3A5xkAy6lVOHhOqrfJJkni4mn3hjwDXxi6g6V9xmQcYFA5SkfoTApjbrBPbKTPU7/rKW45/GTHaXZU98qzojzxPRCfrDk0p82AZBD1q91WZpne9ceBA4tEqWJkDeq4H5HUvuvTbCgOHZrrqBC3jiCAZqTDYxKpkB2eGbsOJZNQKBgQC3QOMAkPD945hT4ekpaBP16TJw2xGOJWNzLunQim1jSo6XZ/sTVNZZ/y/87opw/sK2E4TdyxjE9E24J2T5iRMycmVcNnadjvxxykicDqCzHnH9tG9jEfHos+W/vjp8ebQzXYSF4rJDdwxAVDGd1Z/KRSANx/UdgLVnuDTbpzLX6wKBgGpYCuogKpoEy2SckcMPxqK0kfNmhLWtWiOcZpZ9vy9Q/ufTix2IoL04PyqkCt1kN0wihO/yY4rseurMq8vdcM206ptnDLwWVDWA2B8hOGQfplALkG8iZz9CH6p3qgsOHP4Z6+/KwohNBSV2uLlAEHLPkdORCFl+VszyZpBG+FbFAoGAKq2a8IPRDGAYFtkTM0iA9ZGE5NGwSfmdKrMvUxkaFrjDcrGNwNfOQBF1fKOVbHF4qWzsUbc+Ioh/HTdXheINrX8E6i/o+hLV6i5hMK8bb/vUMnD2TA1e2IIlLL3B40F43UmXVpMQTzQHj2fMUmTxHOtyZqM+C8vw86Hr9YgACFcCgYAFhi3VzZ+/WDYOH0JNnWio8oS3D2gAFq0UMLBKZKAPiPEM4b8gV0RQoRyhdJFbFxuKd3G1o9j6h05NG87ivtXgt6yeosS/2l5qyNW6a5I800BlU2v8EerLGuMVAM0/8D+K3p0Ifkz/HizZOQCSwI07YcxMXTf9wdJeSXrtBTc9Lw=="/>
+            android:value="MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCj01BGbL8IsQqQD8pXHxMPRfcsuvhP1p6dR582veo6fk420ws6Dns6gq/qDjtTBGLsL8up8UY62yyWBGZbsW4jh4xHNclvJtA9Qh/V237JWkD/RuMgJ56IEEn2i0E2xq5eGDdMPNw5N8FpNz3zseXIS71Q2cs/pX/TW2Dsca0TwFWOLUARF0l0S9V8nswNeUdiWJTtcmTMpWh1qKKHDr8jYZKKFgO0XUNIY0n73yj8g5HxaNT1Ax6pQ5ZFuAuoM5f6HQZ8MflVhFEMKHWoNCB9RjAS+r9XOYfbS5bCWJjrstT+h5OUN+7ObVXbVxhUwV/+tc893+6A6Q0hJDd4DWanAgMBAAECggEAfH32QK4etXIj/rmhH3djunWGkZ07WSBUxFxK5wSG3BBjS1Iw89tRVXM+TvSlrD5nFeh0Mh5BKjSnuxB44DEC60j0FqEPA8JQ+FwpaRA1VrmZLuQlcKfq1qbaLdpAoml009g/HVYaW/i8p0HteCS14vF7WddHloQjkO+dxc/UoG6M6TlzE4O6IuwaVTk5fPJcP0G4ffuaZW1B4IgYkIODxVd6KFQRkVlcnA6CSK1oFLOIN8mDyaaeQgiGK85HYh2Vz8PjLn76qeV5xcovGspcymh857EkQERbPBl3v6GCcjUEsaMUiL72PRnO1nTkPznx43pz2COEWoP6ypi+aQzrUQKBgQDk3A5xkAy6lVOHhOqrfJJkni4mn3hjwDXxi6g6V9xmQcYFA5SkfoTApjbrBPbKTPU7/rKW45/GTHaXZU98qzojzxPRCfrDk0p82AZBD1q91WZpne9ceBA4tEqWJkDeq4H5HUvuvTbCgOHZrrqBC3jiCAZqTDYxKpkB2eGbsOJZNQKBgQC3QOMAkPD945hT4ekpaBP16TJw2xGOJWNzLunQim1jSo6XZ/sTVNZZ/y/87opw/sK2E4TdyxjE9E24J2T5iRMycmVcNnadjvxxykicDqCzHnH9tG9jEfHos+W/vjp8ebQzXYSF4rJDdwxAVDGd1Z/KRSANx/UdgLVnuDTbpzLX6wKBgGpYCuogKpoEy2SckcMPxqK0kfNmhLWtWiOcZpZ9vy9Q/ufTix2IoL04PyqkCt1kN0wihO/yY4rseurMq8vdcM206ptnDLwWVDWA2B8hOGQfplALkG8iZz9CH6p3qgsOHP4Z6+/KwohNBSV2uLlAEHLPkdORCFl+VszyZpBG+FbFAoGAKq2a8IPRDGAYFtkTM0iA9ZGE5NGwSfmdKrMvUxkaFrjDcrGNwNfOQBF1fKOVbHF4qWzsUbc+Ioh/HTdXheINrX8E6i/o+hLV6i5hMK8bb/vUMnD2TA1e2IIlLL3B40F43UmXVpMQTzQHj2fMUmTxHOtyZqM+C8vw86Hr9YgACFcCgYAFhi3VzZ+/WDYOH0JNnWio8oS3D2gAFq0UMLBKZKAPiPEM4b8gV0RQoRyhdJFbFxuKd3G1o9j6h05NG87ivtXgt6yeosS/2l5qyNW6a5I800BlU2v8EerLGuMVAM0/8D+K3p0Ifkz/HizZOQCSwI07YcxMXTf9wdJeSXrtBTc9Lw==" />
     </application>
 
 </manifest>

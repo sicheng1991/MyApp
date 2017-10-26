@@ -48,7 +48,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 @Person(name = "龙文江", age = 35)
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener{
     private static final int PERMISSION_REQUEST_CODE = 10001;
     private Animation animation;
     private ImageView iv;
@@ -66,7 +66,7 @@ public class MainActivity extends BaseActivity {
 //        iv = (ImageView) findViewById(R.id.img);
 //        button = (Button) findViewById(R.id.btn_commit);
         scrollView = (HorizontalScrollView) findViewById(R.id.scollview);
-
+            findViewById(R.id.tv_animation).setOnClickListener(this);
 //        String s = null;
 //        s.contains("1");
 
@@ -87,7 +87,7 @@ public class MainActivity extends BaseActivity {
                 Log.i("MainActivity","ECatch:"+"报错来了啊111");
             }
         });
-        ll.addView(new RuleView(this));
+//        ll.addView(new RuleView(this));
 
         HookInstrumentationUtil.hook();
 
@@ -105,12 +105,12 @@ public class MainActivity extends BaseActivity {
 
 
     public void OnClick(View v) {
-//        AMSHookUtil.hookStartActivity(this);
-//        Intent intent = new Intent(MainActivity.this, MyOpenGLActivity.class);
-//        startActivity(intent);
+        AMSHookUtil.hookStartActivity(this);
+        Intent intent = new Intent(MainActivity.this, AnimationActivity.class);
+        startActivity(intent);
 
 //        check();
-
+//
     }
 
     private void check() {
@@ -203,6 +203,15 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.tv_animation:
+                Intent intent = new Intent(MainActivity.this, AnimationActivity.class);
+                startActivity(intent);
+        }
     }
 }
 
