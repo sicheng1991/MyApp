@@ -1,12 +1,13 @@
 package com.chimu.myapp.bean;
 
+import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
 /**
  * Created by Longwj on 2017/10/9.
  */
 
-public class Student {
+public class Student extends BaseObservable {
     @Bindable
     public String name;
     @Bindable

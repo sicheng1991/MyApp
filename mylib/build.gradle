@@ -1,8 +1,8 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jakewharton.butterknife'
+//apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
         minSdkVersion 19
@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
 
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -59,7 +60,7 @@ task makeJar(type: Copy) {
     //（我们只关心classes.jar这个文件）
     include('classes.jar')
     //重命名
-    rename ('classes.jar', 'mylib.jar')
+    rename('classes.jar', 'mylib.jar')
 }
 //makeJar.dependsOn(build)
 //在终端执行生成JAR包

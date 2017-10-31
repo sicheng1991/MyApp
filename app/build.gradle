@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
+//apply plugin: 'com.neenbedankt.android-apt'
 
 def static releaseTime() {
     return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
@@ -7,7 +7,10 @@ def static releaseTime() {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion '26.0.2'
+    flavorDimensions "25"
+
+
     defaultConfig {
         applicationId "com.chimu.myapp"
         minSdkVersion 19
@@ -17,9 +20,12 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 
+//        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
+                includeCompileClasspath = true
+//                arguments = [moduleName: project.getName()]
             }
         }
     }
@@ -34,15 +40,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-            //打包报名
-            applicationVariants.all { variant ->
-                variant.outputs.each { output ->
-                    def outputFile = output.outputFile
-                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                        // 输出apk名称为Magnetic__v1.0_2015-01-15_wandoujia.apk
-                        def fileName = "MyApp_${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}-release.apk"
-                        output.outputFile = new File(outputFile.parent, fileName)
-                    }
+            //打包报名3.0
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "MyApp_${defaultConfig.versionName}_${releaseTime()}.apk"
                 }
             }
 
@@ -74,17 +75,17 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
-    testCompile 'junit:junit:4.12'
+//    testCompile 'junit:junit:4.12'
     compile 'com.facebook.network.connectionclass:connectionclass:1.0.1'
     /*https://github.com/alibaba/ARouter*/
     compile 'com.alibaba:arouter-api:1.1.0'
 //    compile 'com.alibaba:arouter-compiler:1.1.1
     compile 'com.google.auto:auto-common:0.6'
-    compile 'com.squareup:javapoet:1.7.0'
+//    compile 'com.squareup:javapoet:1.7.0'
     //    compile files('libs/processor.jar')
     compile project(':mylib')
     //阿里热修复
     compile 'com.aliyun.ams:alicloud-android-hotfix:3.0.6'
-    compile project(':java')
-    compile 'com.jakewharton:butterknife-annotations:8.0.0'
+//    compile project(':java')
+//    compile 'com.jakewharton:butterknife-annotations:8.0.0'
 }
