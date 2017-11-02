@@ -1,17 +1,19 @@
-package com.chimu.myapp.activity;
+package com.chimu.mylib.base;
 
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 
 /**
  * 可感知生命周期的activity
  * Created by Longwj on 2017/8/8.
  */
 
-public class BaseActivity extends Activity{
+public abstract class BaseActivity extends Activity{
     public static final int ON_CAREATE = 1;
     public static final int ON_START = 2;
     public static final int ON_RESUME = 3;
@@ -25,8 +27,17 @@ public class BaseActivity extends Activity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //设置无标题
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(contentView());
         activityState = ON_CAREATE;
     }
+
+    /**
+     * 设置布局文件
+     * @return
+     */
+    public abstract int contentView();
 
     @Override
     protected void onStart() {

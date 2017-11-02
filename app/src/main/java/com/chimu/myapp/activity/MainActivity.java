@@ -4,8 +4,6 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -15,39 +13,23 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
 
 import com.chimu.myapp.R;
 import com.chimu.myapp.hook.hook.AMSHookUtil;
 import com.chimu.myapp.hook.hook.HookInstrumentationUtil;
-import com.chimu.myapp.opengl.MyOpenGLActivity;
-import com.chimu.myapp.view.HenCoderView;
-import com.chimu.myapp.view.Line;
-import com.chimu.mylib.util.Bencode;
-import com.chimu.mylib.util.BitmapUtil;
+import com.chimu.mylib.activity.Camera2Activity;
+import com.chimu.mylib.base.BaseActivity;
 
-import com.chimu.mylib.util.TryCatchUtil;
-import com.chimu.mylib.util.bt.Torrent;
-import com.chimu.mylib.widget.RuleView;
 import com.example.annotation.Person;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 @Person(name = "龙文江", age = 35)
 public class MainActivity extends BaseActivity implements View.OnClickListener{
@@ -56,7 +38,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private ImageView iv;
     private Button button;
     private HorizontalScrollView scrollView;
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,27 +50,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 //        button = (Button) findViewById(R.id.btn_commit);
 //        scrollView = (HorizontalScrollView) findViewById(R.id.scollview);
             findViewById(R.id.tv_animation).setOnClickListener(this);
-//        String s = null;
-//        s.contains("1");
+        findViewById(R.id.tv_camera2).setOnClickListener(this);
 
-//        TryCatchUtil.doCatch(new TryCatchUtil.iTryCatch() {
-//            @Override
-//            public void ETry() {
-//                String s = null;
-//                s.contains("1");
-//            }
-//
-//            @Override
-//            public void ECatch() {
-//                Log.i("MainActivity","ECatch:"+"报错来了啊");
-//            }
-//
-//            @Override
-//            public void EFinally() {
-//                Log.i("MainActivity","ECatch:"+"报错来了啊111");
-//            }
-//        });
-//        ll.addView(new RuleView(this));
 
         HookInstrumentationUtil.hook();
 
@@ -105,15 +67,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     }
 
-
-    public void OnClick(View v) {
-        AMSHookUtil.hookStartActivity(this);
-        Intent intent = new Intent(MainActivity.this, AnimationActivity.class);
-        startActivity(intent);
-
-//        check();
-//
+    @Override
+    public int contentView() {
+        return R.layout.activity_main;
     }
+
 
     private void check() {
         if (Build.VERSION.SDK_INT >= 23) {
@@ -171,37 +129,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     }
 
 
-    private void getInfo(LinkedHashMap map) {
-        Iterator iterator = map.keySet().iterator();
-        while (iterator.hasNext()) {
-            String key = (String) iterator.next();
-            Log.i("MainActivity", key + ":" + map.get(key));
-            if (key.equalsIgnoreCase("info")) {
-                LinkedHashMap map1 = (LinkedHashMap) map.get(key);
-
-                Iterator iterator1 = map1.keySet().iterator();
-                while (iterator1.hasNext()) {
-                    String key1 = (String) iterator1.next();
-                    Log.i("MainActivity", key1 + ":" + map1.get(key1));
-                    if (key1.equals("pieces")) {
-                        try {
-                            String s = new String(((String) map1.get(key1)).getBytes(), "GBK");
-
-                            Log.i("MainActivity", "解析:" + s);
-                        } catch (UnsupportedEncodingException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-
-
-            }
-        }
-
-
-    }
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -213,6 +140,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             case R.id.tv_animation:
                 Intent intent = new Intent(MainActivity.this, AnimationActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.tv_camera2:
+                Intent intent1 = new Intent(MainActivity.this, Camera2Activity.class);
+                startActivity(intent1);
+                break;
+
         }
     }
 }
