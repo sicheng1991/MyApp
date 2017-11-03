@@ -8,6 +8,7 @@ import android.graphics.ImageFormat;
 import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import com.chimu.mylib.R;
 import com.chimu.mylib.base.BaseActivity;
+import com.chimu.mylib.manager.AudioManager;
 import com.chimu.mylib.util.ToastUtil;
 
 
@@ -33,7 +35,7 @@ import static android.content.ContentValues.TAG;
  * Created by Longwj on 2017/11/2.
  */
 
-public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callback{
+public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callback {
 
     FrameLayout flPreview;
     Button btCapture;
@@ -41,6 +43,8 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     private Camera mCamera;
     private SurfaceView surfaceView;
     private Button btn;
+    private Button start_audio;
+    private Button stop_audio;
     private SurfaceHolder holder;
 
     @Override
@@ -75,20 +79,39 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
 
         FrameLayout preview = (FrameLayout) findViewById(R.id.fl_preview);
         btn = (Button) findViewById(R.id.bt_capture);
+        start_audio = (Button) findViewById(R.id.bt_start_audio);
+        stop_audio = (Button) findViewById(R.id.bt_stop_audio);
 
         mCamera.setPreviewCallback(new Camera.PreviewCallback() {
             @Override
             public void onPreviewFrame(byte[] data, Camera camera) {
-                Log.i("msg","原始图片.size:" + (data == null? 0 : data.length));
+                Log.i("msg", "原始图片.size:" + (data == null ? 0 : data.length));
             }
         });
 
-        setPreviewFormat(mCamera,mCamera.getParameters());
+        setPreviewFormat(mCamera, mCamera.getParameters());
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //自动对焦后拍照
                 mCamera.autoFocus(autoFocusCallback);
+            }
+        });
+
+        start_audio.setOnClickListener(new View.OnClickListener() {
+            @Override
+             public void onClick(View v) {
+                  //开始录音
+                AudioManager am = AudioManager.getInstance(Camera2Activity.this);
+                am.savePath(Environment.getExternalStorageDirectory().getPath() + "/myapp/mp33333");
+                am.startRecord();
+            }
+        });
+        stop_audio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //结束录音
+               AudioManager.getInstance(Camera2Activity.this).stopRecord();
             }
         });
     }
@@ -189,8 +212,8 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     }
 
     /**
-     *
      * 设置预览帧率
+     *
      * @param camera
      * @param fps
      */

@@ -21,11 +21,33 @@
             android:layout_height="match_parent" />
     </FrameLayout>
 
-    <Button
-        android:id="@+id/bt_capture"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Capture" />
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/bt_capture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Capture" />
+
+        <Button
+            android:id="@+id/bt_start_audio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="start_audio" />
+
+        <Button
+            android:id="@+id/bt_stop_audio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="stop_audio" />
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

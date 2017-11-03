@@ -17,19 +17,13 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.chimu.myapp.R;
-import com.chimu.myapp.hook.hook.AMSHookUtil;
 import com.chimu.myapp.hook.hook.HookInstrumentationUtil;
 import com.chimu.mylib.activity.Camera2Activity;
 import com.chimu.mylib.base.BaseActivity;
 
 import com.example.annotation.Person;
-
-import java.io.UnsupportedEncodingException;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 
 @Person(name = "龙文江", age = 35)
 public class MainActivity extends BaseActivity implements View.OnClickListener{
@@ -44,26 +38,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.i("MainActivity", "onCreate:" + activityState);
-        LinearLayout ll = (LinearLayout) findViewById(R.id.scollview1);
-//        LinearLayout ll = (LinearLayout) findViewById(R.id.ll);
-//        iv = (ImageView) findViewById(R.id.img);
-//        button = (Button) findViewById(R.id.btn_commit);
-//        scrollView = (HorizontalScrollView) findViewById(R.id.scollview);
-            findViewById(R.id.tv_animation).setOnClickListener(this);
+
+        findViewById(R.id.tv_animation).setOnClickListener(this);
         findViewById(R.id.tv_camera2).setOnClickListener(this);
 
 
+
         HookInstrumentationUtil.hook();
-
-
-        //
-
-
-//        List<TextView> list = new ArrayList<EditText>();
-
-//        List<? extends TextView> list1 = new ArrayList<EditText>();
-//        List<? super TextView> list2 = new ArrayList<View>();
-
 
     }
 
