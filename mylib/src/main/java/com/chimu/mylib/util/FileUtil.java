@@ -43,6 +43,32 @@ public class FileUtil {
         output.close();
     }
 
+
+    /**
+     *
+     * 保存文件
+     * @param path
+     * @param content
+     * @throws Exception
+     */
+    public static void saveFile(String path, byte[] content) throws Exception {
+        PackageManager pm = LibApplication.application.getPackageManager();
+        String appName = LibApplication.application.getApplicationInfo().loadLabel(pm).toString();
+        String url = Environment.getExternalStorageDirectory() + "/"+appName+"/";
+        File file1 = new File(url);
+        if(!file1.exists()){
+            file1.mkdirs();
+        }
+
+        File file = new File(path);
+        if(!file1.exists()){
+            file.createNewFile();
+        }
+        FileOutputStream output = new FileOutputStream(file,true);
+        output.write(content);
+        output.close();
+    }
+
     /**
      * 复制文件夹  fg:复制data/data/appname/ 下的文件
      * File f = new File(Environment.getDataDirectory().getPath()+"/data/"+this.getPackageName() + "/");

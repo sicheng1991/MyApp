@@ -7,6 +7,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
 import android.graphics.Matrix;
 import android.hardware.Camera;
+import android.media.CamcorderProfile;
+import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
@@ -23,13 +25,18 @@ import android.widget.Toast;
 import com.chimu.mylib.R;
 import com.chimu.mylib.base.BaseActivity;
 import com.chimu.mylib.manager.AudioManager;
+import com.chimu.mylib.util.FileUtil;
 import com.chimu.mylib.util.ToastUtil;
 
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
+import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO;
 
 /**
  * Created by Longwj on 2017/11/2.
@@ -39,13 +46,20 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
 
     FrameLayout flPreview;
     Button btCapture;
+    public static final int MEDIA_TYPE_IMAGE = 1;
+    public static final int MEDIA_TYPE_VIDEO = 2;
+    private boolean mIsRecording = false;
 
     private Camera mCamera;
     private SurfaceView surfaceView;
     private Button btn;
     private Button start_audio;
     private Button stop_audio;
+    private Button btn_video;
+    private boolean is_video;
+
     private SurfaceHolder holder;
+    private MediaRecorder mMediaRecorder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,11 +95,26 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         btn = (Button) findViewById(R.id.bt_capture);
         start_audio = (Button) findViewById(R.id.bt_start_audio);
         stop_audio = (Button) findViewById(R.id.bt_stop_audio);
+        btn_video = (Button) findViewById(R.id.bt_video);
 
         mCamera.setPreviewCallback(new Camera.PreviewCallback() {
             @Override
             public void onPreviewFrame(byte[] data, Camera camera) {
                 Log.i("msg", "原始图片.size:" + (data == null ? 0 : data.length));
+            }
+        });
+
+        btn_video.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //自动对焦后拍照
+                is_video = !is_video;
+                if(is_video){
+                    startMediaRecorder();
+                }else{
+                    stopMediaRecorder();
+                }
+
             }
         });
 
@@ -161,10 +190,18 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
             final Bitmap resource = BitmapFactory.decodeByteArray(data, 0, data.length);
             if (resource == null) {
                 Toast.makeText(Camera2Activity.this, "拍照失败", Toast.LENGTH_SHORT).show();
+                return;
             }
             final Matrix matrix = new Matrix();
             matrix.setRotate(90);
             final Bitmap bitmap = Bitmap.createBitmap(resource, 0, 0, resource.getWidth(), resource.getHeight(), matrix, true);
+            File mPhotoFile = getOutputMediaFile(MEDIA_TYPE_IMAGE);
+            try {
+                FileUtil.saveFile(mPhotoFile.getPath(),data);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             Log.i("msg", "bitmap.size:" + bitmap.getByteCount());
         }
     };
@@ -240,5 +277,93 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         return closestRange;
     }
 
+    /**
+     * 录像
+     */
 
+    private void startMediaRecorder() {
+        mCamera.unlock();
+        mIsRecording = true;
+        mMediaRecorder = new MediaRecorder();
+        mMediaRecorder.reset();
+        mMediaRecorder.setCamera(mCamera);
+        mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
+        mMediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
+        CamcorderProfile mCamcorderProfile = CamcorderProfile.get(Camera.CameraInfo.CAMERA_FACING_BACK,
+                CamcorderProfile.QUALITY_HIGH);
+        mMediaRecorder.setProfile(mCamcorderProfile);
+        mMediaRecorder.setOutputFile(getOutputMediaFile(MEDIA_TYPE_VIDEO).getPath());
+        mMediaRecorder.setPreviewDisplay(holder.getSurface());
+
+        try {
+            mMediaRecorder.prepare();
+        } catch (Exception e) {
+            mIsRecording = false;
+            Toast.makeText(this, "fail", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+            mCamera.lock();
+        }
+        mMediaRecorder.start();
+    }
+
+    /**
+     * 保存
+     *
+     * @param type
+     * @return
+     */
+    private File getOutputMediaFile(int type) {
+        File mediaStorageDir = new File(Environment.getExternalStorageDirectory()+"/myapp/camera");
+        // This location works best if you want the created images to be shared
+        // between applications and persist after your app has been uninstalled.
+
+        // Create the storage directory if it does not exist
+        if (! mediaStorageDir.exists()){
+            if (! mediaStorageDir.mkdirs()){
+                Log.d("linc", "failed to create directory");
+                return null;
+            }
+        }
+
+        // Create a media file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File mediaFile;
+        if (type == MEDIA_TYPE_IMAGE){
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+                    "IMG_"+ timeStamp + ".jpg");
+        } else if(type == MEDIA_TYPE_VIDEO) {
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+                    "VID_"+ timeStamp + ".mp4");
+        } else {
+            return null;
+        }
+
+        return mediaFile;
+    }
+
+    protected void releaseCamera() {
+        if(mCamera!=null){
+            mCamera.stopPreview();
+            mCamera.release();
+            mCamera = null;
+        }
+    }
+    private void stopMediaRecorder() {
+        if (mMediaRecorder != null) {
+            if (mIsRecording) {
+                mMediaRecorder.stop();
+                //mCamera.lock();
+                mMediaRecorder.reset();
+                mMediaRecorder.release();
+                mMediaRecorder = null;
+                mIsRecording = false;
+                try {
+                    mCamera.reconnect();
+                } catch (IOException e) {
+                    Toast.makeText(this, "reconect fail", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

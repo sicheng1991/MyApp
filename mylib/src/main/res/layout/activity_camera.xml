@@ -33,6 +33,13 @@
             android:text="Capture" />
 
         <Button
+            android:id="@+id/bt_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="开始录像" />
+
+        <Button
             android:id="@+id/bt_start_audio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
