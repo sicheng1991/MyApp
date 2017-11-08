@@ -29,14 +29,11 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
-
     provided 'com.jakewharton:butterknife-compiler:8.6.0'
-
     //AbstractProcessor
     compile 'com.google.auto:auto-common:0.6'
     compile 'com.google.auto.service:auto-service:1.0-rc2'
     compile 'com.squareup:javapoet:1.7.0'
-
     //rxjava
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'io.reactivex.rxjava2:rxjava:2.0.6'
@@ -44,8 +41,8 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
-
-//    compile project(':processor')
+    //    compile project(':processor')
+    implementation files('libs/zxing.jar')
 }
 
 task makeJar(type: Copy) {
