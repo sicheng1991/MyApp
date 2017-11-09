@@ -53,6 +53,12 @@ android {
         }
 
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
@@ -73,9 +79,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile "org.mockito:mockito-core:2.+"
-        testCompile 'junit:junit:4.12'
-
+    testCompile 'org.mockito:mockito-core:2.+'
+    testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
     compile 'com.facebook.network.connectionclass:connectionclass:1.0.1'
@@ -90,6 +95,5 @@ dependencies {
     compile 'com.aliyun.ams:alicloud-android-hotfix:3.0.6'
     //    compile project(':java')
     //    compile 'com.jakewharton:butterknife-annotations:8.0.0'
-
-
+    implementation 'org.robolectric:robolectric:3.5.1'
 }
