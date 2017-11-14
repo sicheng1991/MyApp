@@ -1,14 +1,9 @@
-package com.chimu.mylib.common;
+package com.chimu.mylib.manager;
 
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.os.Looper;
-import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.chimu.mylib.LibApplication;
 import com.chimu.mylib.bean.ExceptionBean;
@@ -17,7 +12,6 @@ import com.chimu.mylib.util.NetUtil;
 import com.chimu.mylib.util.SystemUtil;
 import com.chimu.mylib.util.ToastUtil;
 
-import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -3,7 +3,7 @@ package com.chimu.mylib;
 import android.app.Application;
 
 import com.chimu.mylib.base.MApplication;
-import com.chimu.mylib.common.CrashHandler;
+import com.chimu.mylib.manager.CrashHandler;
 
 /**
  * Created by Longwj on 2017/7/13.

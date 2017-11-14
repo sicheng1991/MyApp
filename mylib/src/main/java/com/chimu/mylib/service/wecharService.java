@@ -1,4 +1,4 @@
-package com.chimu.mylib.common;
+package com.chimu.mylib.service;
 
 import android.accessibilityservice.AccessibilityService;
 import android.annotation.TargetApi;

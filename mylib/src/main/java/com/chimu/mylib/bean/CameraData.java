@@ -1,4 +1,4 @@
-package com.chimu.mylib.common;
+package com.chimu.mylib.bean;
 
 /**
  *原作者，简书：风从影

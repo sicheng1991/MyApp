@@ -15,7 +15,7 @@
         <activity android:name=".activity.MyCameraActivity"/>
         <service android:name=".service.MyJobService" android:permission="android.permission.BIND_JOB_SERVICE"></service>
         <service
-            android:name=".common.wecharService"
+            android:name=".service.wecharService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
