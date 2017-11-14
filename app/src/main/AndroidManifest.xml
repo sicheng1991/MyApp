@@ -35,6 +35,7 @@
         <!--</activity>-->
         <activity android:name=".opengl.MyOpenGLActivity"></activity>
         <activity android:name=".activity.MVVMModelActivity"></activity>
+        <activity android:name=".activity.WebActivity"></activity>
         <activity
             android:name=".activity.AnimationActivity"
             android:launchMode="singleTask"
