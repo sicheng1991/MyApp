@@ -48,9 +48,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
         findViewById(R.id.tv_animation).setOnClickListener(this);
         findViewById(R.id.tv_camera2).setOnClickListener(this);
-
-
-
         HookInstrumentationUtil.hook();
 
     }
