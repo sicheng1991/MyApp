@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:textSize="20sp"
+                android:visibility="gone"
                 android:text="@string/tv_camera2"/>
 
         </LinearLayout>

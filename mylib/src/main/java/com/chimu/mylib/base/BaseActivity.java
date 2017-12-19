@@ -31,6 +31,9 @@ public abstract class BaseActivity extends Activity{
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(contentView());
         activityState = ON_CAREATE;
+
+        init();
+        initView();
     }
 
     /**
@@ -38,6 +41,17 @@ public abstract class BaseActivity extends Activity{
      * @return
      */
     public abstract int contentView();
+
+    /**
+     * 初始化
+     * @return
+     */
+    public abstract void init();
+    /**
+     * 初始化布局
+     * @return
+     */
+    public abstract void initView();
 
     @Override
     protected void onStart() {

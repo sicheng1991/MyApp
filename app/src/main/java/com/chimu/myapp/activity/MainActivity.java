@@ -127,9 +127,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 startActivity(intent);
                 break;
             case R.id.tv_camera2:
-                test();
-
-
+//                test();
                 Intent intent1 = new Intent(MainActivity.this, Camera2Activity.class);
                 startActivity(intent1);
                 break;
