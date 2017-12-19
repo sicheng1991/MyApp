@@ -1,4 +1,4 @@
-package com.chimu.mylib.activity.login;
+package com.chimu.myapp.activity.login;
 
 import com.chimu.mylib.base.BaseBus;
 

@@ -18,6 +18,16 @@ public class WebActivity extends BaseActivity {
     }
 
     @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void initView() {
+
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 

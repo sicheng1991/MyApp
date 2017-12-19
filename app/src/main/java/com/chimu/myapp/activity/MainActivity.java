@@ -57,6 +57,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         return R.layout.activity_main;
     }
 
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void initView() {
+
+    }
+
 
     private void check() {
         if (Build.VERSION.SDK_INT >= 23) {

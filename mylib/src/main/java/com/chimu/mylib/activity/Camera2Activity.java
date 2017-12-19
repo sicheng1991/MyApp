@@ -73,6 +73,16 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         return R.layout.activity_camera;
     }
 
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void initView() {
+
+    }
+
     /**
      *
      */
