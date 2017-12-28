@@ -5,6 +5,7 @@ import com.chimu.myapp.common.Constants;
 import com.chimu.mylib.net.CMResponse;
 import com.chimu.mylib.net.ParametersInterceptor;
 import com.chimu.mylib.net.RetrofitClient;
+import com.chimu.mylib.net.RxSchedulers;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -49,6 +50,10 @@ public class ApiService {
 
     public void init(String mac, String sign, Observer observer) {
         setSubscribe(client.create(LKSApi.class).initPad(1, mac, sign), observer);
+    }
+
+    public void init1(String mac, String sign, Observer observer) {
+        client.create(LKSApi.class).initPad(1, mac, sign).compose(RxSchedulers.<CMResponse>io_main()).subscribe(observer);
     }
 
 
