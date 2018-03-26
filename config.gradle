@@ -1,0 +1,91 @@
+ext {
+    android = [
+            compileSdkVersion: 26,
+            buildToolsVersion: "26.0.2",
+            minSdkVersion    : 19,
+            targetSdkVersion : 26,
+            //  客户端版本
+            versionClientCode: 22,
+            versionClientName: "3.1.0",
+    ]
+
+    dependencies = [
+            // 系统库
+            supportV7                    : 'com.android.support:appcompat-v7:27.1.0',
+            supportV4                    : 'com.android.support:support-v4:27.1.0',
+            design                       : 'com.android.support:design:27.1.0',
+            recyclerview                 : 'com.android.support:recyclerview-v7:27.1.0',
+            cardview                     : 'com.android.support:cardview-v7:27.1.0',
+            multidex                     : 'com.android.support:multidex:1.0.1',
+            annotations                  : 'com.android.support:support-annotations:27.1.0',
+            constraint                   : 'com.android.support.constraint:constraint-layout:1.0.2',
+            // 图片库
+            imageLoader                  : 'com.nostra13.universalimageloader:universal-image-loader:1.9.5',
+            Luban                        : 'me.shaohui.advancedluban:library:1.2.0',
+            photoview                    : 'com.bm.photoview:library:1.4.1',
+            fresco                       : 'com.facebook.fresco:fresco:1.7.1',
+            frescogif                  : 'com.facebook.fresco:animated-gif:1.7.1',
+            convenientbanner             : 'com.bigkoo:convenientbanner:2.0.5',
+            // 控件注入
+            butterknife                  : 'com.jakewharton:butterknife:8.6.0',
+            butterknifeCompiler          : 'com.jakewharton:butterknife-compiler:8.6.0',
+
+            // 网络库
+            okhttp3                      : 'com.squareup.okhttp3:okhttp:3.8.0',
+            okhttp3Logging               : 'com.squareup.okhttp3:logging-interceptor:3.8.0',
+            retrofit2                    : 'com.squareup.retrofit2:retrofit:2.3.0',
+            converterGson                : 'com.squareup.retrofit2:converter-gson:2.3.0',
+            adapterRxjava                : 'com.squareup.retrofit2:adapter-rxjava:2.3.0',
+            okhttputils                  : 'com.zhy:okhttputils:2.6.2',
+            okgo                         : 'com.lzy.net:okgo:+',
+            okrx                         : 'com.lzy.net:okrx:+',
+            okserver                     : 'com.lzy.net:okserver:+',
+            // 流式开发
+            rxjava                       : 'io.reactivex:rxjava:1.2.1',
+            rxandroid                    : 'io.reactivex:rxandroid:1.2.1',
+            rxbinding                    : 'com.jakewharton.rxbinding:rxbinding:1.0.1',
+            //加载框
+            kprogresshud                 : 'com.kaopiz:kprogresshud:1.0.5',
+
+            // 控件验证
+            androidSaripaar              : 'com.mobsandgeeks:android-saripaar:2.0.3',
+            // 弹出框
+            WheelPicker                  : 'cn.qqtheme.framework:WheelPicker:1.4.5',
+            javaxAnnotation              : 'org.glassfish:javax.annotation:10.0-b28',
+            // 友盟
+            umAnalytics                  : 'com.umeng.analytics:analytics:latest.integration',
+            // 状态栏
+            statusBarUitl                : 'com.jaeger.statusbaruitl:library:1.0.0',
+
+            //log类库
+            xLog                         : 'com.elvishew:xlog:1.3.0',
+            // 其他
+            bankcardformat               : 'com.yuyh.bankcardformat:library:1.0.2',
+            xrecyclerview                : 'com.jcodecraeer:xrecyclerview:1.3.2',
+
+            /**
+             * 以下为商城流程原生化需引入的库文件
+             */
+
+            //公共item多样化的Adapter
+            rvadapter                    : 'com.zhy:base-rvadapter:3.0.3',
+            //公共普通的Adapter
+            BaseRecyclerViewAdapterHelper: 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22',
+            //商品详情引用
+            //CardView是在安卓5.0提出的卡片式控件
+            //noinspection GradleCompatible
+
+            pagerslidingtabstrip         : 'com.gxz.pagerslidingtabstrip:library:1.3',
+            //Android流式布局，支持单选、多选等，适合用于产品标签等。
+            flowlayout                   : 'com.zhy:flowlayout-lib:1.0.3',
+
+            //带圆角边框线的CircleImageView
+            circleimageview              : 'de.hdodenhof:circleimageview:2.1.0',
+
+            //下拉刷新，上拉加载框架
+            tkrefreshlayout              : 'com.lcodecorex:tkrefreshlayout:1.0.7',
+            //BasePopup(通用的popupwindow)
+            basePopup                    : 'com.github.razerdp:BasePopup:v1.8.0',
+    ]
+
+}
