@@ -20,12 +20,17 @@ public class ShopHelperTest{
     @Before
     public void start(){
         goods1 = new ArrayList<>();
-//        goods1.add(new GoodsInfo("A",5));
-//        goods1.add(new GoodsInfo("B",5));
+        goods1.add(new GoodsInfo("1",3));
+        goods1.add(new GoodsInfo("2",2));
+        goods1.add(new GoodsInfo("3",3));
+        goods1.add(new GoodsInfo("4",1));
 
         goods2 = new ArrayList<>();
-        goods2.add(new GoodsInfo("C",3));//本地
-        goods2.add(new GoodsInfo("B",3));
+        goods2.add(new GoodsInfo("1",1));
+        goods2.add(new GoodsInfo("2",2));
+        goods2.add(new GoodsInfo("3",2));
+        goods2.add(new GoodsInfo("4",1));
+        goods2.add(new GoodsInfo("5",1));
     }
     @Test
     public void addGoods() throws Exception {

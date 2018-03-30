@@ -61,7 +61,7 @@ public class ShopHelper {
 
         }
         for(GoodsInfo newGood : newList){
-            if(newGood.isContains()){
+            if(!newGood.isContains()){
                 buyGoods.add(new GoodsInfo(newGood.getEpc(), 0 - newGood.getEpcNum()));
             }
         }
@@ -84,6 +84,7 @@ public class ShopHelper {
                 if(goodA.getEpc().equals(goodB.getEpc())){
                     goodA.setContains(true);
                     goodB.setContains(true);
+                    System.out.println(goodA.toString() + goodB.toString());
                 }
             }
         }

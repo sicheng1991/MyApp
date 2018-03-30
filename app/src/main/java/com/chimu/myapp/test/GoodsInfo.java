@@ -58,6 +58,7 @@ public class GoodsInfo implements Cloneable {
                 "id=" + id +
                 ", epc='" + epc + '\'' +
                 ", epcNum=" + epcNum +
+                ", isContains=" + isContains +
                 '}';
     }
 
