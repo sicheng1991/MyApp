@@ -45,6 +45,7 @@ dependencies {
     //retrofit
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+    compile 'com.android.support:design:26.0.2'
 
     //    compile project(':processor')
     implementation files('libs/zxing.jar')
