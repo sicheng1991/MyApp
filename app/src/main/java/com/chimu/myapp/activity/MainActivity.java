@@ -48,6 +48,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
         findViewById(R.id.tv_animation).setOnClickListener(this);
         findViewById(R.id.tv_camera2).setOnClickListener(this);
+        findViewById(R.id.tv_js).setOnClickListener(this);
         HookInstrumentationUtil.hook();
 
     }
@@ -141,6 +142,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 Intent intent1 = new Intent(MainActivity.this, Camera2Activity.class);
                 startActivity(intent1);
                 break;
+            case R.id.tv_js:
+//                test();
+                Intent intent2 = new Intent(MainActivity.this, WebActivity.class);
+                startActivity(intent2);
+                break;
+
 
         }
     }

@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.widget.LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <WebView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.github.lzyzsd.jsbridge.BridgeWebView
         android:id="@+id/wv_web"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></WebView>
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </com.github.lzyzsd.jsbridge.BridgeWebView>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="调用js方法"
+        />
+
 
 </android.widget.LinearLayout>
