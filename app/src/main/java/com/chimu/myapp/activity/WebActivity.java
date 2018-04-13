@@ -51,6 +51,8 @@ public class WebActivity extends BaseActivity implements View.OnClickListener {
         WebSettings settings = webView.getSettings();
 //支持js
         settings.setJavaScriptEnabled(true);
+        settings.setDomStorageEnabled(true);//存到本地
+        settings.setDatabaseEnabled(true);//存到本地
 //设置字符编码
         settings.setDefaultTextEncodingName("utf-8");
 // 支持缩放
@@ -65,8 +67,10 @@ public class WebActivity extends BaseActivity implements View.OnClickListener {
         webView.setDefaultHandler(new DefaultHandler());
 
         webView.setWebChromeClient(new WebChromeClient());
+        webView.loadData("","text/html","UTF-8");
         //加载本地网页
-        webView.loadUrl("file:///android_asset/mhtml.html");
+//        webView.loadUrl("file:///android_asset/mhtml.html");
+
         //自定义webViewClient设置到webview上
         webView.setWebViewClient(new BridgeWebViewClient(webView));
         //加载服务器网页
@@ -103,4 +107,10 @@ public class WebActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+        webView.loadUrl("http://182.150.20.24:10061/ZHHWeb/H5/help.html?helpType=004");
+    }
 }
