@@ -20,17 +20,12 @@ import android.widget.ImageView;
 
 import com.chimu.myapp.R;
 import com.chimu.myapp.hook.hook.HookInstrumentationUtil;
+import com.chimu.myapp.common.ImageProc;
 import com.chimu.mylib.activity.Camera2Activity;
 import com.chimu.mylib.base.BaseActivity;
 
 import com.chimu.mylib.common.RxjavaOperator;
-import com.chimu.mylib.util.Rxjava;
 import com.example.annotation.Person;
-
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.subjects.Subject;
 
 @Person(name = "龙文江", age = 35)
 public class MainActivity extends BaseActivity implements View.OnClickListener{
@@ -143,6 +138,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 startActivity(intent1);
                 break;
             case R.id.tv_js:
+                Log.d("msgggggg", "onClick: " + ImageProc.instance().init());
 //                test();
                 Intent intent2 = new Intent(MainActivity.this, WebActivity.class);
                 startActivity(intent2);
