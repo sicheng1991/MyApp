@@ -38,7 +38,7 @@ import javax.tools.JavaFileObject;
  */
 @AutoService(Processor.class)
 @SupportedAnnotationTypes("com.example.annotation.Person")
-@SupportedSourceVersion(SourceVersion.RELEASE_7)
+//@SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class PersonProcessor extends AbstractProcessor {
     private Types mTypeUtils;
     private Elements mElementUtils;

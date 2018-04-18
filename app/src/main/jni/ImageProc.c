@@ -644,7 +644,7 @@ int closeDevice2(void) {
 }
 
 
-JNIEXPORT jint JNICALL Java_com_asiatelco_webcamera_CapActivity_CaptureCamera2( JNIEnv* env, jobject thiz)
+JNIEXPORT jint JNICALL Java_com_chimu_myapp_common_ImageProc_CaptureCamera2( JNIEnv* env, jobject thiz)
 {
 	int length = 0;
 	unsigned int i=0;
@@ -1009,7 +1009,7 @@ int closeDevice3(void) {
 }
 
 
-JNIEXPORT jint JNICALL Java_com_asiatelco_webcamera_CapActivity_CaptureCamera3( JNIEnv* env, jobject thiz)
+JNIEXPORT jint JNICALL Java_com_chimu_myapp_common_ImageProc_CaptureCamera3( JNIEnv* env, jobject thiz)
 {
 	int length = 0;
 	unsigned int i=0;
@@ -1373,7 +1373,7 @@ int closeDevice4(void) {
 }
 
 
-JNIEXPORT jint JNICALL Java_com_asiatelco_webcamera_CapActivity_CaptureCamera4( JNIEnv* env, jobject thiz)
+JNIEXPORT jint JNICALL Java_com_chimu_myapp_common_ImageProc_CaptureCamera4( JNIEnv* env, jobject thiz)
 {
 	int length = 0;
 	unsigned int i=0;
