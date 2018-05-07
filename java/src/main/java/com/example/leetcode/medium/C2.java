@@ -1,4 +1,4 @@
-package com.example.leetcode;
+package com.example.leetcode.medium;
 
 /**
  * 给您两个非空链表，表示两个非负整数。这些数字以相反的顺序存储，每个节点都包含一个数字。将两个数字相加，并将其作为链表返回。
