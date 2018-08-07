@@ -40,11 +40,11 @@ android {
 //            }
 //        }
     }
-    externalNativeBuild {
-        cmake {
-            path "CMakeLists.txt"
-        }
-    }
+//    externalNativeBuild {
+//        cmake {
+//            path "CMakeLists.txt"
+//        }
+//    }
     dataBinding{
         enabled  = true
     }

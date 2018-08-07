@@ -4,6 +4,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.google.code.gson:gson:2.8.1'
     compile 'com.alibaba:fastjson:1.2.35'
+    compile files('libs/guava-19.0.jar')
 }
 
 sourceCompatibility = "1.8"
