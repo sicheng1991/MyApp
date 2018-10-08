@@ -30,10 +30,7 @@ import com.yangztel.jnilib.CameraHelper;
 @Person(name = "龙文江", age = 35)
 public class MainActivity extends BaseActivity implements View.OnClickListener{
     private static final int PERMISSION_REQUEST_CODE = 10001;
-    private Animation animation;
-    private ImageView iv;
-    private Button button;
-    private HorizontalScrollView scrollView;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
