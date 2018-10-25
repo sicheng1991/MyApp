@@ -3,16 +3,21 @@ package com.chimu.kotlin.activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import com.example.chimu.kotlin.R
 import com.example.chimu.kotlin.bean.PersonBean
 
 class MainActivity : AppCompatActivity() {
-    var btn: Button = Button(this)
+    var btn: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        btn.setOnClickListener {
-            finish()
+
+        btn = findViewById(R.id.btn_bbb)
+
+        btn!!.setOnClickListener {
+            Toast.makeText(this,"你好",Toast.LENGTH_LONG).show()
+            btn!!.text = "改个名字"
         }
 
 //        println(getName(2))
@@ -69,7 +74,7 @@ class MainActivity : AppCompatActivity() {
 
     fun isString(a: Any): Boolean {
         var isS: Boolean
-        if (a is String) isS = true else isS = false
+        isS = a is String
         return isS
     }
 
