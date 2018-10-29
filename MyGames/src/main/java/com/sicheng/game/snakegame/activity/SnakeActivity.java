@@ -1,4 +1,4 @@
-package com.sicheng.game.snakegame;
+package com.sicheng.game.snakegame.activity;
 
 import android.graphics.Color;
 import android.os.Handler;
@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sicheng.game.snakegame.R;
 import com.sicheng.game.snakegame.util.MetricUtil;
 import com.sicheng.game.snakegame.view.Block;
 
@@ -22,7 +23,10 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+/**
+ * 贪吃蛇游戏
+ */
+public class SnakeActivity extends AppCompatActivity implements View.OnClickListener {
     private FrameLayout fl_main;
     private List<Block> body;
     private List<Block> border;//边界
@@ -48,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //全屏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_snake);
         initView();
         init();
 
@@ -150,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         timeContral();
                     }
                 }else{
-                    Toast.makeText(MainActivity.this, "你失败了", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SnakeActivity.this, "你失败了", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -184,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else if(direction == LEFT){
             newX = oldX - blockSize;
         }
-        Block block = new Block(MainActivity.this, newX, newY);
+        Block block = new Block(SnakeActivity.this, newX, newY);
         return block;
     }
     private boolean check(Block newBlock){

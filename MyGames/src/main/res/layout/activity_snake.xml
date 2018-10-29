@@ -6,13 +6,13 @@
     tools:context="com.sicheng.game.snakegame.com.sicheng.game.MainActivity"
 
     android:orientation="vertical">
-    <!--<FrameLayout-->
-        <!--android:id="@+id/fl_main"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1">-->
+    <FrameLayout
+        android:id="@+id/fl_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <!--</FrameLayout>-->
+    </FrameLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
