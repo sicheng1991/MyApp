@@ -1,6 +1,7 @@
 package com.chimu.mylib.net;
 
 
+import com.chimu.mylib.bean.Bean;
 import com.chimu.mylib.bean.InfoBean;
 
 import io.reactivex.Observable;
@@ -34,11 +35,14 @@ public class HttpUtil {
         //version=1&action=getownerinfo&cityId=2&model=android
          //具体写法参见博客;http://www.jianshu.com/p/7687365aa946
         //version=1&action=getownerinfo&{cityId}&model=android"
-        @GET("AppManagerApi.php")
+        @GET("tools/mockapi/6385/test1")
         Observable<InfoBean> getInfo(@Query("version") String version,
                                      @Query("action") String action,
                                      @Query("cityId") String cityId,
                                      @Query("model") String model);
+
+        @GET("tools/mockapi/6385/test1")
+        Observable<Bean> getTest();
     }
 
 }

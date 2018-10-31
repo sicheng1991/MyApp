@@ -17,15 +17,29 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.chimu.myapp.R;
 import com.chimu.myapp.hook.hook.HookInstrumentationUtil;
+import com.chimu.mylib.LibApplication;
 import com.chimu.mylib.activity.Camera2Activity;
 import com.chimu.mylib.base.BaseActivity;
 
+import com.chimu.mylib.bean.Bean;
+import com.chimu.mylib.bean.InfoBean;
 import com.chimu.mylib.common.RxjavaOperator;
+import com.chimu.mylib.net.HttpUtil;
+import com.chimu.mylib.util.Rxjava;
 import com.example.annotation.Person;
 import com.yangztel.jnilib.CameraHelper;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 @Person(name = "龙文江", age = 35)
 public class MainActivity extends BaseActivity implements View.OnClickListener{
@@ -42,6 +56,43 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         findViewById(R.id.tv_camera2).setOnClickListener(this);
         findViewById(R.id.tv_js).setOnClickListener(this);
         HookInstrumentationUtil.hook();
+
+        Rxjava6();
+
+    }
+    public void Rxjava6() {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://wanandroid.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+
+        HttpUtil.InfoRes info = retrofit.create(HttpUtil.InfoRes.class);
+        info.getTest().subscribeOn(Schedulers.io()) //在IO线程进行网络请求
+                .observeOn(AndroidSchedulers.mainThread())  //回到主线程去处理请求结果
+                .subscribe(new Observer<Bean>() {
+                    @Override
+                    public void onSubscribe(Disposable disposable) {
+
+                    }
+
+                    @Override
+                    public void onNext(Bean infoBean) {
+                        Toast.makeText(LibApplication.application, "拿到数据", Toast.LENGTH_SHORT).show();
+                        ((Button)findViewById(R.id.tv_js)).setText(infoBean.name);
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        Toast.makeText(LibApplication.application, "没拿到数据", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
 
     }
 

@@ -35,7 +35,6 @@ import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Longwj on 2017/7/13.
@@ -237,41 +236,7 @@ public class Rxjava {
         });
     }
 
-    public void Rxjava6() {
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://appapi.17house.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
-
-        HttpUtil.InfoRes info = retrofit.create(HttpUtil.InfoRes.class);
-        info.getInfo("1", "getownerinfo", "2", "android").subscribeOn(Schedulers.io()) //在IO线程进行网络请求
-                .observeOn(AndroidSchedulers.mainThread())  //回到主线程去处理请求结果
-                .subscribe(new Observer<InfoBean>() {
-                    @Override
-                    public void onSubscribe(Disposable disposable) {
-
-                    }
-
-                    @Override
-                    public void onNext(InfoBean infoBean) {
-                        Toast.makeText(LibApplication.application, "拿到数据", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "databean：" + infoBean.toString());
-                    }
-
-                    @Override
-                    public void onError(Throwable throwable) {
-                        Toast.makeText(LibApplication.application, "没拿到数据", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-
-    }
 
 
     private void Rxjava5() {
