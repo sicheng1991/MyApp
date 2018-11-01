@@ -27,13 +27,14 @@ public class JboxImpl {
 
     private World mWorld; //模拟世界
     private float dt = 1f/60f; //模拟世界的频率
-    private int mVelocityIterations = 6; //速度阶段
-    private int mPosiontIterations = 2; //位置阶段
+    private int mVelocityIterations = 6; //速度迭代次数
+    private int mPosiontIterations = 3; //位置迭代次数
     //世界的长宽
-    private int mWidth = 200,mHeight = 200;
+    public int mWidth = 50,mHeight = 100;
+    private float mRatio = 20;//坐标映射比例
     //密度大小
     private float mDesity = 0.5f;
-    private float mRatio = 50;//坐标映射比例
+
     private final Random mRandom = new Random();
     private Body body;
 
@@ -41,22 +42,14 @@ public class JboxImpl {
         this.mDesity = mDesity;
     }
 
-    /**
-     * 设置世界的宽高
-     * @param width
-     * @param height
-     */
-    public void setWorlSize(int width, int height) {
-        mHeight = height;
-        mWidth = width;
-    }
+
 
     /**
      * 开始世界
      */
     public void startWorld(){
         if (mWorld != null) {
-            mWorld.step(dt, mVelocityIterations, mPosiontIterations);
+            mWorld.step(dt, mVelocityIterations, mPosiontIterations);//dt时间差，mVelocityIterations，速度迭代差
         }
     }
 
@@ -65,65 +58,63 @@ public class JboxImpl {
      */
     public void createWorld() {
         if (mWorld == null) {
-            mWorld = new World(new Vec2(1.0f, 2.0f));
+            mWorld = new World(new Vec2(10.0f, 10.0f));
             updateVertiacalBounds();
-//            updateHorizontalBounds();
+            updateHorizontalBounds();
         }
     }
 
     /**
-     * 创建世界的上下边界，这里上下边界是一个静止的刚体
+     * 创建世界的左右边界，这里左右边界是一个静止的刚体
      */
     private void updateHorizontalBounds() {
         BodyDef bodyDef = new BodyDef();
-        //创建静止刚体
-        bodyDef.type = BodyType.STATIC;
-        //定义的形状
-        PolygonShape box = new PolygonShape();
-        float boxWidth = switchPositionToBody(mWidth);
-        //设置边界高度为1
-        float boxHeight = switchPositionToBody(mRatio);
-        box.setAsBox(boxWidth, boxHeight); //确定为矩形
+        bodyDef.type = BodyType.STATIC; //定义静止的刚体
+
+        PolygonShape box = new PolygonShape(); //定义的形状
+        box.setAsBox(1, mHeight); //确定为矩形
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = box;
         fixtureDef.density = mDesity;
         fixtureDef.friction = 0.8f;//摩擦系数
-        fixtureDef.restitution = 0.5f; //补偿系数
+        fixtureDef.restitution = 1.5f; //补偿系数，反弹
 
-        bodyDef.position.set(0, -boxHeight);
-        Body topBody = mWorld.createBody(bodyDef); //创建一个真实的上边 body
-        topBody.createFixture(fixtureDef);
+        bodyDef.position.set(-20.0f, 0.0f);
+        Body rightBody = mWorld.createBody(bodyDef);
+        rightBody.createFixture(fixtureDef);
 
-        bodyDef.position.set(0, switchPositionToBody(mHeight) + boxHeight);
-        Body bottomBody = mWorld.createBody(bodyDef);//创建一个真实的下边 body
-        bottomBody.createFixture(fixtureDef);
+        bodyDef.position.set(66.0f, 0.0f);
+        Body leftBody = mWorld.createBody(bodyDef);
+        leftBody.createFixture(fixtureDef);
     }
     /**
-     * 创建世界的左右边界，这里左右边界是一个静止的刚体
+     * 创建世界的上下边界，这里上下边界是一个静止的刚体
      */
     private void updateVertiacalBounds() {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyType.STATIC; //定义静止的刚体
 
         PolygonShape box = new PolygonShape(); //定义的形状
-        float boxWidth = switchPositionToBody(mRatio);
-        float boxHeight = switchPositionToBody(mHeight);
-        box.setAsBox(50.0f, 10.0f); //确定为矩形
+        box.setAsBox(mWidth, 1); //确定为矩形
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = box;
         fixtureDef.density = mDesity;
         fixtureDef.friction = 0.8f;//摩擦系数
-        fixtureDef.restitution = 0.5f; //补偿系数
+        fixtureDef.restitution = 2.5f; //补偿系数，反弹
 
-        bodyDef.position.set(0.0f, -10.0f);
-        Body leftBody = mWorld.createBody(bodyDef); //创建一个真实的上边 body
-        leftBody.createFixture(fixtureDef);
-//
-//        bodyDef.position.set(switchPositionToBody(mWidth) + boxWidth, 0);
-//        Body rightBody = mWorld.createBody(bodyDef);
-//        rightBody.createFixture(fixtureDef);
+
+        bodyDef.position.set(0.0f, -2.0f);
+        Body topBody = mWorld.createBody(bodyDef); //创建一个真实的上边 body
+        topBody.createFixture(fixtureDef);
+
+        bodyDef.position.set(0.0f, 100.0f);
+        Body bottomBody = mWorld.createBody(bodyDef); //创建一个真实的下边 body
+        bottomBody.createFixture(fixtureDef);
+
+
+
     }
 
     //创建圆形
@@ -163,11 +154,7 @@ public class JboxImpl {
     private float switchPositionToView(float bodyPosition) {
         return bodyPosition * mRatio;
     }
-    public boolean isBodyView(View view) {
-        Body body = (Body) view.getTag(R.id.dn_view_body_tag);
-        return body != null;
 
-    }
 
     /**
      * 将形状画到屏幕上的屏幕x坐标
@@ -175,7 +162,7 @@ public class JboxImpl {
      * @return
      */
     public float getViewX() {
-        return switchPositionToView(body.getPosition().x ) - 0;
+        return switchPositionToView(body.getPosition().x) - 0;
     }
     /**
      * 将形状画到屏幕上的屏幕y坐标
@@ -203,6 +190,37 @@ public class JboxImpl {
         Body body = (Body) view.getTag(R.id.dn_view_body_tag);
         Vec2 impluse = new Vec2(x,y);
         body.applyLinearImpulse(impluse, body.getPosition(), true); //给body做线性运动 true 运动完之后停止
+    }
+
+    //
+    public void createShape(){
+
+        //https://blog.csdn.net/foupwang/article/details/79616957
+        //圆,都是实心
+        CircleShape circle = new CircleShape();
+        circle.m_p.set(2.0f, 3.0f);
+        circle.m_radius = 0.5f;
+
+        //多边形
+        //Box2D的多边形是实心的凸(Convex)多边形。在多边形内部任意选择两点，作一线段，如果所有的线段跟多边形的边都不相交，这个多边形就是凸多边形。多边形是实心的，而不是空心的。一个多边形必须有3个或以上的顶点。
+        //多边形的顶点以逆时针（counter clockwise winding，CCW）的顺序存储。我们必须很小心，逆时针是相对于右手坐标系统来说的，这坐标系下，Z轴指向平面外面。有可能相对于你的屏幕，就变成顺时针了，这取决于你自己的坐标系统是怎么规定的。
+        // This defines a triangle in CCW order.
+        Vec2 [] vertices = new Vec2[3];
+        vertices[0].set(0.0f, 0.0f);
+        vertices[1].set(1.0f, 0.0f);
+        vertices[2].set(0.0f, 1.0f);
+        int count = 3;
+
+        PolygonShape polygon = new PolygonShape();
+        polygon.set(vertices, count);
+
+        //多边形有一些方便的函数来创建box
+        //void SetAsBox(float32 hx, float32 hy);
+        //void SetAsBox(float32 hx, float32 hy, const b2Vec2& center, float32 angle);
+
+        //多边形从b2Shape中继承了半径。通过半径，在多边形的周围创建了一个保护层(skin)。堆叠的情况下，此保护层让多边形之间保持稍微分开。这使得可以在核心多边形上执行连续碰撞。
+        //多边形保护层通过保持多边形的分离来防止隧穿效应。这会导致形状之间有小空隙。你的显示可以比多边形大些，来隐藏这些空隙。
+
     }
 
 }

@@ -29,6 +29,7 @@ import org.jbox2d.dynamics.World;
 
 public class Box2DSurfaceView extends View{
     private final JboxImpl jboxImpl;
+
     private Paint paint;
     public Box2DSurfaceView(Context context) {
         super(context);
@@ -41,6 +42,8 @@ public class Box2DSurfaceView extends View{
         jboxImpl.creatBody();
 
 
+
+
     }
 
 
@@ -49,9 +52,9 @@ public class Box2DSurfaceView extends View{
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         jboxImpl.startWorld();
-        float x = jboxImpl.getViewX() / 50;
-        float y = jboxImpl.getViewY() / 50;
-        Log.i("msggggg", "onDraw: " + x +":" + y);
+        float x = jboxImpl.getViewX();
+        float y = jboxImpl.getViewY();
+        Log.i("msggggg", "onDraw: " + x +" : " + y );
         canvas.drawRect(x,y,x + 50,y + 50,paint);
 
         invalidate();
