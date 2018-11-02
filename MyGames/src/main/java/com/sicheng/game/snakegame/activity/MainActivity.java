@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity{
 //        setContentView(R.layout.activity_main);
 //        StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.black_383838));
         StatusBarUtil.setStatusBar(this,getResources().getColor(R.color.white),true);
+//        StatusBarUtil.setTranslucentForImageView(this,255,null);
+//        StatusBarUtil.setDarkMode(this);
 
     }
 }

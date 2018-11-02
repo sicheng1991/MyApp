@@ -55,8 +55,8 @@ public class Box2DSurfaceView extends View{
         float x = jboxImpl.getViewX();
         float y = jboxImpl.getViewY();
         Log.i("msggggg", "onDraw: " + x +" : " + y );
-        canvas.drawRect(x,y,x + 50,y + 50,paint);
-
+//        canvas.drawRect(x,y,x + 50,y + 50,paint);
+        canvas.drawCircle(x + 20,y + 20,20,paint);
         invalidate();
     }
 

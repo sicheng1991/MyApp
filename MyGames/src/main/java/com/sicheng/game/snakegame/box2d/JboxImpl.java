@@ -78,13 +78,13 @@ public class JboxImpl {
         fixtureDef.shape = box;
         fixtureDef.density = mDesity;
         fixtureDef.friction = 0.8f;//摩擦系数
-        fixtureDef.restitution = 1.5f; //补偿系数，反弹
+        fixtureDef.restitution = 1.0f; //补偿系数，反弹
 
-        bodyDef.position.set(-20.0f, 0.0f);
+        bodyDef.position.set(-2.0f, 0.0f);
         Body rightBody = mWorld.createBody(bodyDef);
         rightBody.createFixture(fixtureDef);
 
-        bodyDef.position.set(66.0f, 0.0f);
+        bodyDef.position.set(50.0f + 2, 0.0f);
         Body leftBody = mWorld.createBody(bodyDef);
         leftBody.createFixture(fixtureDef);
     }
@@ -102,14 +102,14 @@ public class JboxImpl {
         fixtureDef.shape = box;
         fixtureDef.density = mDesity;
         fixtureDef.friction = 0.8f;//摩擦系数
-        fixtureDef.restitution = 2.5f; //补偿系数，反弹
+        fixtureDef.restitution = 1.0f; //补偿系数，反弹
 
 
         bodyDef.position.set(0.0f, -2.0f);
         Body topBody = mWorld.createBody(bodyDef); //创建一个真实的上边 body
         topBody.createFixture(fixtureDef);
 
-        bodyDef.position.set(0.0f, 100.0f);
+        bodyDef.position.set(0.0f, 100.0f + 2);
         Body bottomBody = mWorld.createBody(bodyDef); //创建一个真实的下边 body
         bottomBody.createFixture(fixtureDef);
 
@@ -128,10 +128,10 @@ public class JboxImpl {
         BodyDef bodyDef = new BodyDef();
         bodyDef.setType(BodyType.DYNAMIC);
 
-        bodyDef.position.set(0,0);
+        bodyDef.position.set(1,1);
 
 
-        Shape  shape = craeteCircleShape(20);
+        Shape  shape = craeteCircleShape(0.5f);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.setShape(shape);
