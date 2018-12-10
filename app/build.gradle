@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 def config = rootProject.ext.android // 配置
 
 def static releaseTime() {
-    return new Date().format("yyyy-MM-dd HH:mm", TimeZone.getTimeZone("UTC"))
+    return new Date().format("yyyy-MM-dd HH_mm", TimeZone.getTimeZone("UTC"))
 }
 
 android {
@@ -111,7 +111,7 @@ dependencies {
     compile 'com.google.auto:auto-common:0.6'
     compile project(':mylib')
     //阿里热修复
-    compile 'com.aliyun.ams:alicloud-android-hotfix:3.0.6'
+    compile 'com.aliyun.ams:alicloud-android-hotfix:3.2.7'
     implementation files('libs/cameraHelper.jar')
 }
 

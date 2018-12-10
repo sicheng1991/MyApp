@@ -22,9 +22,12 @@ allprojects {
     repositories {
         jcenter()
         maven {
+            url "https://maven.aliyun.com/repository/google"
+        }
+        maven {
             url "http://maven.aliyun.com/nexus/content/repositories/releases"
         }
-        google()
+
         maven {url "https://jitpack.io"}
     }
 
