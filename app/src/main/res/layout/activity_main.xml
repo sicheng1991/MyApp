@@ -20,6 +20,7 @@
             android:orientation="vertical">
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/tv_animation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -28,12 +29,12 @@
                 android:text="@string/tv_1"/>
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/tv_camera2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:textSize="20sp"
-                android:visibility="visible"
                 android:text="@string/tv_camera2"/>
             <Button
                 android:id="@+id/tv_js"

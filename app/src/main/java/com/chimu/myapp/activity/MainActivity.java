@@ -13,30 +13,22 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
 import android.widget.Button;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.chimu.myapp.R;
-import com.chimu.myapp.bean.DaggerBean;
 import com.chimu.myapp.hook.hook.HookInstrumentationUtil;
 import com.chimu.mylib.LibApplication;
 import com.chimu.mylib.activity.Camera2Activity;
 import com.chimu.mylib.base.BaseActivity;
 
 import com.chimu.mylib.bean.Bean;
-import com.chimu.mylib.bean.InfoBean;
 import com.chimu.mylib.common.RxjavaOperator;
 import com.chimu.mylib.net.HttpUtil;
-import com.chimu.mylib.util.Rxjava;
 import com.example.annotation.Person;
-import com.yangztel.jnilib.CameraHelper;
 
 import javax.inject.Inject;
 
-import dagger.Component;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -50,8 +42,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends BaseActivity implements View.OnClickListener{
     private static final int PERMISSION_REQUEST_CODE = 10001;
 
-    @Inject
-    public DaggerBean daggerBean;
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -65,9 +56,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         findViewById(R.id.tv_js).setOnClickListener(this);
         HookInstrumentationUtil.hook();
 
+
 //        Rxjava6();
 
-//        Log.i("MainActivity", "getAge:" + daggerBean.getAge());
 
 
     }
