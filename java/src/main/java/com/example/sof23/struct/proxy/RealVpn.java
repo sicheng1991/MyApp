@@ -7,6 +7,6 @@ package com.example.sof23.struct.proxy;
 public class RealVpn implements IVpn {
     @Override
     public void surfInternet() {
-        System.out.println("·­Ç½ÁË");
+        System.out.println("å‘é€");
     }
 }

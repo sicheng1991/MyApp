@@ -60,7 +60,7 @@ public class NumberUtil {
     }
 
     /**
-     * 方法还有问题
+
      *
      * @param number
      * @param answer
@@ -95,7 +95,7 @@ public class NumberUtil {
 //            for (String s : answer) {
 //                System.out.println(s);
 //            }
-//            System.out.println("大小：" + answer.size());
+//            System.out.println("锟斤拷小锟斤拷" + answer.size());
         }
 
     }

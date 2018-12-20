@@ -6,6 +6,10 @@ dependencies {
     compile 'com.alibaba:fastjson:1.2.35'
     compile files('libs/guava-19.0.jar')
 }
+//指定编译的编码
+tasks.withType(JavaCompile){
+    options.encoding = "UTF-8"
+}
 
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"

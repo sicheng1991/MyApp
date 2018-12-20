@@ -11,7 +11,6 @@ public abstract class AbstractLogger {
 
     protected int level;
 
-    //责任链中的下一个元素
     protected AbstractLogger nextLogger;
 
     public void setNextLogger(AbstractLogger nextLogger){

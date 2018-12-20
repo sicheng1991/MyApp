@@ -17,13 +17,10 @@ public class ProxyVpn implements InvocationHandler {
 
     @Override
     public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
-        //在转调具体目标对象之前，可以执行一些功能处理
-        System.out.println("开始代理");
-        //转调具体目标对象的方法
+        System.out.println("鍛靛懙");
         Object result =  method.invoke( proxied, objects);
 
-        System.out.println("代理成功了");
-        //在转调具体目标对象之后，可以执行一些功能处理
+        System.out.println("0000");
         return result;
     }
 }

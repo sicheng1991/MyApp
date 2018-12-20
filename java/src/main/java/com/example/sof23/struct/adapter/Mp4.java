@@ -7,11 +7,11 @@ package com.example.sof23.struct.adapter;
 public class Mp4 implements IMp4 {
     @Override
     public void payMp3() {
-        System.out.println("Mp4ÖÐ²¥·ÅMP3");
+        System.out.println("Mp4 MP3");
     }
 
     @Override
     public void PayMp4() {
-        System.out.println("Mp4ÖÐ²¥·ÅMP4");
+        System.out.println("Mp4ï¿½Ð²ï¿½ï¿½ï¿½MP4");
     }
 }

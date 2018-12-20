@@ -7,6 +7,6 @@ package com.example.sof23.struct.facade;
 public class Circle implements Shape {
     @Override
     public void draw() {
-        System.out.println("»­¸ö»·");
+        System.out.println("fasf");
     }
 }

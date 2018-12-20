@@ -12,7 +12,7 @@ public class UF {
     private int count;     // number of components
 
     /**
-     * Initializes an empty union®Cfind data structure with {@code n} sites
+     * Initializes an empty unionCfind data structure with {@code n} sites
      * {@code 0} through {@code n-1}. Each site is initially in its own
      * component.
      *
@@ -112,7 +112,7 @@ public class UF {
      */
     public static void main(String[] args) {
 
-        System.out.println(" ‰»Î:");
+        System.out.println("en:");
         Scanner scan = new Scanner(System.in);
         int n = scan.nextInt();
         UF uf = new UF(n);

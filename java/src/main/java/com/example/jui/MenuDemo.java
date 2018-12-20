@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
 /**
- * javaÍ¼ÐÎ½çÃæ
+ *
  * Created by Longwj on 2017/8/4.
  */
 
@@ -34,76 +34,76 @@ public class MenuDemo extends JFrame {
 
     private void initContent() {
         JPanel root = new JPanel();
-        root.add(new JButton("ÎÒÊÇJButton"));
-        root.add(new JToggleButton("ÎÒÊÇJToggleButton"));
-        root.add(new JLabel("ÎÒÊÇJLabel"));
-        root.add(new JCheckBox("ÎÒÊÇJCheckBox"));
-        root.add(new JRadioButton("ÎÒÊÇJRadioButton"));
-        root.add(new JTextField("ÎÒÊÇJTextField"));
-        root.add(new JPasswordField("ÎÒÊÇJPasswordField"));
-        root.add(new JTextArea("ÎÒÊÇJTextArea"));
+        root.add(new JButton("ï¿½ï¿½ï¿½ï¿½JButton"));
+        root.add(new JToggleButton("ï¿½ï¿½ï¿½ï¿½JToggleButton"));
+        root.add(new JLabel("ï¿½ï¿½ï¿½ï¿½JLabel"));
+        root.add(new JCheckBox("ï¿½ï¿½ï¿½ï¿½JCheckBox"));
+        root.add(new JRadioButton("ï¿½ï¿½ï¿½ï¿½JRadioButton"));
+        root.add(new JTextField("ï¿½ï¿½ï¿½ï¿½JTextField"));
+        root.add(new JPasswordField("ï¿½ï¿½ï¿½ï¿½JPasswordField"));
+        root.add(new JTextArea("ï¿½ï¿½ï¿½ï¿½JTextArea"));
         add(root);
     }
 
     private void initContent1() {
         JPanel root = new JPanel();
-        // ÊµÀý»¯ÔªËØ×é¼þÀà£¬È»ºó½«¶ÔÏóÌí¼Óµ½´°Ìå¿É¼û
-        //ÊµÀý»¯ImageIconÀàµÄ¶ÔÏó£¬´Ó´ÅÅÌÖÐÌáÈ¡³öÍ¼Æ¬
+        // Êµï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½à£¬È»ï¿½ó½«¶ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½É¼ï¿½
+        //Êµï¿½ï¿½ï¿½ï¿½ImageIconï¿½ï¿½Ä¶ï¿½ï¿½ó£¬´Ó´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Í¼Æ¬
         javax.swing.ImageIcon img=new javax.swing.ImageIcon("D:\\qq.png");
-        //ÊµÀý»¯JLbelÀàµÄ¶ÔÏó£¬ÓÃÀ´ÏÔÊ¾img
+        //Êµï¿½ï¿½ï¿½ï¿½JLbelï¿½ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾img
         javax.swing.JLabel labImg=new javax.swing.JLabel(img);
-        //½«JLabelÀà¶ÔÏóÌí¼Óµ½´°¿ÚÉÏ
+        //ï¿½ï¿½JLabelï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         root.add(labImg);
 
-        //Ê¹ÓÃJLbelÀàÏÔÊ¾ÎÄ×Ö
-        javax.swing.JLabel labName1=new javax.swing.JLabel("ÕËºÅ:");
+        //Ê¹ï¿½ï¿½JLbelï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
+        javax.swing.JLabel labName1=new javax.swing.JLabel("ï¿½Ëºï¿½:");
         root.add(labName1);
 
-        //ÊµÀý»¯ÎÄ±¾¿ò
+        //Êµï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½
         javax.swing.JTextField account=new javax.swing.JTextField();
-        //·â×°×é¼þµÄ´óÐ¡ºÍ¸ß¶È   DimentsionÀàµÄ¶ÔÏóµÄÊµÀý»¯  dim¶ÔÏó¿ÉÒÔÖØ¸´ÀûÓÃ
+        //ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½Ä´ï¿½Ð¡ï¿½Í¸ß¶ï¿½   Dimentsionï¿½ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½  dimï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½
         java.awt.Dimension dim=new java.awt.Dimension(330,30);
-        //ÉèÖÃ×é¼þµÄÊ×ÏÈ´óÐ¡ÎªDimensionÀàµÄ¶ÔÏó
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½Ð¡ÎªDimensionï¿½ï¿½Ä¶ï¿½ï¿½ï¿½
         account.setPreferredSize(dim);
         root.add(account);
 
-        //ÏÔÊ¾ÃÜÂë¼°¶ÔÓ¦ÎÄ±¾¿ò ÀûÓÃJLabelÀàºÍJPasswordFieldÀà
-        javax.swing.JLabel labName2=new javax.swing.JLabel("ÃÜÂë:");
+        //ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ë¼°ï¿½ï¿½Ó¦ï¿½Ä±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½JLabelï¿½ï¿½ï¿½JPasswordFieldï¿½ï¿½
+        javax.swing.JLabel labName2=new javax.swing.JLabel("ï¿½ï¿½ï¿½ï¿½:");
         root.add(labName2);
         javax.swing.JPasswordField password =new javax.swing.JPasswordField();
         password.setPreferredSize(dim);
         root.add(password);
 
-        //ÀûÓÃJCheckBoxÀàÏÔÊ¾¼Ç×¡ÃÜÂë ºÍ×Ô¶¯µÇÂ¼´°¿Ú
-        javax.swing.JCheckBox checkbox1=new javax.swing.JCheckBox("   ¼Ç ×¡ ÃÜ Âë");
+        //ï¿½ï¿½ï¿½ï¿½JCheckBoxï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½×¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
+        javax.swing.JCheckBox checkbox1=new javax.swing.JCheckBox("   ï¿½ï¿½ ×¡ ï¿½ï¿½ ï¿½ï¿½");
         java.awt.Dimension box=new java.awt.Dimension(150,150);
         checkbox1.setPreferredSize(box);
         root.add(checkbox1);
-        javax.swing.JCheckBox checkbox2=new javax.swing.JCheckBox("   ×Ô ¶¯ µÇ Â¼");
+        javax.swing.JCheckBox checkbox2=new javax.swing.JCheckBox("   ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ Â¼");
         checkbox2.setPreferredSize(box);
         root.add(checkbox2);
 
-        //ÀûÓÃJButtonÀà ÉèÖÃ´°¿ÚµÇÂ¼
-        javax.swing.JButton button=new javax.swing.JButton("µÇÂ¼");
+        //ï¿½ï¿½ï¿½ï¿½JButtonï¿½ï¿½ ï¿½ï¿½ï¿½Ã´ï¿½ï¿½Úµï¿½Â¼
+        javax.swing.JButton button=new javax.swing.JButton("ï¿½ï¿½Â¼");
         java.awt.Dimension dimbutton=new java.awt.Dimension(150,80);
         button.setPreferredSize(dimbutton);
         root.add(button);
 
-        MenuListener dl=new MenuListener(this,account,password);//³õÊ¼»¯¼àÌýÀà¶ÔÏó
-        button.addActionListener(dl);//¶Ô°´Å¥button¶ÔÏóÊµÏÖ¼àÌý
+        MenuListener dl=new MenuListener(this,account,password);//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        button.addActionListener(dl);//ï¿½Ô°ï¿½Å¥buttonï¿½ï¿½ï¿½ï¿½Êµï¿½Ö¼ï¿½ï¿½ï¿½
 
         add(root);
     }
 
     private void showView() {
-        setSize(400, 700);//ÉèÖÃ´óÐ¡
-        setTitle("Í¼ÐÎ½çÃæ");//ÉèÖÃ±êÌâ
-        setDefaultCloseOperation(EXIT_ON_CLOSE);//½çÃæ¹Ø±Õ·½Ê½
-        setLocationRelativeTo(null);//ÏÔÊ¾µÄ½çÃæ¾ÓÖÐ
-        setResizable(true);//ÉèÖÃÄÜ·ñ¸Ä±ä´óÐ¡
-        setVisible(true);//½çÃæµÄ¿É¼û
+        setSize(400, 700);//ï¿½ï¿½ï¿½Ã´ï¿½Ð¡
+        setTitle("Í¼ï¿½Î½ï¿½ï¿½ï¿½");//ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½
+        setDefaultCloseOperation(EXIT_ON_CLOSE);//ï¿½ï¿½ï¿½ï¿½Ø±Õ·ï¿½Ê½
+        setLocationRelativeTo(null);//ï¿½ï¿½Ê¾ï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        setResizable(true);//ï¿½ï¿½ï¿½ï¿½ï¿½Ü·ï¿½Ä±ï¿½ï¿½Ð¡
+        setVisible(true);//ï¿½ï¿½ï¿½ï¿½Ä¿É¼ï¿½
 
-        //dispose();//¹Ø±Õµ±Ç°Ò³
+        //dispose();//ï¿½Ø±Õµï¿½Ç°Ò³
     }
 
 }

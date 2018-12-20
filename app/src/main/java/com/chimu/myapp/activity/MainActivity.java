@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.chimu.myapp.R;
+import com.chimu.myapp.bean.DaggerBean;
 import com.chimu.myapp.hook.hook.HookInstrumentationUtil;
 import com.chimu.mylib.LibApplication;
 import com.chimu.mylib.activity.Camera2Activity;
@@ -33,6 +34,9 @@ import com.chimu.mylib.util.Rxjava;
 import com.example.annotation.Person;
 import com.yangztel.jnilib.CameraHelper;
 
+import javax.inject.Inject;
+
+import dagger.Component;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -41,9 +45,13 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
 @Person(name = "龙文江", age = 35)
 public class MainActivity extends BaseActivity implements View.OnClickListener{
     private static final int PERMISSION_REQUEST_CODE = 10001;
+
+    @Inject
+    public DaggerBean daggerBean;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -57,7 +65,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         findViewById(R.id.tv_js).setOnClickListener(this);
         HookInstrumentationUtil.hook();
 
-        Rxjava6();
+//        Rxjava6();
+
+//        Log.i("MainActivity", "getAge:" + daggerBean.getAge());
+
 
     }
     public void Rxjava6() {
@@ -186,7 +197,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 startActivity(intent1);
                 break;
             case R.id.tv_js:
-                Log.d("msgggggg", "onClick: " + CameraHelper.instance().captureCamera());
+
 //                test();
                 Intent intent2 = new Intent(MainActivity.this, WebActivity.class);
                 startActivity(intent2);

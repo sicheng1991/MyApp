@@ -1,28 +1,18 @@
 package com.example.sof23.behavior.interpreter;
 
 /**
- * ½âÊÍÆ÷Ä£Ê½
- * ½âÊÍÆ÷Ä£Ê½£¨Interpreter Pattern£©Ìá¹©ÁËÆÀ¹ÀÓïÑÔµÄÓï·¨»ò±í´ïÊ½µÄ·½Ê½£¬ËüÊôÓÚĞĞÎªĞÍÄ£Ê½¡£
- * ÕâÖÖÄ£Ê½ÊµÏÖÁËÒ»¸ö±í´ïÊ½½Ó¿Ú£¬¸Ã½Ó¿Ú½âÊÍÒ»¸öÌØ¶¨µÄÉÏÏÂÎÄ¡£ÕâÖÖÄ£Ê½±»ÓÃÔÚ SQL ½âÎö¡¢·ûºÅ´¦ÀíÒıÇæµÈ¡£
- * ÒâÍ¼£º¸ø¶¨Ò»¸öÓïÑÔ£¬¶¨ÒåËüµÄÎÄ·¨±íÊ¾£¬²¢¶¨ÒåÒ»¸ö½âÊÍÆ÷£¬Õâ¸ö½âÊÍÆ÷Ê¹ÓÃ¸Ã±êÊ¶À´½âÊÍÓïÑÔÖĞµÄ¾ä×Ó¡£
- Ö÷Òª½â¾ö£º¶ÔÓÚÒ»Ğ©¹Ì¶¨ÎÄ·¨¹¹½¨Ò»¸ö½âÊÍ¾ä×ÓµÄ½âÊÍÆ÷¡£
- ºÎÊ±Ê¹ÓÃ£ºÈç¹ûÒ»ÖÖÌØ¶¨ÀàĞÍµÄÎÊÌâ·¢ÉúµÄÆµÂÊ×ã¹»¸ß£¬ÄÇÃ´¿ÉÄÜ¾ÍÖµµÃ½«¸ÃÎÊÌâµÄ¸÷¸öÊµÀı±íÊöÎªÒ»¸ö¼òµ¥
- ÓïÑÔÖĞµÄ¾ä×Ó¡£ÕâÑù¾Í¿ÉÒÔ¹¹½¨Ò»¸ö½âÊÍÆ÷£¬¸Ã½âÊÍÆ÷Í¨¹ı½âÊÍÕâĞ©¾ä×ÓÀ´½â¾ö¸ÃÎÊÌâ¡£
- ÈçºÎ½â¾ö£º¹¹¼şÓï·¨Ê÷£¬¶¨ÒåÖÕ½á·ûÓë·ÇÖÕ½á·û¡£
- ¹Ø¼ü´úÂë£º¹¹¼ş»·¾³Àà£¬°üº¬½âÊÍÆ÷Ö®ÍâµÄÒ»Ğ©È«¾ÖĞÅÏ¢£¬Ò»°ãÊÇ HashMap¡£
- *
+
  * Created by Longwj on 2017/8/30.
  */
 
 public class Client {
-    //¹æÔò£ºRobert ºÍ John ÊÇÄĞĞÔ
     public static Expression getMaleExpression(){
         Expression robert = new TerminalExpression("Robert");
         Expression john = new TerminalExpression("John");
         return new OrExpression(robert, john);
     }
 
-    //¹æÔò£ºJulie ÊÇÒ»¸öÒÑ»éµÄÅ®ĞÔ
+    //ï¿½ï¿½ï¿½ï¿½Julie ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ñ»ï¿½ï¿½Å®ï¿½ï¿½
     public static Expression getMarriedWomanExpression(){
         Expression julie = new TerminalExpression("Julie");
         Expression married = new TerminalExpression("Married");

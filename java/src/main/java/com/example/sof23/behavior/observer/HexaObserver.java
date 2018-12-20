@@ -12,7 +12,7 @@ public class HexaObserver extends Observer {
 
     @Override
     public void update() {
-        System.out.println( "Ê®Áù½øÖÆ String: "
+        System.out.println( " String: "
                 + Integer.toHexString( subscriber.getState() ) );
     }
 }

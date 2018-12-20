@@ -12,7 +12,7 @@ public class OctalObserver extends Observer {
 
     @Override
     public void update() {
-        System.out.println( "°Ë½øÖÆ String: "
+        System.out.println( "String: "
                 + Integer.toOctalString( subscriber.getState() ) );
     }
 }

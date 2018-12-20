@@ -23,14 +23,11 @@ public class Utils {
      * speedDiql转MarkDown
      */
     public static void SpeedDial2MD() throws Exception{
-        //获取数据
         String name = "D:\\host";
 
         File file = new File(name);
         String s = FileUtil.readTxtFile(file);
-       //动态解析
         HostBean hostBean1 =  JSON.parseObject(s,HostBean.class);
-       //组
         JSONObject jsonObj = JSON.parseObject(hostBean1.getGroups().toString());
         List<GroupBean> groups = new ArrayList<>();
         for (Map.Entry<String, Object> entry : jsonObj.entrySet()) {
@@ -38,7 +35,6 @@ public class Utils {
 //            System.out.println(bean.toString());
             groups.add(bean);
         }
-     //网址
         JSONObject jsonObj1 = JSON.parseObject(hostBean1.getDials().toString());
         List<Dialbean> dials = new ArrayList<>();
         for (Map.Entry<String, Object> entry : jsonObj1.entrySet()) {

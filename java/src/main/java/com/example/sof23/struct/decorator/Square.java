@@ -7,6 +7,6 @@ package com.example.sof23.struct.decorator;
 public class Square implements Shape {
     @Override
     public void draw() {
-        System.out.println("»­¸ö·½ÐÎ");
+        System.out.println("");
     }
 }

@@ -7,6 +7,6 @@ package com.example.sof23.struct.adapter;
 public class Mp3 implements IMp3 {
     @Override
     public void payMp3() {
-        System.out.println("²¥·ÅMP3");
+        System.out.println("MP3");
     }
 }

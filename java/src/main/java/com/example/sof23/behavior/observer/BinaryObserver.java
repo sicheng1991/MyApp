@@ -12,7 +12,7 @@ public class BinaryObserver extends Observer {
 
     @Override
     public void update() {
-        System.out.println( "¶þ½øÖÆ String: "
+        System.out.println( " String: "
                 + Integer.toBinaryString( subscriber.getState() ) );
     }
 }

@@ -1,7 +1,7 @@
 package com.example.arithmetic;
 
 /**
- * 二分查找,数组必须有序
+ *
  * Created by Longwj on 2017/9/27.
  */
 

@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Ë«stackÊµÏÖ¼ÆËã
+ * Ë«stackÊµ
  * <p>
  * Created by Longwj on 2017/9/27.
  */
@@ -56,7 +56,7 @@ public class Evaluate {
     }
 
     /**
-     * µÃµ½ºó×º±í´ïÊ½
+     * ï¿½Ãµï¿½ï¿½ï¿½×ºï¿½ï¿½ï¿½Ê½
      *
      * @param s
      * @return
@@ -111,13 +111,13 @@ public class Evaluate {
         Scanner scan = new Scanner(System.in);
         String read = "";
         while(true){
-            System.out.println("ÊäÈë±í´ïÊ½:end½áÊø");
+            System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½:endï¿½ï¿½ï¿½ï¿½");
             read = scan.nextLine();
             if("end".equals(read)){
                 System.out.println("Ð»Ð»");
                 break;
             }
-            System.out.println("½á¹û£º"+ Evaluate.eval(read));
+            System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½"+ Evaluate.eval(read));
         }
     }
 }

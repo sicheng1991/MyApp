@@ -7,6 +7,6 @@ package com.example.sof23.struct.decorator;
 public class Rectangle implements Shape {
     @Override
     public void draw() {
-        System.out.println("»­¸öÔ²");
+        System.out.println("åŒ–");
     }
 }

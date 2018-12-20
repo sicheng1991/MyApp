@@ -1,7 +1,7 @@
 package com.example.sof23.struct.composite;
 
 /**
- * 组合模式
+
  * Created by Longwj on 2017/8/21.
  */
 
@@ -28,7 +28,6 @@ public class client {
         headMarketing.add(clerk1);
         headMarketing.add(clerk2);
 
-        //打印该组织的所有员工
         System.out.println(CEO);
         for (Employee headEmployee : CEO.getSubordinates()) {
             System.out.println(headEmployee);
