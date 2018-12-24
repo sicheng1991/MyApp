@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.chimu.myapp.activity.MainActivity">
 
-    <!--<HorizontalScrollView-->
-        <!--android:id="@+id/scollview"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:scrollbars="none"-->
-        <!--&gt;-->
+
         <LinearLayout
             android:id="@+id/scollview1"
             android:layout_width="match_parent"
@@ -45,34 +39,7 @@
                 android:visibility="visible"
                 android:text="js"/>
 
+
+
         </LinearLayout>
-    <!--</HorizontalScrollView>-->
-    <!--<LinearLayout-->
-        <!--android:id="@+id/ll"-->
-        <!--android:layout_width="376dp"-->
-        <!--android:layout_height="400dp"-->
-        <!--android:orientation="horizontal"-->
-        <!--tools:layout_editor_absoluteX="8dp"-->
-        <!--tools:layout_editor_absoluteY="8dp">-->
-        <!--<ImageView-->
-            <!--android:id="@+id/img"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:scaleType="centerInside"-->
-            <!--android:src="@mipmap/a1"-->
-            <!--android:visibility="gone"/>-->
-
-    <!--</LinearLayout>-->
-    <!--<Button-->
-        <!--android:id="@+id/btn_commit"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="提交"-->
-        <!--android:textSize="24dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--android:onClick="OnClick"/>-->
-
 </LinearLayout>

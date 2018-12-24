@@ -2,11 +2,11 @@ package com.chimu.kotlin.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.example.chimu.kotlin.R
+import androidx.appcompat.app.AppCompatActivity
+import com.chimu.kotlin.R
 
 /**
  *

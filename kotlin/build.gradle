@@ -1,14 +1,15 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
-        applicationId "com.example.chimu.kotlin"
-        minSdkVersion 19
-        targetSdkVersion 26
+        applicationId "com.chimu.kotlin"
+        minSdkVersion 23
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
@@ -28,10 +29,26 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.0.2'
+//    compile 'com.android.support:appcompat-v7:26.0.2'//android9后建议更新至androidx库
     testCompile 'junit:junit:4.12'
+//    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'//material:material会自动依赖此库
+    implementation 'com.google.android.material:material:1.1.0-alpha02'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
 }
-repositories {
-    mavenCentral()
+
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '26.0.2'
+            }
+        }
+//        if(! requested.name.startsWith("androidx.appcompat:appcompat")){
+//            details.
+//            details.useVersion("26.0.2")
+//        }
+    }
 }
+

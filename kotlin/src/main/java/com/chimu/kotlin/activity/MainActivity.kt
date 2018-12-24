@@ -1,10 +1,10 @@
 package com.chimu.kotlin.activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
-import com.example.chimu.kotlin.R
+import androidx.appcompat.app.AppCompatActivity
+import com.chimu.kotlin.R
 import com.example.chimu.kotlin.bean.PersonBean
 
 class MainActivity : AppCompatActivity() {

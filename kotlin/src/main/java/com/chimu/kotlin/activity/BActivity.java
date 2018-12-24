@@ -3,7 +3,8 @@ package com.chimu.kotlin.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 //import com.example.chimu.kotlin.util.StringUtils;
 //import com.example.chimu.kotlin.util.StringUtils;
