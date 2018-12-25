@@ -1,6 +1,5 @@
-package com.example.chimu.kotlin.util
+package com.chimu.kotlin.util
 
-import android.util.Log.println
 
 
 /**

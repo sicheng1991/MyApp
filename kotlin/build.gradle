@@ -33,6 +33,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 //    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'//material:material会自动依赖此库
     implementation 'com.google.android.material:material:1.1.0-alpha02'
+
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
 }
@@ -45,10 +46,7 @@ configurations.all {
                 details.useVersion '26.0.2'
             }
         }
-//        if(! requested.name.startsWith("androidx.appcompat:appcompat")){
-//            details.
-//            details.useVersion("26.0.2")
-//        }
+
     }
 }
 

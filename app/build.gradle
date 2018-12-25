@@ -127,6 +127,7 @@ configurations.all {
     }
 }
 
+//3.0打jar包
 
 def sdkDestinationPath = "build";
 task deleteBuild(type: Delete) {
@@ -140,9 +141,9 @@ task makeJar(type: Jar) {
     //指定生成的jar名
     baseName 'cameraHelper'
     //从哪里打包class文件
-    from('build/intermediates/classes/debug')
+    from('build/intermediates/baidu/classes/debug')
     //去掉不需要打包的目录和文件，不知为何就是去不掉，处理办法是将不要的文件，文件夹先删除
-    exclude('build/intermediates/classes/debug/android')
+    exclude('build/intermediates/baidu/classes/debug/android')
     exclude('BuildConfig.class', 'R.class')
     //去掉R$开头的文件
     exclude{ it.name.startsWith('R$');}

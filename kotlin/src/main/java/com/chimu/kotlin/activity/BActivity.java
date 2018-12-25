@@ -2,20 +2,16 @@ package com.chimu.kotlin.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 
 import androidx.annotation.Nullable;
-
-//import com.example.chimu.kotlin.util.StringUtils;
-//import com.example.chimu.kotlin.util.StringUtils;
-//import com.example.chimu.kotlin.util.TextUtil;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 /**
  * Created by Longwj on 2017/6/28.
  */
 
-public class BActivity extends Activity {
+public class BActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

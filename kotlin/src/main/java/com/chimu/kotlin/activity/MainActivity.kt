@@ -5,7 +5,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.chimu.kotlin.R
-import com.example.chimu.kotlin.bean.PersonBean
+import com.chimu.kotlin.bean.PersonBean
 
 class MainActivity : AppCompatActivity() {
     var btn: Button? = null
