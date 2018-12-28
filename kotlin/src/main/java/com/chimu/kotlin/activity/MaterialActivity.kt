@@ -6,6 +6,7 @@ import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.chimu.kotlin.R
+import com.chimu.kotlin.Test
 import com.google.android.material.bottomappbar.BottomAppBar
 
 
@@ -46,7 +47,8 @@ class MaterialActivity : BActivity() {
         bar.setNavigationOnClickListener {
             // Handle the navigation click by showing a BottomDrawer etc.
             run {
-                Log.i("haa", "123")
+                val test = Test()
+                test.main()
 
             }
         }

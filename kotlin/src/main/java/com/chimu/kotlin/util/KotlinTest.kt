@@ -1,4 +1,4 @@
-package com.chimu.kotlin
+package com.chimu.kotlin.util
 
 /**
  * Created by Longwj on 2017/9/5.

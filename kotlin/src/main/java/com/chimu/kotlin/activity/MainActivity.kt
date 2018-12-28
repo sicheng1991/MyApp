@@ -1,6 +1,7 @@
 package com.chimu.kotlin.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,10 +16,26 @@ class MainActivity : AppCompatActivity() {
 
         btn = findViewById(R.id.btn_bbb)
 
-        btn!!.setOnClickListener {
-            Toast.makeText(this,"你好",Toast.LENGTH_LONG).show()
-            btn!!.text = "改个名字"
-        }
+
+        btn?.text = "不是空null才调此方法"
+        Log.i("msgggg", btn?.text as String?)
+
+        //!!:示例不为null 时调用，否则抛出异常
+//        btn!!.setOnClickListener {
+//            Toast.makeText(this,"你好",Toast.LENGTH_LONG).show()
+//            btn!!.text = "改个名字"
+//            val test = Test()
+//            test.main()
+//
+//            //给任何类添加函数
+//            fun MainActivity.toast(message : String,duration: Int  = Toast.LENGTH_LONG){
+//                Toast.makeText(this,message,duration).show()
+//            }
+//            toast("测试1111",Toast.LENGTH_LONG)
+//        }
+
+        //lambda
+        btn?.setOnClickListener {  Toast.makeText(this,"lambda",Toast.LENGTH_LONG).show() }
 
 //        println(getName(2))
 //        println(sum(3, 5))
@@ -64,7 +81,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun getName(id: Int): String {
-        return "迟暮"
+        return "yangzteL"
     }
 
     fun sum(a: Int, b: Int): Int { // kotlin中的返回值类型必须明确指定
