@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_explore"
+        android:icon="@mipmap/debug"
+        android:showAsAction="ifRoom"
+        android:title="调试" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@mipmap/edit"
+        android:showAsAction="ifRoom"
+
+        android:title="编辑" />
+    <item
+        android:id="@+id/navigation_guide"
+        android:icon="@mipmap/guide"
+        android:showAsAction="ifRoom"
+        android:title="导航" />
+    <item
+        android:id="@+id/navigation_setting"
+        android:icon="@mipmap/setting"
+        android:showAsAction="ifRoom"
+        android:title="设置" />
+    <item
+        android:id="@+id/navigation_setting1"
+        android:icon="@mipmap/setting"
+        android:showAsAction="ifRoom"
+        android:title="设置1" />
+
+
+</menu>
