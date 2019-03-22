@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.chimu.myapp.R;
 import com.chimu.myapp.hook.hook.HookInstrumentationUtil;
+import com.chimu.myapp.utils.ODFUtils;
 import com.chimu.mylib.LibApplication;
 import com.chimu.mylib.activity.Camera2Activity;
 import com.chimu.mylib.base.BaseActivity;
@@ -59,7 +60,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
 //        Rxjava6();
 
-
+        ODFUtils.PDF2ODF();
 
     }
     public void Rxjava6() {
